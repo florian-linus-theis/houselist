@@ -4,8 +4,8 @@ RSpec.describe Belonging, type: :model do
   context 'with DB columns' do
     {
       name: :string,
-      status: :int,
-      description: :string,
+      status: :integer,
+      description: :text,
       flat_id: :integer,
       category_id: :integer
     }.each do |attribute, type|

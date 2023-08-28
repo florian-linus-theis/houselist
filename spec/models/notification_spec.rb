@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Notification, type: :model do
   context 'with DB columns' do
     {
-      description: :string,
+      description: :text,
       user_id: :integer,
       belonging_id: :integer
     }.each do |attribute, type|
