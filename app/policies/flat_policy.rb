@@ -1,7 +1,11 @@
 class FlatPolicy < ApplicationPolicy
   class Scope < Scope
     # def resolve
-    #   scope.where(user: user) # users can only see their flats
+    #   if user.landlord?
+    #     scope.where(user: user) # landlords can only see their flats
+    #   elseif user.tenant?
+    #     scope.where() # Tenants can see the flats where they are added (must join tables here)
+    #   end
     # end
   end
 
