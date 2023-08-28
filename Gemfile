@@ -54,7 +54,7 @@ gem "font-awesome-sass", "~> 6.1"
 # Using Simple Form
 gem "simple_form"
 
-# Using AAutoprefixer
+# Using Autoprefixer
 gem "autoprefixer-rails"
 
 # Using Env Files
