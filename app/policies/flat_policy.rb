@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class FlatPolicy < ApplicationPolicy
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
-
   class Scope < Scope
     def resolve
       if user.landlord?
@@ -16,7 +14,9 @@ class FlatPolicy < ApplicationPolicy
 
   # def index; end
 
-  # def show; end
+  def show?
+    true
+  end
 
   def new?
     create?
@@ -25,10 +25,6 @@ class FlatPolicy < ApplicationPolicy
   def create?
     # Only a landlord can create a flat
     user.landlord?
-  end
-
-  def edit?
-    update?
   end
 
   def update?
