@@ -104,4 +104,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'warden-rspec-rails'
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end

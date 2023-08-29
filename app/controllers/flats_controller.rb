@@ -11,6 +11,11 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+  def new
+    @flat = Flat.new
+    authorize @flat
+  end
+
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
