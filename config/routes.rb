@@ -5,12 +5,15 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :flats, only: [:index, :show, :create, :update, :destroy] do
-    resources :belongings, only: [:show, :create, :update, :destroy ]
-    resources :todos, only: [:show, :create, :destroy]
+  resources :flats, except: %i[new] do
+    resources :belongings, only: %i[create]
+    resources :todos, only: %i[create]
   end
 
-  resources :notifications, only: [:show, :index, :create]
+  resources :belongings, only: %i[show update destroy]
+  resources :todos, only: %i[show update destroy]
+
+  resources :notifications, only: %i[show index create]
 
   get '/profile', to: 'pages#profile', as: :profile
 end
