@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class BelongingsController < ApplicationController
-
   def show
     @beloninging = Belonging.find(params[:id])
-    #what are
+    # what are
   end
 
-  def create
+  def create; end
 
-  end
+  def update; end
+
+  def destroy; end
 end
