@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Flat, type: :model do
+RSpec.describe Notification, type: :model do
   context 'with DB columns' do
     {
-      address: :string,
-      floor: :integer,
-      user_id: :integer
+      description: :text,
+      user_id: :integer,
+      belonging_id: :integer
     }.each do |attribute, type|
       it { is_expected.to have_db_column(attribute).of_type type }
     end
@@ -13,6 +13,6 @@ RSpec.describe Flat, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
-    it { should have_many(:belongins) }
+    it { should belong_to(:belonging) }
   end
 end

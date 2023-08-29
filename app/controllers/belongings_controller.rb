@@ -1,0 +1,2 @@
+class BelongingsController < ApplicationController
+end
