@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FlatPolicy < ApplicationPolicy
-
   class Scope < Scope
     def resolve
       if user.landlord?

@@ -6,4 +6,20 @@ class FlatsController < ApplicationController
     @flats = policy_scope(Flat)
     binding.pry
   end
+
+  def create; end
+
+  def edit; end
+
+  def show; end
+
+  def update; end
+
+  def destroy; end
+
+  private
+
+  def flat_params
+    params.require(:flat).permit(:address)
+  end
 end
