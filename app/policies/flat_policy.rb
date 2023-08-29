@@ -27,10 +27,6 @@ class FlatPolicy < ApplicationPolicy
     user.landlord?
   end
 
-  def edit?
-    update?
-  end
-
   def update?
     # Only the owner of the flat can update and edit the flat
     record.user == user
