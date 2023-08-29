@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Belonging, type: :model do
+RSpec.describe Todo, type: :model do
   context 'with DB columns' do
     {
-      status: :int,
-      description: :string,
+      status: :integer,
+      description: :text,
       user_id: :integer,
       belonging_id: :integer
     }.each do |attribute, type|
