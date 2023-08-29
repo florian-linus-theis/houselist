@@ -2,13 +2,14 @@ class FlatPolicy < ApplicationPolicy
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   class Scope < Scope
-    # def resolve
-    #   if user.landlord?
-    #     scope.where(user: user) # landlords can only see their flats
-    #   elseif user.tenant?
-    #     scope.where(tenant: user) # TODO: Tenants can see the flats where they are added (must join tables here)
-    #   end
-    # end
+    def resolve
+      if user.landlord?
+        scope.where(user:) # landlords can only see their flats
+      elsif user.tenant?
+        # Tenants can see the flats where they are added (must join tables here)
+        scope.joins(:tentants).where(tenants: { user: })
+      end
+    end
   end
 
   def index
