@@ -9,7 +9,7 @@ class FlatPolicy < ApplicationPolicy
         scope.where(user:) # landlords can only see their flats
       elsif user.tenant?
         # Tenants can see the flats where they are added (must join tables here)
-        scope.joins(:tenants).where(tenants: { user: })
+        scope.includes(:tenants).where(tenants: { user: })
       end
     end
   end
