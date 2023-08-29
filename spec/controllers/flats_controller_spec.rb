@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe FlatsController, type: :controller do
-  describe "#index" do
-    login_user
+  before :each do
+    sign_in FactoryBot.create(:user)
+    FactoryBot.create(:flat)
+  end
 
-    let(:flats) { create(:flat, 3) }
-
+  describe "GET #index" do
     it "responds successfully" do
       get :index
+
       expect(response).to be_successful
     end
   end

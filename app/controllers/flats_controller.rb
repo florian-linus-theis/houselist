@@ -1,17 +1,25 @@
 # frozen_string_literal: true
 
 class FlatsController < ApplicationController
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
   def index
     @flats = policy_scope(Flat)
-    binding.pry
   end
 
-  def create; end
+  def create
+    @flat = Flat.new(flat_params)
+    @flat.user = current_user
+    authorize @flat
+    redirect_to flat_path(@flat) if @flat.save
+
+    render :new
+  end
 
   def edit; end
 
-  def show; end
+  def show
+    @flat = Flat.find(params[:id])
+    authorize @flat
+  end
 
   def update; end
 

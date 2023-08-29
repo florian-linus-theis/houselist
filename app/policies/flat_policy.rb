@@ -14,7 +14,9 @@ class FlatPolicy < ApplicationPolicy
 
   # def index; end
 
-  # def show; end
+  def show?
+    true
+  end
 
   def new?
     create?

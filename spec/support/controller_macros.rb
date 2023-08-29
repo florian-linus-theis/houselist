@@ -3,14 +3,13 @@ module ControllerMacros
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = FactoryBot.create(:user)
-      # user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
       sign_in user
     end
   end
 
   def create_flats
     before(:each) do
-      @flats = FactoryBot.create_list(:flat, 3)
+      FactoryBot.create(:flat, 3)
     end
   end
 end
