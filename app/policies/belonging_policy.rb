@@ -6,5 +6,16 @@ class BelongingPolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
+    def show?
+      true
+    end
+
+    def create?
+      true
+    end
+
+    def destroy?
+      record.user == user
+    end
   end
 end
