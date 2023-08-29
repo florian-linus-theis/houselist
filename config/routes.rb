@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'pages#home'
+
   resources :flats, only: [:index, :show, :create, :update, :destroy] do
-    resources :belongings, only: [:index, :show, :create, :update, :destroy ]
+    resources :belongings, only: [:show, :create, :update, :destroy ]
+    resources :todos, only: [:show, :create, :destroy]
   end
-  resources :todos, only: [:show, :create, :destroy]
-  resources :users, only: [:show, :edit, :update] do
-    resources :notifications, only: [:show, :index, :create]
-  end
+
+  resources :notifications, only: [:show, :index, :create]
+
+  get '/profile', to: 'pages#profile', as: :profile
 end
