@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :flats, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :belongings, dependent: :destroy
+  has_many :tenants, dependent: :destroy
 end
