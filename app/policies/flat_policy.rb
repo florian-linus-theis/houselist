@@ -14,19 +14,13 @@ class FlatPolicy < ApplicationPolicy
 
   # def index; end
 
-  # def show; end
-
-  def new?
-    create?
+  def show?
+    record.user == user
   end
 
   def create?
     # Only a landlord can create a flat
     user.landlord?
-  end
-
-  def edit?
-    update?
   end
 
   def update?
