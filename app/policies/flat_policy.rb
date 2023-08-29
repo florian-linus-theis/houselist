@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FlatPolicy < ApplicationPolicy
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   class Scope < Scope
     def resolve

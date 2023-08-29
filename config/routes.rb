@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :flats, only: [:index, :show, :create, :update, :destroy] do
-    resources :belongings, only: [:show, :create, :update, :destroy ]
+  resources :flats, except: %i[new edit] do
+    resources :belongings, only: %i[create]
     resources :todos, only: [:show, :create, :destroy]
   end
+
+  resources :belongings, only: [:show, :update, :destroy]
 
   resources :notifications, only: [:show, :index, :create]
 

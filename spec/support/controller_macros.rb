@@ -7,4 +7,10 @@ module ControllerMacros
       sign_in user
     end
   end
+
+  def create_flats
+    before(:each) do
+      @flats = FactoryBot.create_list(:flat, 3)
+    end
+  end
 end
