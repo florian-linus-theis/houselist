@@ -8,9 +8,11 @@ class FlatsController < ApplicationController
   def index
     @flats = policy_scope(Flat)
   end
-  
+
   def show
     authorize @flat
+    @belongings = Belonging.where(flat: @flat)
+    @notifications = Notification.where(fla)
   end
 
   def create
