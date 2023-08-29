@@ -2,11 +2,11 @@
 
 class FlatsController < ApplicationController
   before_action :set_flat, only: %i[show update destroy]
-  
+
   def index
     @flats = policy_scope(Flat)
   end
-  
+
   def show
     authorize @flat
   end
