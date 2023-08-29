@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class FlatTest < ActiveSupport::TestCase
+class TenantTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
