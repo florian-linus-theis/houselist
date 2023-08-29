@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       last_name: :string,
       email: :string,
       encrypted_password: :string,
-      type: :integer
+      role: :integer
     }.each do |attribute, type|
       it { is_expected.to have_db_column(attribute).of_type type }
     end
