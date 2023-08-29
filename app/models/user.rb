@@ -16,8 +16,8 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :type, presence: true
+  validates :role, presence: true
 
   # Modifications
-  enum type: %i[landlord tenant]
+  enum role: { landlord: 0, tenant: 1 }
 end
