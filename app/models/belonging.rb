@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Belonging < ApplicationRecord
   # References
   belongs_to :flat

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FlatPolicy < ApplicationPolicy
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
@@ -12,11 +14,9 @@ class FlatPolicy < ApplicationPolicy
     end
   end
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new?
     create?
