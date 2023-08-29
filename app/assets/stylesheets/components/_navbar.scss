@@ -1,5 +1,60 @@
+.avatar {
+  margin-top: 3px;
+  margin-right: 20px;
+  width: 60px;
+}
+
+.btn-close {
+  color: $off-white;
+}
+
+.fa-solid {
+  padding: 10px 30px 10px 10px;
+}
+
+hr {
+  opacity: 1;
+  color: $off-white;
+}
+
+.menu-icon {
+  font-size: 35px;
+}
+
+.menu-item {
+  font-size: 25px;
+  color: $off-white;
+  text-decoration: none;
+}
+
+.nav-item {
+  display: flex;
+}
+
+.arrow {
+  padding: 3px 0 2px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: $off-white;
+}
+
 .navbar {
   background: $blue;
+  height: 10%;
+}
+
+.navbar-brand {
+  padding-top: 20px;
+}
+
+.navbar-logo {
+  display: block;
+  margin-left: 45px;
+  width: 50%;
+}
+
+.navbar-nav {
+  color: $off-white;
 }
 
 .navbar-toggler {
@@ -10,9 +65,6 @@
   width: 2em;
 }
 
-.navbar-logo {
-  display: block;
-  margin-left: 90px;
-  margin-top: 5px;
-  width: 30%;
+.offcanvas {
+  background: $light-blue;
 }
