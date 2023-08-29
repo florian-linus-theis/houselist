@@ -15,7 +15,11 @@ class FlatPolicy < ApplicationPolicy
   # def index; end
 
   def show?
-    record.user == user
+    true
+  end
+
+  def new?
+    create?
   end
 
   def create?

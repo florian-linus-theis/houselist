@@ -22,5 +22,5 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   # Modifications
-  enum role: { landlord: 0, tenant: 1 }
+  enum role: %i[landlord tenant]
 end
