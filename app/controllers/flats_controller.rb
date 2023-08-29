@@ -11,8 +11,9 @@ class FlatsController < ApplicationController
 
   def show
     authorize @flat
-    @belongings = Belonging.where(flat: @flat)
-    @notifications = Notification.where(fla)
+    @belongings = @flat.belongings
+    @notifications = @flat.notifications
+    @todos = @flat.todos
   end
 
   def create

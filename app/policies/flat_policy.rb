@@ -15,7 +15,11 @@ class FlatPolicy < ApplicationPolicy
   # def index; end
 
   def show?
-    record.user == user
+    if user.landlord?
+      record.user == user
+    elsif user.tenant?
+      record.includes(:tenants).find_by(tenants: { user: }).exists?
+    end
   end
 
   def create?
