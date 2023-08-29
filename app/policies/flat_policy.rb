@@ -12,14 +12,13 @@ class FlatPolicy < ApplicationPolicy
     end
   end
 
-  # def index; end
-
   def show?
     true
   end
 
   def new?
-    create?
+    # Only a landlord can create a flat
+    user.landlord?
   end
 
   def create?

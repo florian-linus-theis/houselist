@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  resources :flats, except: %i[new] do
+  resources :flats do
     resources :belongings, only: %i[create]
     resources :todos, only: %i[create]
   end
