@@ -16,7 +16,7 @@ class FlatPolicy < ApplicationPolicy
     if user.landlord?
       record.user == user
     elsif user.tenant?
-      record.includes(:tenants).find_by(tenants: { user: }).exists?
+      !record.tenants.find_by(tenants: { user: }).nil?
     end
   end
 
