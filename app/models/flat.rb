@@ -9,5 +9,4 @@ class Flat < ApplicationRecord
 
   # Validations
   validates :address, presence: true
-
 end
