@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :flats, dependent: :destroy
   has_many :belongings, through: :flats
   has_many :notifications, dependent: :destroy
+  has_many :tenants, dependent: :destroy
   has_many :todos, dependent: :destroy
 
   # Validations
