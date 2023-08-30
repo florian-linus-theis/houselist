@@ -1,5 +1,14 @@
 <h1><%= @flat.address %></h1>
 
+<% @notifications.each do |notification| %>
+  <p style="color: black"><%= description.name %></p>
+<% end %>
+
 <% @belongings.each do |belonging| %>
-  <p style="color: black"><%= belonging.name %></p>
+  <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+  <ul>
+    <% belonging.todos.each do |todo| %>
+      <li><%= todo.description %> | Status: <%= todo.status %></li>
+    <% end %>
+  </ul>
 <% end %>
