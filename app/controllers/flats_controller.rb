@@ -8,8 +8,8 @@ class FlatsController < ApplicationController
   end
 
   def show
-    authorize @flat
     @belongings = @flat.belongings
+    authorize @flat
   end
 
   def new
@@ -54,6 +54,6 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:address)
+    params.require(:flat).permit(:address, :name)
   end
 end
