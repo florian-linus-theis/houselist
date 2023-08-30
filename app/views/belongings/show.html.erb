@@ -1,11 +1,17 @@
 <p><strong>Belongings</strong></p>
 <ul class="list-group">
-  <% @flat.belonging.each do |belonging| %>
-    <li class="list-group-item"><%= belonging.name, belonging.status %></li>
-    <%= link_to "Delete",
-    flat_path(belonging),
-    data: {turbo_method: :delete if policy(@restaurant).destroy?, turbo_confirm: "Are you sure?"}
-  %>
-  <% end %>
-</ul>
 
+    <li class="list-group-item">
+      <%= @belonging.name %>
+      <%= @belonging.description %>
+      <%= @belonging.status %>
+      <%= link_to "Delete",
+                  flat_belongings_path(@belonging),
+                  method: :delete,
+                  data: {
+                    turbo_confirm: "Are you sure?",
+                    disable_with: "Deleting...",
+                    confirm_swal: "true"
+                  } %>
+    </li>
+</ul>
