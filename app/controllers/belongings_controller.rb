@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BelongingsController < ApplicationController
-  before_action :set_flat, only: %i[show edit update create new destroy]
+  before_action :set_flat, only: %i[show update create new destroy]
 
   def show
     @belonging = Belonging.find(params[:id])
@@ -22,6 +22,12 @@ class BelongingsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @belonging = Belonging.find(params[:id])
+    @flat = @belonging.flat
+    render file: 'public/401.html', status: :unauthorized unless authorize @belonging
   end
 
   def update
