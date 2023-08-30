@@ -1,25 +1,34 @@
 <nav class="navbar navbar-light fixed-top">
   <div class="d-flex">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-      <span class="navbar-toggler-icon"></span>
+      <i class="menu-icon fa-solid fa-bars" style="color: #FDFDFD;"></i>
     </button>
     <a class="navbar-brand" href="/">
         <%= image_tag "houselist_logo_font.png", alt: "krenty", width: 50, class: "navbar-logo" %>
     </a>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="profile-menu">
+      <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="dropdown-item" href="/"><i class="fa-solid fa-house"></i> My flats</a>
+        <ul class="navbar-nav pe-3">
+          <li class="nav-item d-flex justify-content-between">
+            <a class="menu-item" href="/flats"><i class="fa-solid fa-house"></i>My flats</a>
+            <a class="arrow" href="/flats">></a>
           </li>
-          <li class="nav-item">
-            <a class="dropdown-item" href="/"><i class="fa-solid fa-user"></i> My profile</a>
+          <hr/>
+          <li class="nav-item d-flex justify-content-between">
+            <a class="menu-item" href="/"><i class="fa-solid fa-user"></i> My profile</a>
+            <a class="arrow" href="/flats">></a>
           </li>
-          <li class="nav-item">
-            <a class="dropdown-item" data-turbo-method="delete" href="/users/sign_out"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+          <hr/>
+          <li class="nav-item d-flex justify-content-between">
+            <a class="menu-item" data-turbo-method="delete" href="/users/sign_out"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+            <a class="arrow" href="/flats">></a>
           </li>
         </ul>
       </div>
