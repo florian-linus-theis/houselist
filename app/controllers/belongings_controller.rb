@@ -26,7 +26,7 @@ class BelongingsController < ApplicationController
 
   def update
     @belonging = Belonging.find(params[:id])
-    
+
     # Deleting previous photos
     @belonging.photos.each(&:purge) if @belonging.photos.attached?
     if @belonging.update(belonging_params)
@@ -37,8 +37,10 @@ class BelongingsController < ApplicationController
   end
 
   def destroy
-    @belonging.photos.each(&:purge) if @belonging.photos.attached?
     @belonging = Belonging.find(params[:id])
+
+    # Deleting photos
+    @belonging.photos.each(&:purge) if @belonging.photos.attached?
     @belonging.destroy
     authorize @belonging
     redirect_to flat_path(@belonging.flat), status: :see_other
