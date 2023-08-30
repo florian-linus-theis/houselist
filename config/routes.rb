@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :todos, only: %i[create]
   end
 
-  resources :belongings, only: %i[update destroy]
+  resources :belongings, only: %i[edit update destroy]
   resources :todos, only: %i[show update destroy]
 
   resources :notifications, only: %i[index]

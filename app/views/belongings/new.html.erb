@@ -1,10 +1,4 @@
-<h1>New belonging</h1>
-<%= simple_form_for [@flat, @belonging] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :category %>
-  <%= f.input :status %>
-  <%= f.input :description %>
-  <%= f.input :photos, as: :file %>
-  <%= f.input :files, as: :file %>
-  <%= f.submit "Add Belonging", class: "btn btn-primary" %>
-<% end %>
+<div class="container form my-5">
+<h2 class="my-3">Add new belonging</h2>
+<%= render "form", belonging: @belonging %>
+</div>

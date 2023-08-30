@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BelongingsController < ApplicationController
-  before_action :set_flat, only: %i[new create]
+  before_action :set_flat, only: %i[show edit update create new destroy]
 
   def show
     @belonging = Belonging.find(params[:id])
@@ -26,11 +26,18 @@ class BelongingsController < ApplicationController
 
   def update
     @belonging = Belonging.find(params[:id])
-    @belonging.update(belonging_params)
-    redirect_to belonging_path(@belonging)
+    
+    # Deleting previous photos
+    @belonging.photos.each(&:purge) if @belonging.photos.attached?
+    if @belonging.update(belonging_params)
+      redirect_to belonging_path(@belonging), notice: 'Updated the details'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @belonging.photos.each(&:purge) if @belonging.photos.attached?
     @belonging = Belonging.find(params[:id])
     @belonging.destroy
     authorize @belonging
