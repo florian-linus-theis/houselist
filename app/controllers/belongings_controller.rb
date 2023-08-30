@@ -25,11 +25,12 @@ class BelongingsController < ApplicationController
   end
 
   def update
+    @belonging = Belonging.find(params[:id])
+    
     # Deleting previous photos
     @belonging.photos.each(&:purge) if @belonging.photos.attached?
-
     if @belonging.update(belonging_params)
-      redirect_to belonging_path(@belonging), notice: 'Updated the belonging details'
+      redirect_to belonging_path(@belonging), notice: 'Updated the details'
     else
       render :edit, status: :unprocessable_entity
     end

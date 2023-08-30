@@ -1,14 +1,93 @@
-<h1><%= @flat.address %></h1>
+<% if current_user.landlord? %>
+  <h1><%= @flat.name %></h1>
+  <h4><%= @flat.address %></h1>
 
-<% @notifications.each do |notification| %>
-  <p style="color: black"><%= description.name %></p>
-<% end %>
-
-<% @belongings.each do |belonging| %>
-  <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
-  <ul>
-    <% belonging.todos.each do |todo| %>
-      <li><%= todo.description %> | Status: <%= todo.status %></li>
+  <h2>News:</h2>
+  <div class="notifications-container">
+    <% @belongings.each do |belonging| %>
+      <% belonging.notifications.each do |notification| %>
+        <% unless notification.read? %>
+          <p style="color: black"><%= notification.description %></p>
+        <% end %>
+      <% end %>
     <% end %>
-  </ul>
+  </div>
+
+  <h2>Needs Attention:</h2>
+  <div class="belonging-container">
+    <% @belongings.each do |belonging| %>
+      <% if belonging.damaged? %>
+        <p style="color: black">
+          <%= belonging.name %> | Status: <%= belonging.status %> |
+          <% unless belonging.files.first.nil? %>
+            <%= link_to "Download", cl_private_download_url(belonging.files.first.url, :pdf, :attachment => true) %>
+          <% end %>
+        </p>
+        <ul>
+          <% belonging.todos.each do |todo| %>
+            <% if todo.active? %>
+              <li><%= todo.description %> | Status: <%= todo.status %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% elsif belonging.needs_replacement? %>
+        <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+        <ul>
+          <% belonging.todos.each do |todo| %>
+            <% if todo.active? %>
+              <li><%= todo.description %> | Status: <%= todo.status %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2>All items:</h2>
+  <div class="belonging-container">
+    <% @belongings.each do |belonging| %>
+      <p style="color: black">
+        <%= belonging.name %> | Status: <%= belonging.status %> |
+        <% unless belonging.files.first.nil? %>
+            <%= link_to "Download", cl_private_download_url("development/#{belonging.files.first.key}", :pdf, :attachment => true) %>
+        <% end %>
+      </p>
+      <ul>
+        <% belonging.todos.each do |todo| %>
+          <% if todo.active? %>
+            <li><%= todo.description %> | Status: <%= todo.status %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+
+<% elsif current_user.tenant? %>
+  <h1><%= @flat.address %></h1>
+
+  <h2>News:</h2>
+  <div class="notifications-container">
+    <% @notifications.each do |notification| %>
+      <p style="color: black"><%= notification.description %></p>
+    <% end %>
+  </div>
+
+  <h2>Needs Attention:</h2>
+  <div class="belonging-container">
+    <% @belongings.each do |belonging| %>
+      <% if belonging.damaged? %>
+        <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+      <% elsif belonging.needs_replacement? %>
+        <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2>All items:</h2>
+  <div class="belonging-container">
+    <% @belongings.each do |belonging| %>
+      <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+    <% end %>
+  </div>
 <% end %>

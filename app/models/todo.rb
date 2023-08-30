@@ -4,6 +4,7 @@ class Todo < ApplicationRecord
   # References
   belongs_to :belonging
   belongs_to :user
+  has_many :notifications, dependent: :destroy
   has_many_attached :photos
   has_many_attached :files
 

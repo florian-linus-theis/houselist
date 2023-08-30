@@ -1,24 +1,29 @@
-<div class="container pt-5">
-  <h1 class="pt-5 my-3">Welcome home, <%= current_user.first_name %>!
-<i class="fa-solid fa-hand-peace" style="color: #5465FF;"></i></h1>
-
-
-
+  <div>
+    <h1 >Welcome home <br> <%= current_user.first_name %>!
+    <i class="fa-solid fa-hand-peace" style="color: #5465FF;"></i></h1>
+  </div>
   <% @flats.each do |flat| %>
-    <div class="card my-3">
+    <div class="card my-4 card-flat">
       <div class="row g-0">
-        <div class="col-4">
-          <%= cl_image_tag flat.photos.first.key, width: 112, height: 112, crop: :fill %>
+        <div class="col-4 container-img">
+          <%= cl_image_tag flat.photos.first.key, class: "image-flat" %>
         </div>
         <div class="col-8">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><%= flat.address %></p>
+            <h5 class="card-title">Home 123</h5>
+            <div class="mt-3">
+              <%= link_to flat_path(flat.id), class:"btn-pill px-3 py-1" do %>
+                <i class="fa-regular fa-envelope icon-pill"></i>
+              <% end %>
+              <button class="btn-round">2</button>
+            </div>
+            <p class="card-text p-grey"><%= flat.address %></p>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 
-
-</div>
+   <%= link_to new_flat_path, class:"btn-sticky-big" do %>
+    <i class="fa-solid fa-plus  p-3"></i>
+   <% end %>
