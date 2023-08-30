@@ -6,12 +6,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :flats do
-    resources :belongings, only: %i[create show]
-    resources :todos, only: %i[create]
+    resources :belongings, only: %i[create show edit update destroy] do
+      resources :todos, only: %i[create update destroy]
+    end
   end
-
-  resources :belongings, only: %i[edit update destroy]
-  resources :todos, only: %i[show update destroy]
 
   resources :notifications, only: %i[index]
 
