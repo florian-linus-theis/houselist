@@ -1,6 +1,5 @@
 .footer {
     background: $blue;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -9,6 +8,10 @@
     height: 170px;
     padding: 0px 30px;
     color: rgba(0,0,0,0.3);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
   }
 
   .footer a {
@@ -19,7 +22,7 @@
     padding: 0px 10px;
   }
   
-  p {
+  .footer-connect {
     padding: 18px 0 6px 10px;
     margin: 0;
     font-weight: 500;
