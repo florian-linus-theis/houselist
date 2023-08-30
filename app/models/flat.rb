@@ -11,4 +11,5 @@ class Flat < ApplicationRecord
 
   # Validations
   validates :address, presence: true
+  validates :name, presence: true
 end

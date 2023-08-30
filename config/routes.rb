@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :belongings, only: %i[update destroy]
   resources :todos, only: %i[show update destroy]
 
-  resources :notifications, only: %i[show index create]
+  resources :notifications, only: %i[index]
 
   get '/profile', to: 'pages#profile', as: :profile
 end

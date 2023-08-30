@@ -3,17 +3,21 @@ Flat.all.each do |flat|
   flat.photos.each(&:purge) if flat.photos.attached?
 end
 
-puts 'deleting all belongings photos...'
+puts 'deleting all belongings photos and files...'
 Belonging.all.each do |belonging|
   belonging.photos.each(&:purge) if belonging.photos.attached?
+  belonging.files.each(&:purge) if belonging.files.attached?
 end
 
-puts 'deleting all todos photos...'
+puts 'deleting all todos photos and files...'
 Todo.all.each do |todo|
   todo.photos.each(&:purge) if todo.photos.attached?
+  todo.files.each(&:purge) if todo.files.attached?
 end
 
 puts 'deleting all users and other tables'
+Notification.destroy_all
+Todo.destroy_all
 User.destroy_all
 
 puts 'deleting all categories'
@@ -51,7 +55,8 @@ tenant.save!
 puts 'Creating 3 new flats...'
 
 flat_1 = Flat.new(
-  address: 'Hohenzollernring 22-24, 1. Etage, 50672 Köln'
+  name: 'Flat on 1st Floor',
+  address: 'Hohenzollernring 22-24, 50672 Köln'
 )
 flat_1.user = landlord
 flat_1.photos.attach(
@@ -67,7 +72,8 @@ flat_1.photos.attach(
 flat_1.save!
 
 flat_2 = Flat.new(
-  address: 'Königsallee 107, 4. Etage, 40231 Düsseldorf'
+  name: 'Little Apartment on 4. floor',
+  address: 'Königsallee 107, 40231 Düsseldorf'
 )
 flat_2.user = landlord
 flat_2.photos.attach(
@@ -78,7 +84,8 @@ flat_2.photos.attach(
 flat_2.save!
 
 flat_3 = Flat.new(
-  address: 'Grünstraße 85, 2. Etage, 40667 Meerbusch'
+  name: 'Spacy Apartment on 4. floor',
+  address: 'Grünstraße 85, 40667 Meerbusch'
 )
 flat_3.user = landlord
 flat_3.photos.attach(
@@ -124,6 +131,11 @@ puts 'Adding Belongings to all flats'
     filename: 'belonging',
     content_type: 'image/jpg'
   )
+  belonging_1.files.attach(
+    io: File.open(Rails.root.join('app/assets/pdfs/dummy.pdf')),
+    content_type: 'document/pdf',
+    filename: 'pdf_file'
+  )
   belonging_1.save!
 
   belonging_2 = Belonging.new(
@@ -154,4 +166,26 @@ puts 'Adding Belongings to all flats'
   )
   belonging_3.save!
 end
+
+puts 'creating a todo'
+todo_1 = Todo.new(
+  description: 'The painting was damaged through water.',
+  status: 'active'
+)
+todo_1.belonging = Belonging.last
+todo_1.photos.attach(
+  io: File.open(Rails.root.join('app/assets/images/water_damage.jpg')),
+  filename: 'todo',
+  content_type: 'image/jpg'
+)
+todo_1.user = tenant
+todo_1.save!
+
+puts 'creating a notification'
+n_one = Notification.new
+n_one.belonging = Belonging.first
+n_one.todo = todo_1
+n_one.user = tenant
+n_one.description = "#{n_one.user.first_name} #{n_one.user.last_name} reported: #{n_one.todo.description}"
+n_one.save!
 puts 'finished'

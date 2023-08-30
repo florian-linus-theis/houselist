@@ -10,8 +10,6 @@ class FlatsController < ApplicationController
   def show
     authorize @flat
     @belongings = @flat.belongings
-    @notifications = @flat.notifications
-    @todos = @flat.todos
   end
 
   def new

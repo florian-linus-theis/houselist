@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_104047) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_100212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_104047) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["user_id"], name: "index_flats_on_user_id"
   end
 
@@ -74,7 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_104047) do
     t.bigint "belonging_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.bigint "todo_id", null: false
     t.index ["belonging_id"], name: "index_notifications_on_belonging_id"
+    t.index ["todo_id"], name: "index_notifications_on_todo_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -119,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_104047) do
   add_foreign_key "belongings", "flats"
   add_foreign_key "flats", "users"
   add_foreign_key "notifications", "belongings"
+  add_foreign_key "notifications", "todos"
   add_foreign_key "notifications", "users"
   add_foreign_key "tenants", "flats"
   add_foreign_key "tenants", "users"
