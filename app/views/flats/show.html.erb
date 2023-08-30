@@ -11,14 +11,15 @@
     <% end %>
   </div>
 
-  <div class="fileList">
-    <div class="fileInput">Some notification text</div>
-    <div class="fileInput">Some notification text</div>
-    <div class="fileInput">Some notification text</div>
-    <div class="fileInput">Some notification text</div>
-    <div class="fileInput">Some notification text</div>
-</div>
-  <button class="test-button">Click</button>
+  <div class="notifications-container" data-controller="flat-notifications">
+    <div class="fileList" data-flat-notifications-target="message" data-action="click->flat-notifications#toggle">
+      <div class="fileInput">Some notification text</div>
+      <div class="fileInput">Some notification text</div>
+      <div class="fileInput">Some notification text</div>
+      <div class="fileInput">Some notification text</div>
+      <div class="fileInput">Some notification text</div>
+    </div>
+  </div>
 
   <h2>Needs Attention:</h2>
   <div class="belonging-container">
