@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe FlatsController, type: :controller do
+  let(:user) { FactoryBot.create(:user) }
   let(:flat) { FactoryBot.create(:flat) }
+
   before :each do
-    sign_in FactoryBot.create(:user)
+    sign_in user
   end
 
   describe "GET #index" do
@@ -27,6 +29,13 @@ RSpec.describe FlatsController, type: :controller do
       get :new
 
       expect(response).to be_successful
+    end
+
+    xit "generates a pundit error if user is not landlord" do
+      user.update(role: 'tenant')
+      get :new
+
+      expect(response).to redirect_to root_path
     end
   end
 
