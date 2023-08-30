@@ -24,11 +24,17 @@ class BelongingsController < ApplicationController
     end
   end
 
+  def update
+    @belonging = Belonging.find(params[:id])
+    @belonging.update(belonging_params)
+    redirect_to belonging_path(@belonging)
+  end
+
   def destroy
     @belonging = Belonging.find(params[:id])
     @belonging.destroy
     authorize @belonging
-    redirect_to restaurant_path(@belonging.restaurant), status: :see_other
+    redirect_to flat_path(@belonging.flat), status: :see_other
   end
 
   private
