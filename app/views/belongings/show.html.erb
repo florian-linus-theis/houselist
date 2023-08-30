@@ -1,17 +1,52 @@
-<p><strong>Belongings</strong></p>
-<ul class="list-group">
+<div class="row">
+  <i class="fa-solid fa-arrow-left" style="color: black;"></i>
+  <div class="col-6 carousel-left">
+    <h3><%= @belonging.name %></h3>
+    <%= @belonging.category.name.capitalize %>
+  </div>
+  <div class="col-6 carousel-right">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag "belonging_1.jpg", alt: "belonging_sofa", class: "d-block w-100" %>
+        </div>
+        <div class="carousel-item active">
+          <%= image_tag "belonging_2.jpg", alt: "belonging_sofa", class: "d-block w-100" %>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>
 
-    <li class="list-group-item">
-      <%= @belonging.name %>
-      <%= @belonging.description %>
-      <%= @belonging.status %>
-      <%= link_to "Delete",
-                  flat_belongings_path(@belonging),
-                  method: :delete,
-                  data: {
-                    turbo_confirm: "Are you sure?",
-                    disable_with: "Deleting...",
-                    confirm_swal: "true"
-                  } %>
-    </li>
-</ul>
+<div class="page-container">
+  <p><%= @belonging.description %></p>
+
+  <h3>Attachments</h3>
+  <h3>Active To dos</h3>
+  <h3>History</h3>
+
+  <ul class="list-group">
+      <li class="list-group-item">
+        <%= @belonging.name %>
+        <%= @belonging.description %>
+        <%= @belonging.status %>
+        <%= link_to "Delete",
+                    flat_belongings_path(@belonging),
+                    method: :delete,
+                    data: {
+                      turbo_confirm: "Are you sure?",
+                      disable_with: "Deleting...",
+                      confirm_swal: "true"
+                    } %>
+
+          <%#= link_to edit_belonging_path(belonging), 'edit'%>
+      </li>
+  </ul>
+</div>

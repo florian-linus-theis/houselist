@@ -12,13 +12,11 @@
   </head>
 
   <body>
-    <div id="page-container">
-      <%= render "shared/flashes" %>
-      <div class="container my-3 p-0">
-        <%= render "devise/shared/navbar" %>
-        <%= yield %>
-        <%= render "devise/shared/footer" %>
-      </div>
+    <%= render "shared/flashes" %>
+    <div class="container my-3 p-0">
+      <%= render "devise/shared/navbar" %>
+      <%= yield %>
+      <%= render "devise/shared/footer" %>
     </div>
   </body>
 </html>
