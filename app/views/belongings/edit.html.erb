@@ -1,4 +1,8 @@
 <div class="container form my-5">
   <h2 class="my-3">Edit this belonging:</h2>
+  <%= @belonging.photos %>
   <%= render "form", belonging: @belonging %>
+  <%= link_to flat_path(@flat), class: "btn btn-primary marg" do %>
+    Back
+  <% end %>
 </div>

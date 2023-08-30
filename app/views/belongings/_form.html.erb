@@ -1,10 +1,13 @@
-<h1>New belonging</h1>
-<%= simple_form_for [@flat, @belonging] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :category %>
-  <%= f.input :status %>
-  <%= f.input :description %>
-  <%= f.input :photos, as: :file %>
-  <%= f.input :files, as: :file %>
-  <%= f.submit "Add Belonging", class: "btn btn-primary" %>
-<% end %>
+<div class="container m-4">
+  <%= simple_form_for [@belonging] do |f| %>
+    <%= f.input :name, placeholder: 'Belonging name' %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a category' }, class: 'form-control' %>
+    <%= f.input :description %>
+      <div class="btn-group" role="group" aria-label="Basic button toggle group">
+        <%= f.collection_radio_buttons :status, Belonging.statuses.keys, :to_s, :humanize, item_wrapper_class: 'btn btn-outline-primary me-4', class: 'btn-check' %>
+      </div>
+    <%= f.input :photos, as: :file %>
+    <%= f.input :files, as: :file %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+</div>
