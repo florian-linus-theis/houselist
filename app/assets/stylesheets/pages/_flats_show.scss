@@ -1,0 +1,99 @@
+.fileList{
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+}
+.test-button{
+  top: 60%;
+  left: 10%;
+  position: absolute;
+}
+.fileInput{
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  background: #fff;
+  height: 80px;
+  margin-bottom: 10px;
+  position: relative;
+  &:first-of-type{
+    z-index: 5;
+  }
+  &:nth-of-type(2){
+    z-index: 4;
+  }
+  &:nth-of-type(3){
+    z-index: 3;
+  }
+  &:nth-of-type(4){
+    z-index: 2;
+  }
+  &:nth-of-type(5){
+    z-index: 1;
+  }
+  &:nth-of-type(6){
+    z-index: 0;
+  }
+}
+
+.fileList.closed .fileInput{
+  &:first-of-type{
+    box-shadow: 0 3px 4px -2px rgba(0,0,0,0.1), 0 10px 0 -4px #e3e3e3, 0 21px 0 -10px #cdcdcd, 0 21px 5px -8px rgba(0,0,0,0.1);
+    transition: box-shadow ease 300ms;
+    transition-delay: 250ms;
+  }
+  &:not(:first-of-type){
+    animation: hideItems 1s forwards;
+    animation-timing-function: ease;
+  }
+}
+
+.fileList.showing .fileInput{
+  &:first-of-type{
+    box-shadow: 0 3px 4px -2px rgba(0,0,0,0.1);
+    transition: box-shadow ease 300ms;
+  }
+  &:not(:first-of-type){
+    animation: showItems 700ms forwards;
+    animation-timing-function: ease;
+  }
+}
+
+
+@keyframes hideItems{
+  0%{
+    margin-top: 0;
+  }
+  30%{
+    opacity: 1;
+  }
+  60%{
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  80%{
+    transform: scale(0.5);
+  }
+  100%{
+    opacity: 0;
+    transform: scale(0);
+    margin-top: -25%;
+  }
+}
+@keyframes showItems{
+  100%{
+    opacity: 1;
+    margin-top: 0;
+    transform: scale(1);
+  }
+  10%{
+    opacity: 0;
+  }
+  0%{
+    opacity: 0;
+    transform: scale(0.95);
+    margin-top: -25%;
+  }
+}
