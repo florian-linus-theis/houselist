@@ -1,29 +1,41 @@
+<div class="page-container">
   <div>
     <h1 >Welcome home <br> <%= current_user.first_name %>!
     <i class="fa-solid fa-hand-peace" style="color: #5465FF;"></i></h1>
   </div>
-  <% @flats.each do |flat| %>
-    <div class="card my-4 card-flat">
-      <div class="row g-0">
-        <div class="col-4 container-img">
-          <%= cl_image_tag flat.photos.first.key, class: "image-flat" %>
-        </div>
-        <div class="col-8">
-          <div class="card-body">
-            <h5 class="card-title">Home 123</h5>
-            <div class="mt-3">
-              <%= link_to flat_path(flat.id), class:"btn-pill px-3 py-1" do %>
-                <i class="fa-regular fa-envelope icon-pill"></i>
-              <% end %>
-              <button class="btn-round">2</button>
+  <div class="flat-cards-container">
+    <% @flats.each do |flat| %>
+      <%= link_to flat_path(flat), style:"text-decoration: none;" do %>
+        <div class="card my-4 card-flat">
+          <div class="row g-0">
+            <div class="col-4 container-img">
+              <%= cl_image_tag flat.photos.first.key, class: "image-flat" %>
             </div>
-            <p class="card-text p-grey"><%= flat.address %></p>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="card-title text-no-link"><%= flat.name %></h5>
+                <% if flat.notifications.count > 0 %>
+                    <div class="mt-3">
+                      <button class="btn-pill px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
+                      </button>
+                      <button class="btn-round"><%= flat.notifications.count %></button>
+                    </div>
+                <% else %>
+                    <div class="mt-3">
+                      <button class="btn-pill-light px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
+                      </button>
+                    </div>
+                <% end %>
+                <p class="card-text p-grey mt-3"><%= flat.address %></p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+      <% end %>
+    <% end %>
+  </div>
 
-   <%= link_to new_flat_path, class:"btn-sticky-big" do %>
+  <%= link_to new_flat_path, class:"btn-sticky-big" do %>
     <i class="fa-solid fa-plus  p-3"></i>
-   <% end %>
+  <% end %>
+</div>

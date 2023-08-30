@@ -41,14 +41,14 @@ RSpec.describe FlatsController, type: :controller do
 
   describe "POST #create" do
     it "responds successfully with redirect" do
-      post :create, params: { flat: { address: 'test' } }
+      post :create, params: { flat: { address: 'test', name: "the name" } }
 
       expect(response).to redirect_to flat_path(Flat.last)
     end
 
     it "creates a new flat increases the number of flats by 1" do
       number_of_flats = Flat.count
-      post :create, params: { flat: { address: 'test2' } }
+      post :create, params: { flat: { address: 'test2', name: "tha name 2" } }
 
       expect(Flat.count).to eq(number_of_flats + 1)
     end
