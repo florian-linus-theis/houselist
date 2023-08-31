@@ -17,5 +17,14 @@ RSpec.describe Todo, type: :model do
   describe 'associations' do
     it { should belong_to(:belonging) }
     it { should belong_to(:user) }
+    it { should have_many(:notifications).dependent(:destroy) }
+    it { should have_many_attached(:photos) }
+    it { should have_many_attahed(:documents) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of :description }
+    it { should validate_presence_of :status }
+    it { should define_enum_for(:status).with_values(%i[open closed]) }
   end
 end

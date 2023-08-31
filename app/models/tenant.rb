@@ -3,5 +3,5 @@
 class Tenant < ApplicationRecord
   belongs_to :user
   belongs_to :flat
-  validates_uniqueness_of :flat, scope: :user
+  validates_uniqueness_of :flat_id, scope: :user_id
 end
