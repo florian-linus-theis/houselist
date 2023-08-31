@@ -9,6 +9,12 @@ class FlatsController < ApplicationController
 
   def show
     @belongings = @flat.belongings
+
+    @belongings_attention = @belongings.reject do |belonging|
+      (belonging.good? || belonging.todos.count.zero?)
+    end
+
+    # @notifications = @flat.notifications.select { |notification| notification.read == false }
     @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
                                  .order(created_at: :desc)
     authorize @flat
