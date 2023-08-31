@@ -1,11 +1,30 @@
-.marg{
-  margin-left: 125px;
-  margin-top: -113px;
-}
-
 .form {
   border-radius: 4px;
   padding: 20px;
   background-color: $off-white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.costum-input{
+  border-radius: 4px;
+  border-color: $light-blue;
+}
+
+// .fa-chevron-down{
+//   margin-left: 249px;
+//   color: #DDDDDD;
+// }
+
+// .icon-settings{
+//   margin-top: -35px;
+// }
+
+.selected {
+  color: #dddddd; /* For example */
+}
+
+
+.marg{
+  margin-left: 224px;
+  margin-top: -65px;
 }
