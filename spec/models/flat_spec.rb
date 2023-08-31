@@ -16,7 +16,7 @@ RSpec.describe Flat, type: :model do
   describe 'associations' do
     it { should belong_to(:user) }
     it { should have_many(:belongings) }
-    it { should have_many(:tenants).dependents(:destroy) }
+    it { should have_many(:tenants).dependent(:destroy) }
     it { should have_many(:users).through(:tenants) }
   end
 

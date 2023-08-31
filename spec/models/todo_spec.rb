@@ -19,12 +19,12 @@ RSpec.describe Todo, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:notifications).dependent(:destroy) }
     it { should have_many_attached(:photos) }
-    it { should have_many_attahed(:documents) }
+    it { should have_many_attached(:files) }
   end
 
   describe 'validations' do
     it { should validate_presence_of :description }
     it { should validate_presence_of :status }
-    it { should define_enum_for(:status).with_values(%i[open closed]) }
+    it { should define_enum_for(:status).with_values(%i[active archived]) }
   end
 end
