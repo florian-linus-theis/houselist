@@ -9,7 +9,8 @@ class FlatsController < ApplicationController
 
   def show
     @belongings = @flat.belongings
-    @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat },  read: false ).order(created_at: :desc)
+    @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
+                                 .order(created_at: :desc)
     authorize @flat
   end
 
