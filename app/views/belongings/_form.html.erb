@@ -1,13 +1,32 @@
-<div class="container m-4">
-  <%= simple_form_for [@belonging] do |f| %>
-    <%= f.input :name, placeholder: 'Belonging name' %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a category' }, class: 'form-control' %>
-    <%= f.input :description %>
-      <div class="btn-group" role="group" aria-label="Basic button toggle group">
-        <%= f.collection_radio_buttons :status, Belonging.statuses.keys, :to_s, :humanize, item_wrapper_class: 'btn btn-outline-primary me-4', class: 'btn-check' %>
-      </div>
-    <%= f.input :photos, as: :file %>
-    <%= f.input :files, as: :file %>
-    <%= f.submit "Save", class: "btn btn-primary" %>
+<%= simple_form_for [@flat, belonging] do |f| %>
+  <%= f.input :name, placeholder: 'Belonging name', class: "mb-2, costum-input" %>
+  <select data-controller="dropdown">
+    <option value="" data-action="dropdown#select">Select a category</option>
+    <% Category.all.each do |category| %>
+      <option value="<%= category.id %>" data-action="dropdown#select"><%= category.name %></option>
+    <% end %>
+  </select>
+
+  <%= f.input :description, class: 'mb-2, costum-input'%>
+  <div class="btn-group mb-2 custom-input" role="group" aria-label="Basic button toggle group">
+  <%= f.collection_radio_buttons :status, Belonging.statuses.keys, :to_s, :humanize, item_wrapper_class: 'btn btn-outline-primary me-2', class: 'btn-check' do |b| %>
+    <%= b.radio_button %>
+    <label class="btn btn-outline-primary me-2">
+      <% case b.value.to_sym %>
+        <% when :good %>
+          <i class="fa-solid fa-check"></i>
+        <% when :demadged %>
+          <i class="fa-solid fa-hammer"></i>
+        <% when :needs_replacement %>
+          <i class="fa-solid fa-exclamation"></i>
+      <% end %>
+    </label>
   <% end %>
 </div>
+  <%= f.input :photos, as: :file, class:'mb-2, costum-input' %>
+  <%= f.input :files, as: :file, class:'mb-2, costum-input' %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+
+  <%# <i class="fa-solid fa-chevron-down"></i>
+  <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a category' }, class: 'form-control mb-2 custom-input icon-settings' %>

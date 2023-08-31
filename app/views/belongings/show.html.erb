@@ -1,33 +1,63 @@
-<div class="row">
-  <div class="arrow-back">
-    <i class="fa-solid fa-arrow-left" style="color: black;"></i>
-  </div>
-  <div id="carouselExampleIndicators" data-bs-ride="true">
+<div class="header-carousel">
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= image_tag "belonging_1.jpg", alt: "belonging_sofa", class: "d-block w-100" %>
+        <% @belonging.photos.each_with_index do |photo, index| %>
+          <% if index == 0 %>
+            <div class="carousel-item active ">
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block mx-auto" %>
+            </div>
+          <% else %>
+            <div class="carousel-item">
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block mx-auto" %>
+            </div>
+          <% end%>
+        <% end %>
       </div>
-    <div class="carousel-item active">
-        <%= image_tag "belonging_2.jpg", alt: "belonging_sofa", class: "d-block w-100" %>
+      <div class="back-edit-icons">
+        <%= link_to flats_path do %>
+          <i class="fa-solid fa-arrow-left" style="color: #FDFDFD;"></i>
+        <% end %>
+        <%= link_to flats_path do %>
+          <i class="fa-solid fa-pen-to-square" style="color: #FDFDFD;"></i>
+        <% end %>
+      </div>
     </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+      <span class="sr-only">Next</span>
+    </a>
+    </div>
+  <div class="headline-description-belonging">
+    <h3 class="headline-belonging"><%= @belonging.name %></h3>
+    <%= @belonging.category.name.capitalize %>
+  </div>
+  <div class="status-icon-overlap">
+    <% if @belonging.good? %>
+      <div class="col-3 background-blue-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+      </div>
+    <% elsif @belonging.damaged? %>
+      <div class="col-3 background-beige-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+      </div>
+    <% else %>
+      <div class="col-3 background-red-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+      </div>
+    <% end %>
   </div>
 </div>
 
-
-    <h3><%= @belonging.name %></h3>
-    <%= @belonging.category.name.capitalize %>
-
 <div class="page-container">
-  <p><%= @belonging.description %></p>
+  <p class="description"><%= @belonging.description %></p>
 
   <h3>Attachments</h3>
   <h3>Active To dos</h3>
