@@ -16,7 +16,11 @@ class BelongingPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.landlord?
+  end
+
+  def edit?
+    create?
   end
 
   def destroy?

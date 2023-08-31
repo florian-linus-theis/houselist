@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notifications, only: %i[index]
+  resources :notifications, only: %i[update]
 
   get '/profile', to: 'pages#profile', as: :profile
 end

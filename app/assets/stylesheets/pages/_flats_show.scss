@@ -3,11 +3,6 @@
   max-width: 500px;
   margin: auto;
 }
-.test-button{
-  top: 60%;
-  left: 10%;
-  position: absolute;
-}
 .fileInput{
   padding: 20px;
   border: 1px solid rgba(0,0,0,0.1);
@@ -60,6 +55,14 @@
     animation-timing-function: ease;
   }
 }
+
+.one-notifications-container {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+}
+
+
 
 
 @keyframes hideItems{
