@@ -5,45 +5,47 @@
 
     <h2>News:</h2>
     <% if @notifications.length == 1 %>
-      <div class="one-notification-container">
+      <div class="one-notification-container mb-4" data-controller="flat-notifications">
         <div class="fileInput">
           <div class="row">
             <div class="col-10">
-              <%= @notifications.first.description.first(50) %>
-              <% if @notifications.first.description.length > 50 %>...<% end %>
+              <p>
+                <%= @notifications.first.description.first(50) %>
+                <% if @notifications.first.description.length > 50 %>...<% end %>
+              </p>
             </div>
             <div class="col-2">
-              <%= link_to notification_path(@notifications.first), data: {turbo_method: 'patch'} do %>
-                <i class="fa-solid fa-x" style="color: $blue;"></i>
-              <% end %>
+              <div data-id="<%= @notifications.first.id %>" data-action="click->flat-notifications#read">
+                <i class="fa-solid fa-x" style="color: #5465FF;"></i>
+              </div>
             </div>
           </div>
+        </div>
       </div>
+    <% elsif @notifications.empty? %>
+      <p>No notifications to display</p>
     <% else %>
-      <div class="notifications-container" data-controller="flat-notifications">
-        <div class="fileList closed" data-flat-notifications-target="message" data-action="click->flat-notifications#toggle">
+      <div class="notifications-container mb-4" data-controller="flat-notifications">
+        <div class="fileList closed" data-flat-notifications-target="message">
           <% @notifications.each do |notification| %>
             <% unless notification.read? %>
               <div class="fileInput">
                 <div class="row">
-                  <div class="col-10">
-                    <%= notification.description.first(50) %>
-                    <% if notification.description.length > 50 %>...<% end %>
+                  <div class="col-10"  data-action="click->flat-notifications#toggle">
+                    <p style="color: $dark-black;">
+                      <%= notification.description.first(50) %>
+                      <% if notification.description.length > 50 %>...<% end %>
+                    </p>
                   </div>
                   <div class="col-2">
-                    <%= link_to notification_path(notification), data: {turbo_method: 'patch'} do %>
-                      <i class="fa-solid fa-x" style="color: $blue;"></i>
-                    <% end %>
+                    <div data-id="<%= notification.id %>" data-action="click->flat-notifications#read">
+                      <i class="fa-solid fa-x" style="color: #5465FF;"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             <% end %>
           <% end %>
-            <%# <div class="fileInput">Some Notification</div>
-            <div class="fileInput">Some notification text</div>
-            <div class="fileInput">Some notification text</div>
-            <div class="fileInput">Some notification text</div>
-            <div class="fileInput">Some notification text</div> %>
         </div>
       </div>
     <% end %>

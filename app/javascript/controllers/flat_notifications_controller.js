@@ -16,4 +16,26 @@ export default class extends Controller {
       elem.classList.toggle("closed");
     }
   }
+
+  read(event) {
+    console.log('hello')
+    const notification = event.currentTarget
+    const notificationId = notification.dataset.id
+    console.log(notification, notificationId)
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content
+    console.log(csrfToken)
+    fetch(`/notifications/${notificationId}`, {
+      method: "PATCH",
+      headers: {
+        "X-CSRF-Token": csrfToken,
+        "Content-Type": "application/json",
+      }
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (data.success) {
+          notification.parentElement.parentElement.parentElement.remove()
+        }
+      })
+  }
 }
