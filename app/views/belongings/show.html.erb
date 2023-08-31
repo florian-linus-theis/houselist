@@ -40,17 +40,17 @@
     <% if @belonging.good? %>
       <div class="col-3 background-blue-belonging">
         <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+        <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
       </div>
     <% elsif @belonging.damaged? %>
       <div class="col-3 background-beige-belonging">
         <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+        <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
       </div>
     <% else %>
       <div class="col-3 background-red-belonging">
         <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+        <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
       </div>
     <% end %>
   </div>
@@ -61,6 +61,38 @@
 
   <h3>Attachments</h3>
   <h3>Active To dos</h3>
+
+  <div class="card-product">
+  <div class="status-icon-overlap">
+    <% if @belonging.good? %>
+      <div class="col-3 background-blue-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+      </div>
+    <% elsif @belonging.damaged? %>
+      <div class="col-3 background-beige-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+      </div>
+    <% else %>
+      <div class="col-3 background-red-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-product-infos">
+    <h2>reported:</h2><%= @belonging.name%>
+    <p><%= @belonging.created_at %>
+    back to fine: <%= @belonging.updated_at %></p>
+  </div>
+</div>
+
+
+
+
+
+
   <h3>History</h3>
 
   <ul class="list-group">
