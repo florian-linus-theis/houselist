@@ -1,10 +1,30 @@
+.background-beige-belonging {
+    background-color: #B7B7B7;
+    position: relative;
+    border-radius: 4px;
+    height: 75px;
+    z-index: 3;
+  }
+
+.background-blue-belonging {
+    background-color: $blue;
+    position: relative;
+    border-radius: 4px;
+    height: 75px;
+    z-index: 3;
+}
+
+.background-red-belonging {
+    background-color: $red;
+    position: relative;
+    border-radius: 4px;
+    height: 75px;
+    z-index: 3;
+  }
+
 .carousel-item {
     position: static;
     z-index: 1;
-}
-
-.description {
-    margin-top: 30px;
 }
 
 .fa-arrow-left {
@@ -22,6 +42,10 @@
     z-index: 2;
 }
 
+.header-carousel {
+    margin-bottom: -50px;
+}
+
 .headline-belonging {
     font-size: 20px;
 }
@@ -29,5 +53,28 @@
 .headline-description-belonging {
     background-color: $blue;
     color: $off-white;
-    padding: 10px;
+    padding: 29px 30px;
+    position: static;
+}
+
+.icon-status-belonging-page {
+    font-size: 50px;
+    bottom: 85px;
+    left: 25px;
+    z-index: 3;
+    padding-top: 20px;
+}
+
+.image-status-belonging-page {
+    border-radius: 4px;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+}
+
+.status-icon-overlap {
+    position: relative;
+    bottom: 190px;
+    width: 300px;
+    left: 30px; 
 }
