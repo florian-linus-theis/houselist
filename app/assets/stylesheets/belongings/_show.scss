@@ -1,4 +1,33 @@
+.carousel-item {
+    position: static;
+    z-index: 1;
+}
+
+.description {
+    margin-top: 30px;
+}
+
 .fa-arrow-left {
-    padding-left: 30px;
-    font-size: 30px;
+    position: relative;
+    font-size: 22px;
+    padding-left: 22px;
+    padding-top: 15px;
+    z-index: 2;
+}
+
+.fa-pen-to-square {
+    position: relative;
+    font-size: 22px;
+    padding: 15px 0 0 272px;
+    z-index: 2;
+}
+
+.headline-belonging {
+    font-size: 20px;
+}
+
+.headline-description-belonging {
+    background-color: $blue;
+    color: $off-white;
+    padding: 10px;
 }
