@@ -18,12 +18,9 @@ export default class extends Controller {
   }
 
   read(event) {
-    console.log('hello')
     const notification = event.currentTarget
     const notificationId = notification.dataset.id
-    console.log(notification, notificationId)
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content
-    console.log(csrfToken)
     fetch(`/notifications/${notificationId}`, {
       method: "PATCH",
       headers: {
@@ -37,5 +34,16 @@ export default class extends Controller {
           notification.parentElement.parentElement.parentElement.remove()
         }
       })
+    this.#checkIfEmpty()
+  }
+
+  #checkIfEmpty() {
+    const division = document.getElementById('notifications')
+    console.log('division')
+    if (division.children.length <= 1) {
+      const p = document.createElement('p')
+      p.innerHTML = 'You have read all notifications'
+      division.appendChild(p)
+    }
   }
 }
