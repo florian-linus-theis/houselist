@@ -36,12 +36,25 @@
     <h3 class="headline-belonging"><%= @belonging.name %></h3>
     <%= @belonging.category.name.capitalize %>
   </div>
+  <div class="status-icon-overlap">
+    <% if @belonging.good? %>
+      <div class="col-3 background-blue-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+      </div>
+    <% elsif @belonging.damaged? %>
+      <div class="col-3 background-beige-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+      </div>
+    <% else %>
+      <div class="col-3 background-red-belonging">
+        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+        <i class="icon-status-belonging-page fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<div class="status-icon-overlap">
-  <p>Status: <%= @belonging.status %></p>
-</div>
-
 
 <div class="page-container">
   <p class="description"><%= @belonging.description %></p>
