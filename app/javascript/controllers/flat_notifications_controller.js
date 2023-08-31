@@ -4,12 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["message"]
 
-  connect() {
-    console.log('hello world')
-  }
-
   toggle() {
-    console.log('hello from toggle')
     const elem = this.messageTarget
     if(elem.classList.contains("closed")){
       elem.classList.add("showing");

@@ -9,6 +9,7 @@ class FlatsController < ApplicationController
 
   def show
     @belongings = @flat.belongings
+    @notifications = @flat.notifications.select { |notification| notification.read == false }
     authorize @flat
   end
 
