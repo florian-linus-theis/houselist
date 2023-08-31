@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe FlatsController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
-  let(:flat) { FactoryBot.create(:flat) }
+  let(:flat) { FactoryBot.create(:flat, user:) }
 
   before :each do
     sign_in user
@@ -31,11 +31,11 @@ RSpec.describe FlatsController, type: :controller do
       expect(response).to be_successful
     end
 
-    xit "generates a pundit error if user is not landlord" do
+    it "redirects to flats page if the user is not authorized" do
       user.update(role: 'tenant')
       get :new
 
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to flats_path
     end
   end
 

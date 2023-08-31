@@ -3,9 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Tenant, type: :model do
-  let(:user) { FactoryBot.create(:user) }
-  let(:flat) { FactoryBot.create(:flat) }
-
   context 'with DB columns' do
     {
       user_id: :integer,
@@ -22,8 +19,10 @@ RSpec.describe Tenant, type: :model do
 
   describe 'validations' do
     context "it should allow a user to be assigned to a flat only once" do
-      subject { FactoryBot.create(:tenant, user:, flat:) }
+      let(:user) { FactoryBot.create(:user) }
+      let(:flat) { FactoryBot.create(:flat, user:) }
 
+      subject { FactoryBot.create(:tenant, user:, flat:) }
       it { should validate_uniqueness_of(:flat_id).scoped_to(:user_id) }
     end
   end
