@@ -53,12 +53,41 @@
   <h2>All items:</h2>
   <div class="belonging-container">
     <% @belongings.each do |belonging| %>
-      <p style="color: black">
-        <%= belonging.name %> | Status: <%= belonging.status %> |
-        <% unless belonging.files.first.nil? %>
-            <%= link_to "Download", cl_private_download_url("development/#{belonging.files.first.key}", :pdf, :attachment => true) %>
-        <% end %>
-      </p>
+      <div class="d-flex card-belonging justify-content-between">
+          <% if belonging.good? %>
+              <div class="col-4 background-blue">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+              </div>
+          <% elsif belonging.damaged? %>
+              <div class="col-4 background-beige">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+              </div>
+          <% else %>
+              <div class="col-4 background-red">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+              </div>
+          <% end %>
+            <h5 class="my-auto flex-grow-1 text-belonging"> <%= belonging.name %></h5>
+            <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.id %>" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
+            </button>
+      </div>
+      <div class="collapse" id="<%= belonging.id %>">
+          <div class="card card-body">
+            <%= belonging.description %>
+            <p style="color: black">
+              <% unless belonging.files.first.nil? %>
+                  <%= link_to "Download", cl_private_download_url("development/#{belonging.files.first.key}", :pdf, :attachment => true) %>
+              <% end %>
+            </p>
+          </div>
+      </div>
+
+
+
       <ul>
         <% belonging.todos.each do |todo| %>
           <% if todo.active? %>
@@ -94,7 +123,24 @@
   <h2>All items:</h2>
   <div class="belonging-container">
     <% @belongings.each do |belonging| %>
-      <p style="color: black"><%= belonging.name %> | Status: <%= belonging.status %></p>
+      <div class="d-flex card-belonging justify-content-between">
+          <% if belonging.good? %>
+              <div class="col-4 background-blue">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+              </div>
+          <% elsif belonging.damaged? %>
+              <div class="col-4 background-beige">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+              </div>
+          <% else %>
+              <div class="col-4 background-red">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+              </div>
+          <% end %>
+            <h5 class="my-auto flex-grow-1 text-belonging" > <%= belonging.name %></h5>
+      </div>
     <% end %>
-  </div>
 <% end %>
