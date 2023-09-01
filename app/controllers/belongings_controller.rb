@@ -5,6 +5,7 @@ class BelongingsController < ApplicationController
 
   def show
     @belonging = Belonging.find(params[:id])
+    @active_todo = Belonging.where(id: @belonging.id), Belonging.where(todo: @belonging)
     authorize @belonging
   end
 
