@@ -17,6 +17,8 @@ class FlatsController < ApplicationController
     # @notifications = @flat.notifications.select { |notification| notification.read == false }
     @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
                                  .order(created_at: :desc)
+
+    @todo = Todo.new
     authorize @flat
   end
 

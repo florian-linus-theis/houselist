@@ -3,7 +3,7 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: %i[update destroy]
   def create
-    @todo = todo.new(todo_params)
+    @todo = Todo.new(todo_params)
     @todo.user = current_user
     @todo.belonging = Belonging.find(params[:belonging_id])
     if @todo.save
