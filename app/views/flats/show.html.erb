@@ -1,8 +1,24 @@
-<div class="page-container mt-5">
   <% if current_user.landlord? %>
-    <h1><%= @flat.name %></h1>
-    <h6><%= @flat.address %></h6>
+    <div class="d-flex align-items-center" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
+      <div class ="spacing-header">
+        <%= link_to flats_path do %>
+          <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
+        <% end %>
+        <h1><%= @flat.name %></h1>
+        <h6><%= @flat.address %></h6>
+      </div>
+      <div>
+          <button class="my-auto me-3 btn-square-white" type="button">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+          <button class="my-auto me-3 btn-square-white" type="button">
+            <i class="fa-solid fa-share-nodes"></i>
+          </button>
+      </div>
+    </div>
 
+
+<div class="page-container mt-3">
     <h2>News:</h2>
     <% if @notifications.empty?  %>
       <p>No notifications to display</p>
@@ -53,6 +69,9 @@
 
   <h2>Needs Attention: </h2>
     <div class="belonging-container">
+    <% if @belongings_attention.empty? %>
+      <p>Yay no to dos open! 🎉</p>
+    <% else %>
       <% @belongings_attention.each do |belonging| %>
         <div class="d-flex card-belonging justify-content-between mb-3">
             <% if belonging.damaged? %>
@@ -89,6 +108,7 @@
             </div>
         </div>
       <% end %>
+  <% end %>
     </div>
 
 
