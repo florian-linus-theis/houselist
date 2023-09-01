@@ -16,7 +16,7 @@
       </div>
       <div class="back-edit-icons">
         <%= link_to flats_path do %>
-          <i class="fa-solid fa-arrow-left" style="color: #FDFDFD;"></i>
+          <i class="fa-solid fa-arrow-left back-button" style="color: #FDFDFD;"></i>
         <% end %>
         <%= link_to flats_path do %>
           <i class="fa-solid fa-pen-to-square" style="color: #FDFDFD;"></i>
@@ -31,9 +31,9 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-    </div>
+  </div>
   <div class="headline-description-belonging">
-    <h3 class="headline-belonging"><%= @belonging.name %></h3>
+    <h3 class="headline-belonging"><%= @belonging.name.capitalize %></h3>
     <%= @belonging.category.name.capitalize %>
   </div>
   <div class="status-icon-overlap">
@@ -61,45 +61,35 @@
 
   <h3>Attachments</h3>
   <h3>Active To dos</h3>
-
-  <div class="card-product">
-  <div class="status-icon-overlap">
-    <% if @belonging.good? %>
-      <div class="col-3 background-blue-belonging">
-        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+  <% if @belonging.todos.count.zero? %>
+    <p>Yay no to dos open! 🎉</p>
+  <% else %>
+    <div class="belonging-todo-cards">
+      <div class="status-icon-overlap-bottom">
+        <% if @belonging.good? %>
+          <div class="col-2 background-blue-belonging-bottom">
+              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+              <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+          </div>
+        <% elsif @belonging.damaged? %>
+          <div class="col-2 background-beige-belonging-bottom">
+              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+              <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+          </div>
+        <% else %>
+          <div class="col-2 background-red-belonging-bottom">
+            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+            <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+          </div>
+        <% end %>
+          <div class="col-10 belonging-cards-info">
+            <h5 class="headline-belonging-cards-info"><%= @current_user.first_name %> <%= @current_user.last_name.first %>. reported: <%= @belonging.name.capitalize %></h5>
+            <p><%= @todos.created_at %></p>
+          </div>
       </div>
-    <% elsif @belonging.damaged? %>
-      <div class="col-3 background-beige-belonging">
-        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
-      </div>
-    <% else %>
-      <div class="col-3 background-red-belonging">
-        <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-        <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-      </div>
-    <% end %>
-  </div>
-  <div class="card-product-infos">
-    <h2>reported:</h2><%= @belonging.name%>
-    <p><%= @belonging.created_at %>
-    back to fine: <%= @belonging.updated_at %></p>
-  </div>
-</div>
+    </div>
+  <% end %>
 
-
-
-
-
-
-  <h3>History</h3>
-
-  <ul class="list-group">
-      <li class="list-group-item">
-        <%= @belonging.name %>
-        <%= @belonging.description %>
-        <%= @belonging.status %>
         <%= link_to "Delete",
                     flat_belongings_path(@belonging),
                     method: :delete,
@@ -110,6 +100,3 @@
                     } %>
 
           <%#= link_to edit_belonging_path(belonging), 'edit'%>
-      </li>
-  </ul>
-</div>
