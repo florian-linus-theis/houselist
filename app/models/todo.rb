@@ -14,4 +14,5 @@ class Todo < ApplicationRecord
 
   # Modifications
   enum status: %i[active archived]
+  enum belonging_status: %i[good damaged needs_replacement]
 end

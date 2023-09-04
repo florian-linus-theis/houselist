@@ -93,11 +93,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_155127) do
 
   create_table "todos", force: :cascade do |t|
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "belonging_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "belonging_status"
     t.index ["belonging_id"], name: "index_todos_on_belonging_id"
     t.index ["user_id"], name: "index_todos_on_user_id"
   end

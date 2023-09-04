@@ -23,4 +23,8 @@ class User < ApplicationRecord
 
   # Modifications
   enum role: %i[landlord tenant]
+
+  # PgSearch
+  include PgSearch::Model
+  pg_search_scope :find_tenant, against: %i[first_name last_name email], using: { tsearch: { prefix: true } }
 end

@@ -14,22 +14,28 @@
   margin-bottom: 10px;
   position: relative;
   &:first-of-type{
-    z-index: 5;
+    z-index: 10;
   }
   &:nth-of-type(2){
-    z-index: 4;
+    z-index: 9;
   }
   &:nth-of-type(3){
-    z-index: 3;
+    z-index: 8;
   }
   &:nth-of-type(4){
-    z-index: 2;
+    z-index: 7;
   }
   &:nth-of-type(5){
-    z-index: 1;
+    z-index: 6;
   }
   &:nth-of-type(6){
-    z-index: 0;
+    z-index: 5;
+  }
+  &:nth-of-type(7){
+    z-index: 4;
+  }
+  &:nth-of-type(8){
+    z-index: 3;
   }
 }
 
@@ -111,6 +117,15 @@
   position: static;
 }
 
+.image-flat-good-icon{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius:4px ;
+  opacity: 0.6;
+  position: static;
+}
+
 .background-blue {
   background-color: $blue;
   position: relative;
@@ -132,6 +147,15 @@
   border-bottom-left-radius: 4px ;
 }
 
+.background-red-icon {
+  background-color: $red;
+  position: relative;
+  border-radius:4px ;
+  height: 100px;
+  width: 100px;
+  margin-left: 16px;
+}
+
 .icon-replacement {
   position: relative;
   font-size: 70px;
@@ -144,6 +168,15 @@
   position: relative;
   border-top-left-radius:4px ;
   border-bottom-left-radius: 4px ;
+}
+
+.background-beige-icon{
+  background-color: #B7B7B7;
+  position: relative;
+  border-radius:4px ;
+  height: 100px;
+  width: 100px;
+  margin-right: 16px;
 }
 
 .icon-repair {
@@ -165,4 +198,39 @@
   margin-left: 10px;
   margin-right: 10px;
   font-weight: 300;
+  font-size: 20px;
+}
+
+.belonging-preview {
+  margin-top: -17px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.no-border {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: none;
+}
+
+.spacing-header{
+  padding-left: 30px;
+  padding-right: 30px;
+  color: $off-white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: -6px;
+}
+
+.modal-button {
+  border: transparent;
+  background-color: transparent;
+}
+
+#searchResults {
+  min-height: 10rem;
+  max-height: fit-content;
 }

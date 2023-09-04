@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>404 | Sorry, something went wrong!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
-    background-color: #EFEFEF;
+    background: linear-gradient(90deg, hsla(234, 100%, 66%, 1) 0%, hsla(231, 96%, 73%, 1) 100%);
     color: #2E2F30;
     text-align: center;
     font-family: arial, sans-serif;
@@ -31,12 +31,6 @@
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
   .rails-default-error-page div.dialog > p {
     margin: 0 0 1em;
     padding: 1em;
@@ -51,17 +45,27 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .error-message {
+    color:#FDFDFD;
+    font-size: 15px;
+    margin: 250px 20px 0 20px;
+  }
+
+  a {
+    color:#FDFDFD;
+  }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  <div class="error-message">
+    <img src="https://static.vecteezy.com/system/resources/previews/013/743/806/original/sad-face-emoji-png.png" alt="404 error" style="width:100px;height:100px;">
+    <h1>The page you were looking for doesn't exist!</h1>
+    <a href="/flats">Go back home</a>
   </div>
 </body>
 </html>
+
+
