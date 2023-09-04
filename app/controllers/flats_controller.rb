@@ -59,8 +59,10 @@ class FlatsController < ApplicationController
 
   def find_tenant
     # return unless params[:query]
-    users = User.find_tenant(params[:query]).select(&:tenant?)
-    render json: { users: }, status: :ok
+    @flat = Flat.all.first
+    @users = User.find_tenant(params[:query]).select(&:tenant?)
+    authorize @flat
+    render json: { users: @users }
   end
 
   def add_tenant
