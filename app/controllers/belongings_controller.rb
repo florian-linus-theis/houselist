@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BelongingsController < ApplicationController
+  include BelongingsHelper
   before_action :set_flat, only: %i[show update create new destroy]
 
   def show
@@ -15,7 +16,7 @@ class BelongingsController < ApplicationController
   end
 
   def create
-    @belonging = Belonging.new(belonging_params)
+    @belonging = Belonging.new(belonging_params, default: :good)
     @belonging.flat = @flat
     authorize @belonging
     if @belonging.save

@@ -1,19 +1,26 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
-//Dropdown form
-
+// Connects to data-controller="dropdown"
 export default class extends Controller {
-  static targets = ["option"];
+  connect() {}
 
-  select(event) {
-    const selectedOption = event.target;
-    const selectedValue = selectedOption.value;
-    const promptOption = this.optionTargets[0];
+  static targets = ["button"];
 
-    if (selectedValue !== "") {
-      promptOption.classList.remove("selected");
-    } else {
-      promptOption.classList.add("selected");
-    }
+  toggle(event) {
+    const selectedButton = event.currentTarget;
+    const selectedOption = selectedButton.dataset.value;
+
+    // You can perform actions here when a button is clicked
+    // For example, update the form field with the selected value
+    // and add or remove an "active" class from the buttons.
+
+    // Example:
+    this.element.querySelector("input").value = selectedOption;
+
+    this.buttonTargets.forEach(button => {
+      button.classList.remove("active");
+    });
+
+    selectedButton.classList.add("active");
   }
 }
