@@ -5,26 +5,43 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.costum-input{
-  border-radius: 4px;
-  border-color: $light-blue;
+.custom-input{
+  border: 2.5px solid #bbbbbb !important;
+  border-radius: 10px;
 }
 
-// .fa-chevron-down{
-//   margin-left: 249px;
-//   color: #DDDDDD;
-// }
+.fa-chevron-down{
+  margin-left: 249px;
+  color: #888888;
+}
 
-// .icon-settings{
-//   margin-top: -35px;
-// }
-
-.selected {
-  color: #dddddd; /* For example */
+.icon-settings{
+  margin-top: -35px;
 }
 
 
 .marg{
   margin-left: 224px;
   margin-top: -65px;
+}
+
+/* Default styling for desktop */
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Mobile styling */
+@media (max-width: 768px) {
+  .dropdown-container .select{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Adjust label position for mobile */
+  .dropdown-container label {
+    margin-bottom: 5px;
+  }
 }

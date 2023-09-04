@@ -1,32 +1,43 @@
+
+
 <%= simple_form_for [@flat, belonging] do |f| %>
-  <%= f.input :name, placeholder: 'Belonging name', class: "mb-2, costum-input" %>
-  <select data-controller="dropdown">
-    <option value="" data-action="dropdown#select">Select a category</option>
-    <% Category.all.each do |category| %>
-      <option value="<%= category.id %>" data-action="dropdown#select"><%= category.name %></option>
-    <% end %>
-  </select>
+  <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
+  <hr>
+  <%= f.hidden_field :category_id %>
+  <%= f.label :category %>
+  <div class="d-flex">
+    <div class="m-3">
+      <button class="button btn btn-primary m-3" type="button">
+        <span>Kitchen <i class="fa-solid fa-kitchen-set" style="color: #FDFDFD"></i></span>
+      </button>
+      <button class="button btn btn-primary m-3" btn type="button">
+        <span>Living Room <i class="fa-solid fa-couch" style="color: #FDFDFD"></i></span>
+      </button>
+      <button class="button btn btn-primary m-3" type="button">
+        <span>Corridor<i class="fa-solid fa-person-walking-arrow-right" style="color: #FDFDFD"></i></span>
+      </button>
+    </div>
+    <div class="m-3">
+      <button class="button btn btn-primary m-3" type="button">
+        <span>Bathroom <i class="fa-solid fa-sink" style="color: #FDFDFD"></i></span>
+      </button>
+      <button class="button btn btn-primary m-3" type="button">
+        <span>Bedroom<i class="fa-solid fa-bed" style="color: #FDFDFD"></i></span>
+      </button>
+      <button class="button btn btn-primary m-3" type="button">
+        <span>Balkony<i class="fa-solid fa-sun-plant-wilt" style="color: #FDFDFD"></i></span>
+      </button>
+    </div>
+  </div>
 
-  <%= f.input :description, class: 'mb-2, costum-input'%>
-  <div class="btn-group mb-2 custom-input" role="group" aria-label="Basic button toggle group">
-  <%= f.collection_radio_buttons :status, Belonging.statuses.keys, :to_s, :humanize, item_wrapper_class: 'btn btn-outline-primary me-2', class: 'btn-check' do |b| %>
-    <%= b.radio_button %>
-    <label class="btn btn-outline-primary me-2">
-      <% case b.value.to_sym %>
-        <% when :good %>
-          <i class="fa-solid fa-check"></i>
-        <% when :demadged %>
-          <i class="fa-solid fa-hammer"></i>
-        <% when :needs_replacement %>
-          <i class="fa-solid fa-exclamation"></i>
-      <% end %>
-    </label>
-  <% end %>
-</div>
-  <%= f.input :photos, as: :file, class:'mb-2, costum-input' %>
-  <%= f.input :files, as: :file, class:'mb-2, costum-input' %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
+
+
+  <hr>
+  <%= f.input :description, input_html: { class: "mb-2 custom-input" }%>
+  <hr>
+  <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <hr>
+  <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <%= f.submit "Save", class: "btn-text" %>
 <% end %>
-
-  <%# <i class="fa-solid fa-chevron-down"></i>
-  <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: 'Select a category' }, class: 'form-control mb-2 custom-input icon-settings' %>
+<%# %>
