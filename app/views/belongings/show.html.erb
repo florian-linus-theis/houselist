@@ -58,47 +58,87 @@
 
 <div class="page-container">
   <p class="description"><%= @belonging.description %></p>
+  <h3 class="belonging-headline">Attachments</h3>
+  <% if @belonging.files.count.zero? %>
+    <p>No attachments uploaded ❌</p>
+    <% else %>
+      <% @belonging.files.each do |file|%>
+        <div class="attachment-belonging">
+          <i class="fa-solid fa-file" style="color: #888888;"></i>
+          <%= file.blob.filename %>
+        </div>
+    <% end %>
+  <% end %>
 
-  <h3>Attachments</h3>
-  <%= @active_storage_blobs %>
 
-
-  <h3>Active To dos</h3>
-  <% if @belonging.todos.count.zero? %>
-    <p>Yay no to dos open! 🎉</p>
+  <h3 class="belonging-headline">Active To do</h3>
+  <% if @active_todos.count.zero? %>
+    <p>Yay no open to do! 🎉</p>
   <% else %>
     <div class="belonging-todo-cards">
       <div class="status-icon-overlap-bottom">
-        <% if @belonging.good? %>
-          <div class="col-2 background-blue-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
-          </div>
-        <% elsif @belonging.damaged? %>
-          <div class="col-2 background-beige-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
-          </div>
-        <% else %>
-          <div class="col-2 background-red-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-          </div>
+        <% @belonging.todos.each do |todo| %>
+          <% if @belonging.good? %>
+            <div class="col-2 background-blue-belonging-bottom">
+              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+              <i class="icon-status-belonging-page-check fa-solid fa-check icon-good" style="color: #fdfdfd;"></i>
+            </div>
+          <% elsif @belonging.damaged? %>
+            <div class="col-2 background-beige-belonging-bottom">
+              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+              <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+            </div>
+          <% else %>
+            <div class="col-2 background-red-belonging-bottom">
+              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+              <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+            </div>
+          <% end %>
+            <div class="col-10 belonging-cards-info">
+              <h5 class="headline-belonging-cards-info">
+                <%= @current_user.first_name %>
+                <%= @current_user.last_name.first %>. reported:
+                <%= todo.description.capitalize.first(35) %>
+                <% if @active_todos.first.description.length > 35 %>...<% end %>
+              </h5>
+              <p class="reported-text">Reorted on: <%= todo.created_at.strftime('%m/%d/%Y') %></p>
+            </div>
         <% end %>
-          <div class="col-10 belonging-cards-info">
-            <h5 class="headline-belonging-cards-info"><%= @current_user.first_name %> <%= @current_user.last_name.first %>. reported: <%= @belonging.name.capitalize %></h5>
-            <p>PLATZHALTER</p>
-          </div>
       </div>
     </div>
   <% end %>
 
-  <h3>History</h3>
-        <%= link_to "Delete",
-                    flat_belongings_path(@belonging),
-                    method: :delete,
-                    data: {
-                      turbo_confirm: "Are you sure?",
-                      disable_with: "Deleting...",
-                      confirm_swal: "true"
-                    } %>
+  <h3 class="belonging-headline">History</h3>
+  <% if @belonging.todos.archived.count.zero? %>
+    <p>Your flat is perfectly fine ✨</p>
+  <% else %>
+    <% @belonging.todos.archived.each do |todo| %>
+      <div class="status-icon-overlap-bottom">
+        <div class="col-2 background-blue-belonging-bottom">
+          <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+          <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+        </div>
+        <div class="col-10 belonging-cards-info">
+          <h5 class="headline-belonging-cards-info">
+            <%= @current_user.first_name %>
+            <%= @current_user.last_name.first %>. reported:
+            <%= todo.description.capitalize.first(35) %>
+            <% if @active_todos.first.description.length > 35 %>...<% end %>
+          </h5>
+          <p class="reported-text-history">Reported on: <%= todo.created_at.strftime('%m/%d/%Y') %></p>
+          <p class="reported-text-history">Back to fine: <%= todo.updated_at.strftime('%m/%d/%Y') %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="mt-5">
+    <%= link_to "» Delete belonging",
+      flat_belonging_path(@belonging.flat, @belonging),
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+  </div>
+
+</div>

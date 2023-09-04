@@ -1,3 +1,19 @@
+.attachment-belonging {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $gray;
+    border-radius: 4px;
+    color: $gray;
+}
+
+.back-button {
+    position: relative;
+    font-size: 22px;
+    padding-left: 22px;
+    padding-top: 15px;
+    z-index: 2;
+}
+
 .background-beige-belonging {
     background-color: #B7B7B7;
     position: relative;
@@ -51,6 +67,11 @@
 
 .belonging-cards-info {
     padding-left: 15px;
+    align-self: center;
+}
+
+.belonging-headline {
+    margin-top: 30px;
 }
 
 .card-product {
@@ -89,14 +110,6 @@
     z-index: 1;
 }
 
-.back-button {
-    position: relative;
-    font-size: 22px;
-    padding-left: 22px;
-    padding-top: 15px;
-    z-index: 2;
-}
-
 .fa-pen-to-square {
     position: relative;
     font-size: 22px;
@@ -106,6 +119,7 @@
 
 .headline-belonging-cards-info {
     font-size: 17px;
+    margin-bottom: 1px;
 }
 
 .header-carousel {
@@ -153,6 +167,16 @@
     z-index: 3;
     width: 100%;
     height: 100%;
+}
+
+.reported-text {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.reported-text-history {
+    margin-bottom: 0;
+    font-size: 13px;
 }
 
 .status-icon-overlap {
