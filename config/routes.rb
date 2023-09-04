@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   resources :flats do
     collection do
       get :find_tenant
+      post :add_tenant
     end
     resources :belongings, only: %i[create show edit update destroy] do
       resources :todos, only: %i[create update destroy]
-      post '/add_tenant/:id', to: 'flats#add_tenant', as: :add_tenant
     end
   end
 
