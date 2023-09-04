@@ -15,7 +15,14 @@ class TodosController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    authorize @todo
+    if @todo.belonging.update(status: 'good') && @todo.update(status: 'archived')
+      redirect_to flat_path(@todo.belonging.flat), notice: 'Todo is done! 🎉'
+    else
+      render 'flats/show', status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 
