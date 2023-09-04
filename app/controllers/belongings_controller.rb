@@ -16,7 +16,7 @@ class BelongingsController < ApplicationController
   end
 
   def create
-    @belonging = Belonging.new(belonging_params, default: :good)
+    @belonging = Belonging.new(belonging_params)
     @belonging.flat = @flat
     authorize @belonging
     if @belonging.save
