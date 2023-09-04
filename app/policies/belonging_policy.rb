@@ -24,6 +24,6 @@ class BelongingPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    record.flat.user == user
   end
 end
