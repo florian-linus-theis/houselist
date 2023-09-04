@@ -70,7 +70,7 @@
   <h2>Needs Attention: </h2>
     <div class="belonging-container">
     <% if @belongings_attention.empty? %>
-      <p>Yay no to dos open! 🎉</p>
+      <p>Yay no open to dos! 🎉</p>
     <% else %>
       <% @belongings_attention.each do |belonging| %>
         <div class="d-flex card-belonging justify-content-between mb-3">
@@ -89,9 +89,11 @@
                 <%= belonging.name.first(12) %>
                 <% if belonging.name.length > 12 %>...<% end %>
               </h3>
+              <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
                 <button class="my-auto me-3 btn-square">
                     <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
                 </button>
+              <% end %>
               <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.todos.first.id %>" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
               </button>
@@ -99,12 +101,8 @@
         <div class="collapse mb-3 belonging-preview" id="<%= belonging.todos.first.id %>">
             <div class="card card-body no-border">
               <h3><% if belonging.name.length > 12 %> <%= belonging.name%> <% end %> </h3>
-                <% belonging.todos.each do |todo| %>
-                  <% if todo.active? %>
                   <h3>Note</h3>
-                    <p><%= todo.description %></p>
-                  <% end %>
-                <% end %>
+                    <p><%= belonging.todos.last.description %></p>
             </div>
         </div>
       <% end %>
@@ -194,6 +192,8 @@
       </div>
     <% end %>
   </div>
+
+
 
   <% elsif current_user.tenant? %>
     <h1><%= @flat.address %></h1>

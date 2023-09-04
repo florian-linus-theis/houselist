@@ -9,7 +9,7 @@ class FlatsController < ApplicationController
 
   def show
     @belongings = @flat.belongings
-
+    @belonging = Belonging.new
     @belongings_attention = @belongings.reject do |belonging|
       (belonging.good? || belonging.todos.count.zero?)
     end
