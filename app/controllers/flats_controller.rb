@@ -57,6 +57,24 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
+  def find_tenant
+    # return unless params[:query]
+    @flat = Flat.all.first
+    @users = User.find_tenant(params[:query]).select(&:tenant?)
+    authorize @flat
+    render json: { users: @users }
+  end
+
+  def add_tenant
+    user = User.find(params[:tenant_id])
+    flat = Flat.find(params[:flat_id])
+    if Tenant.create(user:, flat:)
+      render json: { message: "Tenant added to flat", success: true }, status: :ok
+    else
+      render json: { error: "Tenant could not be added to flat", success: false }, status: :not_found
+    end
+  end
+
   private
 
   def set_flat

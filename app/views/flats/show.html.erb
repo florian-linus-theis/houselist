@@ -11,7 +11,7 @@
           <button class="btn-square-white" type="button">
             <i class="fa-solid fa-pen"></i>
           </button>
-          <button class="btn-square-white" type="button">
+          <button class="btn-square-white" type="button" data-bs-toggle="modal" data-bs-target="#userModal">
             <i class="fa-solid fa-share-nodes"></i>
           </button>
       </div>
@@ -19,6 +19,37 @@
 
 
 <div class="page-container mt-3">
+
+    <!-- User Invite Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" data-controller="user-search">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userModalLabel">Invite Tenant:</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group d-flex justify-content-between">
+              <div class="form-outline flex-grow-1">
+                <input type="search" name="searchquery" data-user-search-target="searchInput" class="form-control" data-action="keyup->user-search#search_tenant"/>
+              </div>
+              <button type="button" class="btn btn-primary" data-action="click->user-search#add_tenant">
+                <i class="fas fa-plus"></i> Invite
+              </button>
+            </div>
+            <div id="searchResults">
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-square-white" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <h2>News:</h2>
     <% if @notifications.empty?  %>
       <p>No notifications to display</p>

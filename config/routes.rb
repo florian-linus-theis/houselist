@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :flats do
+    collection do
+      get :find_tenant
+    end
     resources :belongings, only: %i[create show edit update destroy] do
       resources :todos, only: %i[create update destroy]
+      post '/add_tenant/:id', to: 'flats#add_tenant', as: :add_tenant
     end
   end
 

@@ -229,3 +229,8 @@
   border: transparent;
   background-color: transparent;
 }
+
+#searchResults {
+  min-height: 10rem;
+  max-height: fit-content;
+}

@@ -39,4 +39,8 @@ class FlatPolicy < ApplicationPolicy
     # Only the owner of a flat can delete the flat
     record.user == user
   end
+
+  def find_tenant?
+    true
+  end
 end
