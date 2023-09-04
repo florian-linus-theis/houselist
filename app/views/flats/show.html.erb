@@ -1,5 +1,5 @@
   <% if current_user.landlord? %>
-    <div class="d-flex align-items-center" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
+    <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
       <div class ="spacing-header">
         <%= link_to flats_path do %>
           <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
@@ -7,11 +7,11 @@
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
       </div>
-      <div>
-          <button class="my-auto me-3 btn-square-white" type="button">
+      <div class="justify-content-center mt-5">
+          <button class="btn-square-white" type="button">
             <i class="fa-solid fa-pen"></i>
           </button>
-          <button class="my-auto me-3 btn-square-white" type="button">
+          <button class="btn-square-white" type="button">
             <i class="fa-solid fa-share-nodes"></i>
           </button>
       </div>
@@ -117,22 +117,59 @@
   <div class="belonging-container">
     <% @belongings.each do |belonging| %>
       <div class="d-flex card-belonging justify-content-between mb-3">
-          <% if belonging.good? %>
-              <div class="col-4 background-blue">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+        <% if belonging.good? %>
+            <div class="col-4 background-blue">
+              <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+              <button class="modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+              </button>
+            </div>
+
+          <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="text-center flex-grow-1" id="exampleModalLabel">Report Issue 🛠</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <%= simple_form_for [@flat, belonging, @todo] do |f|%>
+                    <%= f.input :belonging_status, as: :radio_buttons, collection: ['damaged', 'needs_replacement']%>
+                    <div class="d-flex justify-content-center">
+                      <div class="col-4 background-beige-icon">
+                        <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
+                        <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+                      </div>
+                      <div class="col-4 background-red-icon">
+                        <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
+                        <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+                      </div>
+                    </div>
+                      <div>
+                          <%= f.input :description %>
+                          <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                          <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                      </div>
+                    </div>
+                  <div class="modal-footer justify-content-center">
+                      <%= f.button :submit, "Save Report", class:"btn-text" %>
+                        <% end %>
+                  </div>
+                </div>
               </div>
-          <% elsif belonging.damaged? %>
+            </div>
+        <% elsif belonging.damaged? %>
               <div class="col-4 background-beige">
                 <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
               </div>
-          <% else %>
+        <% else %>
               <div class="col-4 background-red">
                 <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
               </div>
-          <% end %>
+        <% end %>
             <h3 class="my-auto flex-grow-1 text-belonging"> <%= belonging.name %></h3>
             <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.id %>" aria-expanded="false" aria-controls="collapseExample">
               <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
@@ -148,7 +185,7 @@
             </p>
               <% belonging.todos.each do |todo| %>
                 <% if todo.active? %>
-                 <h3>Active Todo:</h3>
+                  <h3>Active Todo:</h3>
                   <p><%= todo.description %></p>
                 <% end %>
               <% end %>
