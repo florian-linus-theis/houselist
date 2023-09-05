@@ -1,9 +1,9 @@
 <%= simple_form_for [@flat, belonging], data: {controller: "dropdown"} do |f| %>
   <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
   <hr>
-  <%= f.hidden_field :category_id %>
   <%= f.label :category %>
   <div class="custom--form--dropdown--container">
+    <%= f.hidden_field :category, data: {dropdown_target: "inputFieldHidden"}, value: belonging.category.name %>
     <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
       <span id="room"></span>
       <span data-dropdown-target="dropdown" data-action="click->dropdown#open"><i class="fa-solid fa-chevron-left caret pointer"></i></span>
@@ -11,12 +11,12 @@
     <div class="drop--down d-none" data-dropdown-target="dropdownList">
       <%# Generated from dropdown_controller.js %>
     </div>
-    <hr>
-    <%= f.input :description, input_html: { class: "mb-2 custom-input" }%>
-    <hr>
-    <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
-    <hr>
-    <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
-    <%= f.submit "Save", class: "btn-text" %>
   </div>
+  <hr>
+  <%= f.input :description, input_html: { class: "mb-2 custom-input" }%>
+  <hr>
+  <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <hr>
+  <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <%= f.submit "Save", class: "btn-text" %>
 <% end %>

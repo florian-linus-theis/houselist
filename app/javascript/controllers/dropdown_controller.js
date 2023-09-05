@@ -2,7 +2,12 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="dropdown"
 export default class extends Controller {
-  static targets = ["selectedRoom", "dropdown", "dropdownList"];
+  static targets = [
+    "selectedRoom",
+    "dropdown",
+    "dropdownList",
+    "inputFieldHidden",
+  ];
 
   rooms = [
     {
@@ -38,6 +43,15 @@ export default class extends Controller {
   ];
 
   connect() {
+    const formValue = this.inputFieldHiddenTarget.value;
+    const newFormValue = formValue
+      .split(" ")
+      .map(
+        (word, i) =>
+          word.charAt(0).toUpperCase() + formValue.split(" ")[i].slice(1)
+      )
+      .join(" ");
+    this.#updateActiveRoom(newFormValue);
     this.#setActiveRoom();
   }
 
@@ -61,10 +75,7 @@ export default class extends Controller {
   }
 
   selectRoom(element) {
-    this.rooms.find((room) => room.selected).selected = false;
-    this.rooms.find(
-      (room) => room.name === element.currentTarget.innerText.trim()
-    ).selected = true;
+    this.#updateActiveRoom(element.currentTarget.innerText.trim());
     this.#setActiveRoom();
     this.close(element);
   }
@@ -78,6 +89,11 @@ export default class extends Controller {
                         </div>`;
       this.dropdownListTarget.insertAdjacentHTML("beforeend", component);
     });
+  }
+
+  #updateActiveRoom(newRoom) {
+    this.rooms.find((room) => room.selected).selected = false;
+    this.rooms.find((room) => room.name === newRoom).selected = true;
   }
 
   #setActiveRoom() {
