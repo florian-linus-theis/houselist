@@ -10,8 +10,8 @@
   border-radius: 10px;
 }
 
-.fa-chevron-down {
-  margin-left: 249px;
+.fa-chevron-down,
+.fa-chevron-left {
   color: $gray;
 }
 
@@ -29,8 +29,6 @@
 }
 
 // Custom form area
-.custom--form--dropdown--container {
-}
 
 .custom--form--field {
   border: 2.5px solid $mid-gray;
