@@ -2,34 +2,63 @@
   border-radius: 4px;
   padding: 20px;
   background-color: $off-white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.custom-input{
+.custom-input {
   border: 2.5px solid #bbbbbb !important;
   border-radius: 10px;
 }
 
-.fa-chevron-down{
+.fa-chevron-down {
   margin-left: 249px;
-  color: #888888;
+  color: $gray;
 }
 
-.icon-settings{
+.icon-settings {
   margin-top: -35px;
 }
 
-
-.marg{
-  margin-left: 224px;
-  margin-top: -65px;
-}
-
-.button{
+.button {
   border: 2px solid $light-blue;
   border-radius: 10px;
   background-color: $off-white;
   color: $light-blue;
   text-align: center;
   width: 100px;
+}
+
+// Custom form area
+.custom--form--dropdown--container {
+}
+
+.custom--form--field {
+  border: 2.5px solid $mid-gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .caret {
+    margin: 0;
+    padding-right: 0;
+  }
+}
+
+.drop--down {
+  border: 1.5px solid $mid-gray;
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  :not(:first-child) {
+    border-top: 0.5px solid $gray;
+  }
+}
+
+.border--radius--bottom--none {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ph--12 {
+  padding: 0 12px 0 12px;
 }
