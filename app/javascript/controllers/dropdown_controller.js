@@ -38,9 +38,7 @@ export default class extends Controller {
   ];
 
   connect() {
-    const activeRoom = this.rooms.find((room) => room.selected);
-    this.selectedRoomTarget.querySelector("#room").innerHTML = `
-          ${activeRoom.name} <i id="icon" class="fa-solid ${activeRoom.icon}"></i>`;
+    this.#setActiveRoom();
   }
 
   open(element) {
@@ -58,18 +56,33 @@ export default class extends Controller {
     icon.classList.remove("fa-chevron-down");
     icon.classList.add("fa-chevron-left");
     this.dropdownListTarget.classList.add("d-none");
-    element.currentTarget.dataset.action = "click->dropdown#open";
+    this.dropdownTarget.dataset.action = "click->dropdown#open";
     this.selectedRoomTarget.classList.remove("border--radius--bottom--none");
+  }
+
+  selectRoom(element) {
+    this.rooms.find((room) => room.selected).selected = false;
+    this.rooms.find(
+      (room) => room.name === element.currentTarget.innerText.trim()
+    ).selected = true;
+    this.#setActiveRoom();
+    this.close(element);
   }
 
   #renderRooms() {
     this.dropdownListTarget.innerHTML = "";
     const inactiveRooms = this.rooms.filter((room) => !room.selected);
     inactiveRooms.forEach((room) => {
-      const component = `<div class="ph--12">
+      const component = `<div class="ph--12 pointer" data-action="click->dropdown#selectRoom">
                           <span>${room.name} <i class="fa-solid ${room.icon}"></i></span>
                         </div>`;
       this.dropdownListTarget.insertAdjacentHTML("beforeend", component);
     });
+  }
+
+  #setActiveRoom() {
+    const activeRoom = this.rooms.find((room) => room.selected);
+    this.selectedRoomTarget.querySelector("#room").innerHTML = `
+          ${activeRoom.name} <i id="icon" class="fa-solid ${activeRoom.icon}"></i>`;
   }
 }
