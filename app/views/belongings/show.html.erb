@@ -79,7 +79,7 @@
         </div>
         <div class="modal-body">
           <object id="pdf-iframe" data="" style="width:100%;height:100%">
-            <a href="">PDF laden</a>
+            <a href="">load pdf</a>
           </object>
         </div>
       </div>
@@ -112,7 +112,7 @@
   <% else %>
     <div class="belonging-todo-cards">
       <div class="status-icon-overlap-bottom">
-        <% @belonging.todos.each do |todo| %>
+        <% @active_todos do |todo| %>
           <% if @belonging.good? %>
             <div class="col-2 background-blue-belonging-bottom">
               <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
