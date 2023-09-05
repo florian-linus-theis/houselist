@@ -234,3 +234,23 @@
   min-height: 10rem;
   max-height: fit-content;
 }
+
+.card-tenant {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  border:none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+}
+
+input.form-control {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 8px;
+}
+
+.selected-user {
+  background-color: $light-blue;
+  color: $off-white;
+}
