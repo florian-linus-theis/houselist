@@ -63,7 +63,7 @@
     <p>No attachments uploaded ❌</p>
     <% else %>
       <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%=   Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
           <i class="fa-solid fa-file" style="color: #888888;"></i>
           <%= file.blob.filename %>
         </div>
@@ -87,8 +87,8 @@
   </div>
 
   <script>
-    const exampleModal = document.getElementById('pdfmodal')
-    exampleModal.addEventListener('show.bs.modal', function (event) {
+    const pdfModal = document.getElementById('pdfmodal')
+    pdfModal.addEventListener('show.bs.modal', function (event) {
       // Button that triggered the modal
       const button = event.relatedTarget
       // Extract info from data-bs-* attributes
