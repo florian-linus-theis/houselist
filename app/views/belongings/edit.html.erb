@@ -1,7 +1,7 @@
 <div class="page-container">
   <div class="container form mt-5">
     <h2 class="my-2">Report</h2>
-    <%= @belonging.photos %>
+    <%# cl_image_tag @belonging.photos.first.key, alt: "Image Photo" %>
     <%= render "form", belonging: @belonging %>
     <%= link_to 'Back', flat_path(@flat), class: "btn btn-primary marg" %>
   </div>
