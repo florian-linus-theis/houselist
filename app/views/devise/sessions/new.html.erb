@@ -1,21 +1,37 @@
-<h2>Log in</h2>
+<div class="bg-primary bcg">
+  <div class="page-container bg-primary bcg" style="height: 100vh;
+    margin-top: -85px;">
+    <div class="logo-tagline">
+      <div class="stage">
+        <%= image_tag("houselist_logo_white.png", height: '150', width: '150',class:"logo-login box bounce-4")%>
+      </div>
+      <h1 class="text-center tagline">Your apartments in one place.</h1>
+        <div class="container login">
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          placeholder: "email",
+                          label: " ",
+                          input_html: { autocomplete: "email" } %>
+              <%= f.input :password,
+                          required: true,
+                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                          placeholder: "password",
+                          label: " ",
+                          input_html: { autocomplete: "new-password" } %>
+            </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <div class="form-actions pt-3">
+              <%= f.button :submit, "Log in", class:"btn-text-white" %>
+            </div>
+          <% end %>
+            <div class="pt-3">
+              <%= link_to "Registrate", new_user_registration_path, class:"btn-registrate" %>
+            </div>
+
+        </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
