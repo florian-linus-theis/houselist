@@ -1,0 +1,51 @@
+.background-curve {
+  background-color: $blue;
+  width: 100%;
+  border-bottom-left-radius: 300%;
+  border-bottom-right-radius: 300%;
+  position: static;
+  margin-top: -30px;
+}
+
+.profile-pic{
+  position: relative;
+  top: 100px;
+  border-color:$primary;
+  width: 150px;
+  height: 150px;
+  right: 20px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+
+.profile-content{
+  color: $black;
+}
+
+.page-margin-top {
+  margin-top: 80px;
+}
+
+.icon-profile{
+  color: $primary;
+}
+
+.btn-edit {
+  width: 44px;
+  height: 44px;
+  color: $blue;
+  background-color: $off-white;
+  border-radius: 150%;
+  border:none;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  top: -50px;
+  left: 250px;
+  bottom: 300px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+}
+.position-button{
+  position: static;
+}

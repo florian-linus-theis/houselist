@@ -8,7 +8,9 @@
           <%= image_tag "houselist_logo_font.png", alt: "houselist", width: 50, class: "navbar-logo" %>
       </a>
       <div class="profile-menu">
-        <% if current_user.photo.attached? %>
+        <% if current_page?(profile_path) %>
+        <div></div>
+        <% elsif current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, class: "profile-pic-nav mr-3", :gravity=>"face", :height=>60, :width=>60, :crop=>"thumb" %>
         <% else %>
           <%= image_tag "houselist_default_profile_pic.jpg", alt: "default image", width: 60, height: 60, class: "profile-pic-nav mr-3" %>
