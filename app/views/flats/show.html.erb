@@ -34,16 +34,16 @@
                 <input type="search" name="searchquery" data-user-search-target="searchInput" class="form-control" data-action="keyup->user-search#search_tenant"/>
                 <%= hidden_field(:flat, :id) %>
               </div>
-              <button type="button" class="btn btn-primary" data-action="click->user-search#add_tenant">
+              <button type="button" class="btn btn-text" data-action="click->user-search#add_tenant">
                 <i class="fas fa-plus"></i> Invite
               </button>
             </div>
-            <ul id="searchResults" data-user-search-target="searchResults" class="mt-3" >
+            <div id="searchResults" data-user-search-target="searchResults" class="mt-3" >
 
-            </ul>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn-square-white" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn-text" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
