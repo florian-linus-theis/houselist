@@ -63,12 +63,47 @@
     <p>No attachments uploaded ❌</p>
     <% else %>
       <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging">
+        <div class="attachment-belonging" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%=   Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
           <i class="fa-solid fa-file" style="color: #888888;"></i>
           <%= file.blob.filename %>
         </div>
     <% end %>
   <% end %>
+
+  <div class="modal fade" id="pdfmodal" tabindex="-1" aria-labelledby="pdfmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfmodalLabel">Preview:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <object id="pdf-iframe" data="" style="width:100%;height:100%">
+            <a href="">PDF laden</a>
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const exampleModal = document.getElementById('pdfmodal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      const url = button.getAttribute('data-bs-whatever')
+      // If necessary, you could initiate an AJAX request here
+      // and then do the updating in a callback.
+      //
+      // Update the modal's content.
+      const object = document.getElementById("pdf-iframe")
+      const link = object.querySelector('a')
+
+      object.setAttribute("data", url)
+      link.href = url
+    })
+  </script>
 
 
   <h3 class="belonging-headline">Active To do</h3>
