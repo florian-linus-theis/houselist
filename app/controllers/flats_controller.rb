@@ -8,13 +8,15 @@ class FlatsController < ApplicationController
   end
 
   def show
-    @belongings = @flat.belongings
+    if params[:query].present?
+      @belongings = Belonging.query_belonging(params[:query]).select { |b| b.flat_id == @flat.id }
+    else
+      @belongings = @flat.belongings
+    end
     @belonging = Belonging.new
     @belongings_attention = @belongings.reject do |belonging|
       (belonging.good? || belonging.todos.count.zero?)
     end
-
-    # @notifications = @flat.notifications.select { |notification| notification.read == false }
     @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
                                  .order(created_at: :desc)
 

@@ -46,7 +46,17 @@
       </div>
     </div>
 
-
+    <form action="<%= flat_path{@flat} %>">
+      <div class="wrapper">
+        <div class="label">Search for Items:</div>
+        <div class="searchBar">
+            <input id="searchQueryInput" type="text" name="query" placeholder="Search" value="" />
+            <button id="searchQuerySubmit" type="submit">
+              <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
+            </button>
+        </div>
+      </div>
+    </form>
 
     <h2>News:</h2>
     <% if @notifications.empty?  %>
