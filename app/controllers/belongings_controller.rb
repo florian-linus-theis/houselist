@@ -35,6 +35,7 @@ class BelongingsController < ApplicationController
   def update
     @belonging = Belonging.find(params[:id])
 
+    selected_room = params[:selected_room].split.map(&:downcase).join(" ")
     # Deleting previous photos
     @belonging.photos.each(&:purge) if @belonging.photos.attached?
     if @belonging.update(belonging_params)

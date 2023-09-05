@@ -3,7 +3,7 @@
   <hr>
   <%= f.label :category %>
   <div class="custom--form--dropdown--container">
-    <%= f.hidden_field :category, data: {dropdown_target: "inputFieldHidden"}, value: belonging.category.name %>
+    <input name="selected_room" type="hidden" value="<%= belonging.category.name %>" data-dropdown-target="inputFieldHidden">
     <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
       <span id="room"></span>
       <span data-dropdown-target="dropdown" data-action="click->dropdown#open"><i class="fa-solid fa-chevron-left caret pointer"></i></span>

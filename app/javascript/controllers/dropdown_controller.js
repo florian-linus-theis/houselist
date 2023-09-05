@@ -75,8 +75,10 @@ export default class extends Controller {
   }
 
   selectRoom(element) {
-    this.#updateActiveRoom(element.currentTarget.innerText.trim());
+    const room = element.currentTarget.innerText.trim();
+    this.#updateActiveRoom(room);
     this.#setActiveRoom();
+    this.inputFieldHiddenTarget.value = room;
     this.close(element);
   }
 
