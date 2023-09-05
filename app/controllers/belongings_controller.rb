@@ -34,12 +34,20 @@ class BelongingsController < ApplicationController
 
   def update
     @belonging = Belonging.find(params[:id])
+    authorize @belonging
 
     selected_room = params[:selected_room].split.map(&:downcase).join(" ")
     # Deleting previous photos
     @belonging.photos.each(&:purge) if @belonging.photos.attached?
+
+    # Find or create the Category based on the selected_room
+    category = Category.find_or_create_by(name: selected_room)
+
+    # Assign the Category object to the @belonging.category
+    @belonging.category = category
+
     if @belonging.update(belonging_params)
-      redirect_to belonging_path(@belonging), notice: 'Updated the details'
+      redirect_to flat_belonging_path(@belonging), notice: 'Updated the details'
     else
       render :edit, status: :unprocessable_entity
     end
