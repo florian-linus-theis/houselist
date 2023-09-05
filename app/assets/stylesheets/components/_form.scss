@@ -25,23 +25,11 @@
   margin-top: -65px;
 }
 
-/* Default styling for desktop */
-.dropdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-/* Mobile styling */
-@media (max-width: 768px) {
-  .dropdown-container .select{
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  /* Adjust label position for mobile */
-  .dropdown-container label {
-    margin-bottom: 5px;
-  }
+.button{
+  border: 2px solid $light-blue;
+  border-radius: 10px;
+  background-color: $off-white;
+  color: $light-blue;
+  text-align: center;
+  width: 100px;
 }
