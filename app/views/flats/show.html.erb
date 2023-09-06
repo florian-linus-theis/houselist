@@ -185,8 +185,8 @@
                     </div>
                       <div>
                           <%= f.input :description %>
-                          <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
-                          <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                          <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+                          <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
                       </div>
                     </div>
                   <div class="modal-footer justify-content-center">
