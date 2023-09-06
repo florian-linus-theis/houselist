@@ -55,6 +55,22 @@ export default class extends Controller {
     this.#setActiveRoom();
   }
 
+  connect() {
+    const formValue = this.inputFieldHiddenTarget.value;
+
+    if (formValue) {
+      // Editing mode - pre-select the room based on the current value
+      this.#setActiveRoom(formValue);
+    } else {
+      // Adding mode - set a default room as active
+      this.#setActiveRoom();
+    }
+
+    // Rest of your connect method code
+    this.#renderRooms();
+  }
+
+
   open(element) {
     const icon = element.currentTarget.querySelector("i");
     icon.classList.remove("fa-chevron-left");
