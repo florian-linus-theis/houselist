@@ -129,11 +129,13 @@
                 <%= belonging.name.first(12) %>
                 <% if belonging.name.length > 12 %>...<% end %>
               </h3>
-              <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
-                <button class="my-auto me-3 btn-square">
-                    <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
-                </button>
-              <% end %>
+              <div class="checked-belonging">
+                <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
+                  <button class="my-auto me-3 btn-square">
+                      <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
+                  </button>
+                <% end %>
+              </div>
               <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.todos.first.id %>" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
               </button>
