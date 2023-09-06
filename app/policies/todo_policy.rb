@@ -13,7 +13,7 @@ class TodoPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    record.belonging.flat.user == user
   end
 
   def destroy?

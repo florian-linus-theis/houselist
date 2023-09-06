@@ -142,7 +142,7 @@
   <% end %>
 
   <h3 class="belonging-headline">History</h3>
-  <% if @belonging.todos.count.zero? %>
+  <% if @belonging.todos.count(&:archived?).zero? %>
     <p>Your item has always been fine ✨</p>
   <% else %>
     <% @belonging.todos.select(&:archived?).each do |todo| %>

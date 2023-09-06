@@ -6,7 +6,7 @@ class BelongingsController < ApplicationController
 
   def show
     @belonging = Belonging.find(params[:id])
-    @active_todo = Belonging.includes(:todos).where(id: @belonging.id, todos: { status: 'active' })[0]
+    @active_todo = Todo.where(belonging_id: @belonging.id, status: 'active')[0]
     authorize @belonging
   end
 
