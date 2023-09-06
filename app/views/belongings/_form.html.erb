@@ -15,8 +15,8 @@
   <hr>
   <%= f.input :description, input_html: { class: "mb-2 custom-input" }%>
   <hr>
-  <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
   <hr>
-  <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+  <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input", multiple: true  } %>
   <%= f.submit "Save", class: "btn-text" %>
 <% end %>

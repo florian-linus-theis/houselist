@@ -1,7 +1,7 @@
 <div class="page-container">
-  <div>
+  <div class="mt-5">
     <h1 >Welcome home <br> <%= current_user.first_name %>!
-    <i class="fa-solid fa-hand-peace" style="color: #5465FF;"></i></h1>
+    <i class="fa-solid fa-hand-peace" style="color: #778bfc;"></i></h1>
   </div>
   <div class="flat-cards-container">
     <% @flats.each do |flat| %>
@@ -34,8 +34,32 @@
       <% end %>
     <% end %>
   </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Add Flat
+    </button>
 
-  <%= link_to new_flat_path, class:"btn-sticky-big" do %>
-    <i class="fa-solid fa-plus  p-3"></i>
-  <% end %>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal Label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h1 class="text-center modal-title fs-5" id="exampleModalLabel">Add new Flat 🏠</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for @flat do |f| %>
+              <%= f.input :address, input_html: { class: "mb-2 custom-input" } %>
+              <hr>
+              <%= f.input :name, input_html: { class: "mb-2 custom-input" }%>
+              <hr>
+              <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+          </div>
+          <div class="modal-footer">
+              <%= f.submit "Save", class: "btn-text" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
