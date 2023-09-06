@@ -1,0 +1,41 @@
+<div>
+  <div class="card-content">
+    <div class="<%= @active_todo.damaged? ? 'background-beige' : 'background-red' %> side-icon">
+      <i class="fa-solid  <%= @active_todo.damaged? ? 'fa-hammer' : 'fa-exclamation' %> i-repair" style="color: #fdfdfd;"></i>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="my-auto flex-grow-1 text-todo"><%= @active_todo.user.first_name %> <%= @active_todo.user.last_name.first %>. reported: <%= @active_todo.description %></p>
+      <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= @active_todo.id %>" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="collapse mb-3 belonging-preview" id="<%= @active_todo.id %>">
+    <div class="card card-body no-border">
+      <% unless @active_todo.files.first.nil? %>
+        <p>
+          Attached files:
+          <% @active_todo.files.each do |file|%>
+          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+            <i class="fa-solid fa-file" style="color: #888888;"></i>
+            <%= file.blob.filename %>
+          </div>
+        <% end %>
+        </p>
+      <% end %>
+      <% unless @active_todo.photos.first.nil? %>
+        <p>
+          Attached photos:
+          <% @active_todo.photos.each do |photo|%>
+          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{photo.key}")['secure_url'][..-4] + 'jpg' %>">
+            <i class="fa-solid fa-image" style="color: #888888;"></i>
+            <%= photo.blob.filename %>
+          </div>
+        <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
