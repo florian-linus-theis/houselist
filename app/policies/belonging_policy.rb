@@ -23,6 +23,10 @@ class BelongingPolicy < ApplicationPolicy
     create?
   end
 
+  def update?
+    record.flat.user == user
+  end
+
   def destroy?
     record.flat.user == user
   end

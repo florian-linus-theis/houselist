@@ -16,4 +16,13 @@ class Belonging < ApplicationRecord
 
   # modfications
   enum status: %i[good damaged needs_replacement]
+
+  # PgSearch
+  include PgSearch::Model
+  pg_search_scope :query_belonging,
+                  against: %i[name description status],
+                  associated_against: {
+                    category: %i[name]
+                  },
+                  using: { tsearch: { prefix: true } }
 end

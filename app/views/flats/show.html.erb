@@ -34,22 +34,29 @@
                 <input type="search" name="searchquery" data-user-search-target="searchInput" class="form-control" data-action="keyup->user-search#search_tenant"/>
                 <%= hidden_field(:flat, :id) %>
               </div>
-              <button type="button" class="btn btn-primary" data-action="click->user-search#add_tenant">
+              <button type="button" class="btn btn-text" data-action="click->user-search#add_tenant">
                 <i class="fas fa-plus"></i> Invite
               </button>
             </div>
-            <ul id="searchResults" data-user-search-target="searchResults" class="mt-3" >
+            <div id="searchResults" data-user-search-target="searchResults" class="mt-3" >
 
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn-square-white" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-
+    <form action="<%= flat_path{@flat} %>">
+      <div class="wrapper">
+        <div class="label">Search for Items:</div>
+        <div class="searchBar">
+            <input id="searchQueryInput" type="text" name="query" placeholder="Search" value="" />
+            <button id="searchQuerySubmit" type="submit">
+              <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
+            </button>
+        </div>
+      </div>
+    </form>
 
     <h2>News:</h2>
     <% if @notifications.empty?  %>
@@ -149,7 +156,7 @@
       <div class="d-flex card-belonging justify-content-between mb-3">
         <% if belonging.good? %>
             <div class="col-4 background-blue">
-              <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+              <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
               <button class="modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
               </button>
@@ -191,12 +198,12 @@
             </div>
         <% elsif belonging.damaged? %>
               <div class="col-4 background-beige">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
               </div>
         <% else %>
               <div class="col-4 background-red">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
               </div>
         <% end %>
@@ -210,7 +217,12 @@
             <%= belonging.description %>
             <p>
               <% unless belonging.files.first.nil? %>
-                  <%= link_to "Download", cl_private_download_url("development/#{belonging.files.first.key}", :pdf, :attachment => true) %>
+                  <% belonging.files.each do |file|%>
+                    <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+                      <i class="fa-solid fa-file" style="color: #888888;"></i>
+                      <%= file.blob.filename %>
+                    </div>
+                  <% end %>
               <% end %>
             </p>
               <% belonging.todos.each do |todo| %>
@@ -225,6 +237,42 @@
     <% end %>
   </div>
 
+  <%# Modal for pdf %>
+  <div class="modal fade" id="pdfmodal" tabindex="-1" aria-labelledby="pdfmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfmodalLabel">Preview:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <object id="pdf-iframe" data="" style="width:100%;height:100%">
+            <a href="">PDF laden</a>
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# script for modal pdf %>
+  <script>
+    const exampleModal = document.getElementById('pdfmodal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      const url = button.getAttribute('data-bs-whatever')
+      // If necessary, you could initiate an AJAX request here
+      // and then do the updating in a callback.
+      //
+      // Update the modal's content.
+      const object = document.getElementById("pdf-iframe")
+      const link = object.querySelector('a')
+
+      object.setAttribute("data", url)
+      link.href = url
+    })
+  </script>
 
 
   <% elsif current_user.tenant? %>
@@ -255,17 +303,17 @@
       <div class="d-flex card-belonging justify-content-between">
           <% if belonging.good? %>
               <div class="col-4 background-blue">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
               </div>
           <% elsif belonging.damaged? %>
               <div class="col-4 background-beige">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
               </div>
           <% else %>
               <div class="col-4 background-red">
-                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                 <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
               </div>
           <% end %>

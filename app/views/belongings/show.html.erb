@@ -15,7 +15,7 @@
         <% end %>
       </div>
       <div class="back-edit-icons">
-        <%= link_to flats_path do %>
+        <%= link_to flat_path(@belonging.flat) do %>
           <i class="fa-solid fa-arrow-left back-button" style="color: #FDFDFD;"></i>
         <% end %>
         <%= link_to edit_flat_belonging_path do %>
@@ -63,67 +63,100 @@
     <p>No attachments uploaded ❌</p>
     <% else %>
       <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging">
+        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
           <i class="fa-solid fa-file" style="color: #888888;"></i>
           <%= file.blob.filename %>
         </div>
     <% end %>
   <% end %>
 
+  <div class="modal fade" id="pdfmodal" tabindex="-1" aria-labelledby="pdfmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfmodalLabel">Preview:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <object id="pdf-iframe" data="" style="width:100%;height:100%">
+            <a href="">load pdf</a>
+          </object>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <h3 class="belonging-headline">Active To do</h3>
-  <% if @active_todos.count.zero? %>
+  <script>
+    const pdfModal = document.getElementById('pdfmodal')
+    pdfModal.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      const url = button.getAttribute('data-bs-whatever')
+      // If necessary, you could initiate an AJAX request here
+      // and then do the updating in a callback.
+      //
+      // Update the modal's content.
+      const object = document.getElementById("pdf-iframe")
+      const link = object.querySelector('a')
+
+      object.setAttribute("data", url)
+      link.href = url
+    })
+  </script>
+
+
+  <h3 class="belonging-headline">Active Todo:</h3>
+  <% if @active_todo.nil? %>
     <p>Yay no open to do! 🎉</p>
   <% else %>
     <div class="belonging-todo-cards">
       <div class="status-icon-overlap-bottom">
-        <% @belonging.todos.each do |todo| %>
-          <% if @belonging.good? %>
-            <div class="col-2 background-blue-belonging-bottom">
-              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-              <i class="icon-status-belonging-page-check fa-solid fa-check icon-good" style="color: #fdfdfd;"></i>
-            </div>
-          <% elsif @belonging.damaged? %>
-            <div class="col-2 background-beige-belonging-bottom">
-              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-              <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
-            </div>
-          <% else %>
-            <div class="col-2 background-red-belonging-bottom">
-              <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-              <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-            </div>
-          <% end %>
-            <div class="col-10 belonging-cards-info">
-              <h5 class="headline-belonging-cards-info">
-                <%= @current_user.first_name %>
-                <%= @current_user.last_name.first %>. reported:
-                <%= todo.description.capitalize.first(35) %>
-                <% if @active_todos.first.description.length > 35 %>...<% end %>
-              </h5>
-              <p class="reported-text">Reorted on: <%= todo.created_at.strftime('%m/%d/%Y') %></p>
-            </div>
+        <% if @belonging.good? %>
+          <div class="col-2 background-blue-belonging-bottom">
+            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+            <i class="icon-status-belonging-page-check fa-solid fa-check icon-good" style="color: #fdfdfd;"></i>
+          </div>
+        <% elsif @belonging.damaged? %>
+          <div class="col-2 background-beige-belonging-bottom">
+            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+            <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+          </div>
+        <% else %>
+          <div class="col-2 background-red-belonging-bottom">
+            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+            <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+          </div>
         <% end %>
+        <div class="col-10 belonging-cards-info">
+          <h5 class="headline-belonging-cards-info">
+            <%= @active_todo.user.first_name %>
+            <%= @active_todo.user.last_name.first %>. reported:
+            <%= @active_todo.description.capitalize.first(35) %>
+            <% if @active_todo.description.length > 35 %>...<% end %>
+          </h5>
+          <p class="reported-text">Reorted on: <%= @active_todo.created_at.strftime('%m/%d/%Y') %></p>
+        </div>
       </div>
     </div>
   <% end %>
 
   <h3 class="belonging-headline">History</h3>
-  <% if @belonging.todos.archived.count.zero? %>
-    <p>Your flat is perfectly fine ✨</p>
+  <% if @belonging.todos.count(&:archived?).zero? %>
+    <p>Your item has always been fine ✨</p>
   <% else %>
-    <% @belonging.todos.archived.each do |todo| %>
+    <% @belonging.todos.select(&:archived?).each do |todo| %>
       <div class="status-icon-overlap-bottom">
         <div class="col-2 background-blue-belonging-bottom">
-          <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
+          <%= cl_image_tag todo.photos.first.key, quality: 'auto', class: "image-status-belonging-page image-flat-good" %>
           <i class="icon-status-belonging-page-check fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
         </div>
         <div class="col-10 belonging-cards-info">
           <h5 class="headline-belonging-cards-info">
-            <%= @current_user.first_name %>
-            <%= @current_user.last_name.first %>. reported:
+            <%= todo.user.first_name %>
+            <%= todo.user.last_name.first %>. reported:
             <%= todo.description.capitalize.first(35) %>
-            <% if @active_todos.first.description.length > 35 %>...<% end %>
+            <% if todo.description.length > 35 %>...<% end %>
           </h5>
           <p class="reported-text-history">Reported on: <%= todo.created_at.strftime('%m/%d/%Y') %></p>
           <p class="reported-text-history">Back to fine: <%= todo.updated_at.strftime('%m/%d/%Y') %></p>

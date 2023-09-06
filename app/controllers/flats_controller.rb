@@ -8,13 +8,15 @@ class FlatsController < ApplicationController
   end
 
   def show
-    @belongings = @flat.belongings
+    if params[:query].present?
+      @belongings = Belonging.query_belonging(params[:query]).select { |b| b.flat_id == @flat.id }
+    else
+      @belongings = @flat.belongings
+    end
     @belonging = Belonging.new
     @belongings_attention = @belongings.reject do |belonging|
       (belonging.good? || belonging.todos.count.zero?)
     end
-
-    # @notifications = @flat.notifications.select { |notification| notification.read == false }
     @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
                                  .order(created_at: :desc)
 
@@ -60,7 +62,7 @@ class FlatsController < ApplicationController
   def find_tenant
     # return unless params[:query]
     @flat = Flat.all.first
-    @users = User.find_tenant(params[:query]).select(&:tenant?)
+    @users = User.find_tenant(params[:query]).select(&:tenant?).first(5)
     authorize @flat
     render json: { users: @users }
   end

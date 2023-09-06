@@ -231,6 +231,69 @@
 }
 
 #searchResults {
-  min-height: 10rem;
-  max-height: fit-content;
+  height: fit-content;
+  margin-bottom: 24px;
+}
+
+.card-tenant {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  border:none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+}
+
+input.form-control {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 8px;
+}
+
+.selected-user {
+  background-color: $light-blue;
+  color: $off-white;
+}
+
+
+.wrapper {
+  width: 100%;
+  max-width: 31.25rem;
+  margin-bottom: 20px;
+}
+
+.label {
+  margin-bottom: 8px;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#searchQueryInput {
+  width: 100%;
+  height: 2.8rem;
+  background: $light-gray;
+  outline: none;
+  border: none;
+  border-radius: 1.625rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+  color: $blue;
 }
