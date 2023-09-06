@@ -37,7 +37,7 @@ landlord = User.new(
   role: 'landlord'
 )
 landlord.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/karl_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/karl_profile_picture.jpg')),
   filename: 'avatar',
   content_type: 'image/jpg'
 )
@@ -51,7 +51,7 @@ tenant_01 = User.new(
   role: 'tenant'
 )
 tenant_01.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/malin_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/malin_profile_picture.jpg')),
   filename: 'avatar',
   content_type: 'image/jpg'
 )
@@ -65,9 +65,9 @@ tenant_02 = User.new(
   role: 'tenant'
 )
 tenant_02.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/florian_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/florian_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_02.save!
 
@@ -79,9 +79,9 @@ tenant_03 = User.new(
   role: 'tenant'
 )
 tenant_03.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/isabel_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/isabel_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_03.save!
 
@@ -107,9 +107,9 @@ tenant_05 = User.new(
   role: 'tenant'
 )
 tenant_05.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/natalia_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/natalia_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_05.save!
 
@@ -121,9 +121,9 @@ tenant_06 = User.new(
   role: 'tenant'
 )
 tenant_06.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/andreas_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/andreas_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_06.save!
 
@@ -135,9 +135,9 @@ tenant_07 = User.new(
   role: 'tenant'
 )
 tenant_07.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/james_profile_picture.png')),
+  io: File.open(Rails.root.join('app/assets/images/james_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/png'
+  content_type: 'image/jpg'
 )
 tenant_07.save!
 
@@ -149,9 +149,9 @@ tenant_08 = User.new(
   role: 'tenant'
 )
 tenant_08.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/nicole_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/nicole_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_08.save!
 
@@ -163,9 +163,9 @@ tenant_09 = User.new(
   role: 'tenant'
 )
 tenant_09.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/froi_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/froi_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_09.save!
 
@@ -191,9 +191,9 @@ tenant_11 = User.new(
   role: 'tenant'
 )
 tenant_11.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/flor_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/flor_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_11.save!
 
@@ -205,9 +205,9 @@ tenant_12 = User.new(
   role: 'tenant'
 )
 tenant_12.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/filipa_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/filipa_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_12.save!
 
@@ -667,9 +667,9 @@ belonging_16 = Belonging.new(
 belonging_16.flat = flat_01
 belonging_16.category = Category.find_by(name: 'living room')
 belonging_16.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_17.png')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_17.jpg')),
   filename: 'belonging_17',
-  content_type: 'image/png'
+  content_type: 'image/jpg'
 )
 belonging_16.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -762,9 +762,9 @@ belonging_21= Belonging.new(
 belonging_21.flat = flat_03
 belonging_21.category = Category.find_by(name: 'bedroom')
 belonging_21.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_22.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_22.jpg')),
   filename: 'belonging_22',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 belonging_21.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -781,9 +781,9 @@ belonging_22= Belonging.new(
 belonging_22.flat = flat_03
 belonging_22.category = Category.find_by(name: 'balcony')
 belonging_22.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_23.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_23.jpg')),
   filename: 'belonging_23',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 belonging_22.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -800,9 +800,9 @@ belonging_23 = Belonging.new(
 belonging_23.flat = flat_03
 belonging_23.category = Category.find_by(name: 'corridor')
 belonging_23.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpg')),
   filename: 'belonging_24',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 belonging_23.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -819,9 +819,9 @@ belonging_24 = Belonging.new(
 belonging_24.flat = flat_03
 belonging_24.category = Category.find_by(name: 'corridor')
 belonging_24.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpg')),
   filename: 'belonging_24',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 belonging_24.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -1144,9 +1144,9 @@ todo_01 = Todo.new(
 )
 todo_01.belonging = belonging_03
 todo_01.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_01.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_01.jpg')),
   filename: 'todo_01',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_01.user = tenant_04
 todo_01.save!
@@ -1186,9 +1186,9 @@ todo_04 = Todo.new(
 )
 todo_04.belonging = belonging_06
 todo_04.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_04.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_04.jpg')),
   filename: 'todo_04',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_04.user = tenant_04
 todo_04.save!
@@ -1202,9 +1202,9 @@ todo_05 = Todo.new(
 )
 todo_05.belonging = belonging_07
 todo_05.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_05.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_05.jpg')),
   filename: 'todo_05',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_05.user = tenant_04
 todo_05.save!
@@ -1216,9 +1216,9 @@ todo_06 = Todo.new(
 )
 todo_06.belonging = belonging_08
 todo_06.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_06.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_06.jpg')),
   filename: 'todo_06',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_06.user = tenant_07
 todo_06.save!
@@ -1302,9 +1302,9 @@ todo_13 = Todo.new(
 )
 todo_13.belonging = belonging_28
 todo_13.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_11.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_11.jpg')),
   filename: 'todo_13',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_13.user = tenant_03
 todo_13.save!
