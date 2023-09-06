@@ -2,12 +2,14 @@
     <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
       <div class ="spacing-header">
         <%= link_to flats_path do %>
-          <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
+          <button class="btn-rounded-circle-back back-arrow" type="button">
+            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          </button>
         <% end %>
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
       </div>
-      <div class="justify-content-center mt-5">
+      <div class="justify-content-center edit-share">
           <button class="btn-square-white" type="button">
             <i class="fa-solid fa-pen"></i>
           </button>
@@ -48,9 +50,8 @@
 
     <form action="<%= flat_path{@flat} %>">
       <div class="wrapper">
-        <div class="label">Search for Items:</div>
-        <div class="searchBar">
-            <input id="searchQueryInput" type="text" name="query" placeholder="Search" value="" />
+        <div class="searchBar search-flats-show">
+            <input id="searchQueryInput" type="text" name="query" placeholder="Search for items" value="" />
             <button id="searchQuerySubmit" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
             </button>
@@ -279,7 +280,9 @@
     <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
       <div class ="spacing-header">
         <%= link_to flats_path do %>
-          <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
+          <button class="btn-rounded-circle-back back-arrow" type="button">
+            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          </button>
         <% end %>
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
@@ -289,7 +292,7 @@
     <div class="page-container">
       <form action="<%= flat_path{@flat} %>">
         <div class="wrapper">
-          <div class="searchBar search-tenant">
+          <div class="searchBar search-flats-show">
             <input id="searchQueryInput" type="text" name="query" placeholder="Search for item" value="" />
             <button id="searchQuerySubmit" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
