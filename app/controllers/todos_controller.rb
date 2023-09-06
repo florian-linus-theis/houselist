@@ -9,6 +9,7 @@ class TodosController < ApplicationController
     @todo.belonging = belonging
     authorize @todo
     if @todo.save && belonging.update(status: @todo.belonging_status)
+      create_notification(belonging, @todo) if current_user.tenant?
       redirect_to flat_path(belonging.flat), notice: 'Created report!'
     else
       render 'flats/show', status: :unprocessable_entity
@@ -27,6 +28,15 @@ class TodosController < ApplicationController
   def destroy; end
 
   private
+
+  def create_notification(belonging, todo)
+    n = Notification.new
+    n.belonging = belonging
+    n.todo = todo
+    n.user = current_user
+    n.description = "#{n.user.first_name} #{n.user.last_name} reported: #{n.todo.description}"
+    n.save
+  end
 
   def set_todo
     @todo = Todo.find(params[:id])
