@@ -14,17 +14,19 @@
             <div class="col-8">
               <div class="card-body">
                 <h5 class="card-title text-no-link"><%= flat.name %></h5>
-                <% if flat.notifications.count { |n| n.read == false } > 0 %>
-                    <div class="mt-3">
-                      <button class="btn-pill px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
-                      </button>
-                      <button class="btn-round"><%= flat.notifications.count { |n| n.read == false } %></button>
-                    </div>
-                <% else %>
-                    <div class="mt-3">
-                      <button class="btn-pill-light px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
-                      </button>
-                    </div>
+                <% if current_user.landlord? %>
+                  <% if flat.notifications.count { |n| n.read == false } > 0 %>
+                      <div class="mt-3">
+                        <button class="btn-pill px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
+                        </button>
+                        <button class="btn-round"><%= flat.notifications.count { |n| n.read == false } %></button>
+                      </div>
+                  <% else %>
+                      <div class="mt-3">
+                        <button class="btn-pill-light px-3 py-1"><i class="fa-regular fa-envelope icon-pill"></i>
+                        </button>
+                      </div>
+                  <% end %>
                 <% end %>
                 <p class="card-text p-grey mt-3"><%= flat.address %></p>
               </div>
