@@ -5,6 +5,8 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat)
+    @flat = Flat.new
+    # authorize @flat
   end
 
   def show
@@ -24,19 +26,14 @@ class FlatsController < ApplicationController
     authorize @flat
   end
 
-  def new
-    @flat = Flat.new
-    authorize @flat
-  end
-
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
     authorize @flat
     if @flat.save
-      redirect_to flat_path(@flat)
+      redirect_to flats_path, notice: 'You created a new flat!'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to flats_path, alert: 'Sorry something went wrong...'
     end
   end
 
@@ -85,6 +82,6 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(:flat).permit(:address, :name)
+    params.require(:flat).permit(:address, :name, photos: [])
   end
 end
