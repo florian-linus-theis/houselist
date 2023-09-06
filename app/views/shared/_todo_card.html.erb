@@ -18,7 +18,7 @@
         <p>
           Attached files:
           <% @active_todo.files.each do |file|%>
-          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
             <i class="fa-solid fa-file" style="color: #888888;"></i>
             <%= file.blob.filename %>
           </div>
@@ -29,7 +29,7 @@
         <p>
           Attached photos:
           <% @active_todo.photos.each do |photo|%>
-          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{photo.key}")['secure_url'][..-4] + 'jpg' %>">
+          <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{photo.key}")['secure_url'][..-4] + 'jpg' %>">
             <i class="fa-solid fa-image" style="color: #888888;"></i>
             <%= photo.blob.filename %>
           </div>
