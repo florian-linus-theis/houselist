@@ -111,6 +111,57 @@
     <p>Yay no open to do! 🎉</p>
   <% else %>
     <div class="belonging-todo-cards">
+
+        <div class="row d-flex card-active-todo justify-content-between mb-3">
+          <% if @active_todo.damaged? %>
+                <div class="col-2 background-beige d-flex justify-content align-items-center">
+                  <i class="fa-solid fa-hammer i-repair" style="color: #fdfdfd;"></i>
+                </div>
+          <% elsif @active_todo.needs_replacement? %>
+                <div class="col-2 background-red d-flex justify-content align-items-center">
+                  <i class="fa-solid fa-exclamation i-replacement" style="color: #fdfdfd;"></i>
+                </div>
+          <% end %>
+            <div class="col-10 d-flex justify-content-between align-items-center">
+              <p class="my-auto flex-grow-1 text-todo"><%= @active_todo.user.first_name %> <%= @active_todo.user.last_name.first %>. reported: <%= @active_todo.description %></p>
+              <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= @active_todo.id %>" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
+              </button>
+            </div>
+        </div>
+        <div class="collapse mb-3 belonging-preview" id="<%= @active_todo.id %>">
+            <div class="card card-body no-border">
+              <p>
+                <% unless @active_todo.files.first.nil? %>
+                    Attached files:
+                    <% @active_todo.files.each do |file|%>
+                      <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+                        <i class="fa-solid fa-file" style="color: #888888;"></i>
+                        <%= file.blob.filename %>
+                      </div>
+                    <% end %>
+                <% end %>
+              </p>
+              <p>
+                <% unless @active_todo.photos.first.nil? %>
+                    Attached photos:
+                    <% @active_todo.photos.each do |photo|%>
+                      <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{photo.key}")['secure_url'][..-4] + 'jpg' %>">
+                        <i class="fa-solid fa-image" style="color: #888888;"></i>
+                        <%= photo.blob.filename %>
+                      </div>
+                    <% end %>
+                <% end %>
+              </p>
+            </div>
+        </div>
+
+
+
+
+
+
+
       <div class="status-icon-overlap-bottom">
         <% if @belonging.good? %>
           <div class="col-2 background-blue-belonging-bottom">
@@ -143,7 +194,7 @@
 
   <h3 class="belonging-headline">History</h3>
   <% if @belonging.todos.count(&:archived?).zero? %>
-    <p>Your item has always been fine ✨</p>
+    <p>No damages were reported in the past ✨</p>
   <% else %>
     <% @belonging.todos.select(&:archived?).each do |todo| %>
       <div class="status-icon-overlap-bottom">
