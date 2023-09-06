@@ -63,7 +63,7 @@
     <p>No attachments uploaded ❌</p>
     <% else %>
       <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
           <i class="fa-solid fa-file" style="color: #888888;"></i>
           <%= file.blob.filename %>
         </div>

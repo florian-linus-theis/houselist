@@ -218,7 +218,7 @@
             <p>
               <% unless belonging.files.first.nil? %>
                   <% belonging.files.each do |file|%>
-                    <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+                    <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
                       <i class="fa-solid fa-file" style="color: #888888;"></i>
                       <%= file.blob.filename %>
                     </div>
@@ -279,7 +279,7 @@
         <h6><%= @flat.address %></h6>
       </div>
     </div>
-    
+
     <div class="page-container">
       <form action="<%= flat_path{@flat} %>">
         <div class="wrapper">
@@ -350,7 +350,7 @@
             <h3 class="my-auto flex-grow-1 text-belonging"> <%= belonging.name %></h3>
           </div>
         <% end %>
-      </div>      
+      </div>
     </div>
 <% end %>
 </div>
