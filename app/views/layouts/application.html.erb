@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Houselist</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" conshtent="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,7 +20,7 @@
 <%= render "shared/flashes" %>
 <div class="core-page-layout" data-controller="layout">
   <%= render "devise/shared/navbar" if user_signed_in? %>
-  <div class="<%= @guest_page ? "landing-page" : 'container' %>" data-layout-target="body">
+  <div class="<%= @guest_page ? "landing-page" : nil %>" data-layout-target="body">
     <%= yield %>
   </div>
   <%= render "devise/shared/footer" if user_signed_in? %>
