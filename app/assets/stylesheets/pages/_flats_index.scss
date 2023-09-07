@@ -1,34 +1,14 @@
-.image-flat{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius:4px ;
-  border-bottom-left-radius: 4px ;
+.btn-add-flat {
+  border: none;
+  background-color: $off-white;
+  color: $blue;
+  font-weight: 600;
+  padding: 0;
+  float: right;
 }
 
-.p-grey{
-  color:$gray ;
-}
-
-
-.btn-sticky-pill {
-  color: $off-white;
-  background-color: #fa7500;
-  border-radius: 150px;
-  border:none;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  font-size: 22px;
-  text-decoration: none;
-  position: fixed;
-  top: 765px;
-  right: 100px;
-  width: 200px;
-  height: 50px;
-  box-shadow: 2px 2px 4px #979797;
-  text-align:center;
-  display:block;
-  font-weight: 900;
+.btn-font-flat {
+  margin-bottom: 40px;
 }
 
 .btn-pill {
@@ -59,7 +39,7 @@
 
 .btn-round{
 border:none;
-border-radius: 150%;
+border-radius: 50%;
 font-size: 18px;
 color: $off-white;
 background-color: $red;
@@ -68,6 +48,7 @@ height: 30px;
 position: relative;
 right:16px;
 bottom: 10px;
+padding: 0;
 }
 
 .card-flat {
@@ -76,6 +57,22 @@ bottom: 10px;
   border:none;
 }
 
+.image-flat{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius:4px ;
+  border-bottom-left-radius: 4px ;
+}
+
+.p-grey{
+  color:$gray ;
+}
+
 .text-no-link {
   text-decoration: none;
+}
+
+.welcome-flat-index {
+  margin-bottom: -10px;
 }

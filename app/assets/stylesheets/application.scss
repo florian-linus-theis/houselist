@@ -2,6 +2,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/layout";
 
 // External libraries
 @import "bootstrap";
@@ -11,3 +12,13 @@
 @import "components/index";
 @import "pages/index";
 @import "belongings/index";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+}
