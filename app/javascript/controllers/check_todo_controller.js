@@ -6,7 +6,6 @@ export default class extends Controller {
   static outlets = [ "all-items" ]
 
   connect() {
-    console.log('hello')
   }
 
   check(event) {
