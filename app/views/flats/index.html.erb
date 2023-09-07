@@ -1,8 +1,15 @@
 <div class="page-container">
-  <div class="mt-5">
+  <div class="mt-5 welcome-flat-index">
     <h1 >Welcome home <br> <%= current_user.first_name %>!
     <i class="fa-solid fa-hand-peace" style="color: #778bfc;"></i></h1>
   </div>
+  <!-- Button trigger modal -->
+  <div class="btn-font-flat">
+  <button class= "btn-add-flat" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    + Add flat
+  </button>
+  </div>
+
   <div class="flat-cards-container">
     <% @flats.each do |flat| %>
       <%= link_to flat_path(flat), style:"text-decoration: none;" do %>
@@ -36,10 +43,6 @@
       <% end %>
     <% end %>
   </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Add Flat
-    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal Label" aria-hidden="true">
