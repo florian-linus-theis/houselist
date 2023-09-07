@@ -1,37 +1,31 @@
-<div class="bg-primary bcg">
-  <div class="page-container bg-primary bcg" style="height: 100vh;
-    margin-top: -85px;">
-    <div class="logo-tagline">
-      <div class="stage">
-        <%= image_tag("houselist_logo_white.png", height: '150', width: '150',class:"logo-login box bounce-4")%>
+<div class="bg-primary">
+  <div class="stage">
+    <%= image_tag("houselist_logo_white.png", class: "logo-login box bounce-4") %>
+    <h1 class="text-center tagline">Your apartments in one place.</h1>
+  </div>
+  <div class="container login">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "email",
+                    label: false,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    placeholder: "password",
+                    label: false,
+                    input_html: { autocomplete: "new-password" } %>
       </div>
-      <h1 class="text-center tagline">Your apartments in one place.</h1>
-        <div class="container login">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="form-inputs">
-              <%= f.input :email,
-                          required: true,
-                          autofocus: true,
-                          placeholder: "email",
-                          label: " ",
-                          input_html: { autocomplete: "email" } %>
-              <%= f.input :password,
-                          required: true,
-                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                          placeholder: "password",
-                          label: " ",
-                          input_html: { autocomplete: "new-password" } %>
-            </div>
-
-            <div class="form-actions pt-3">
-              <%= f.button :submit, "Log in", class:"btn-text-white" %>
-            </div>
-          <% end %>
-            <div class="pt-3">
-              <%= link_to "Register", new_user_registration_path, class:"btn-register" %>
-            </div>
-
-        </div>
+      <div class="form-actions pt-3">
+        <%= f.button :submit, "Log in", class: "btn-text-white" %>
+      </div>
+    <% end %>
+    <div class="pt-3">
+      <%= link_to "Register", new_user_registration_path, class: "btn-register" %>
     </div>
+
   </div>
 </div>
