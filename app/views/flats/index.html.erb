@@ -13,7 +13,7 @@
   <div class="flat-cards-container">
     <% @flats.each do |flat| %>
       <%= link_to flat_path(flat), style: "text-decoration: none;" do %>
-        <div class="card my-4 card-flat">
+        <div class="card my- 4 card-flat">
           <div class="row g-0">
             <div class="col-4 container-img">
               <%= cl_image_tag flat.photos.first.key, quality: "auto", class: "image-flat" %>
@@ -43,13 +43,11 @@
       <% end %>
     <% end %>
   </div>
-  <<<<<<< HEAD
+
   <!-- Button trigger modal -->
   <button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add Flat
   </button>
-  =======
-  >>>>>>> 60e2c1ee26ef42ec03624c578c5216ec2a5d3c7b
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal Label" aria-hidden="true">
