@@ -56,14 +56,14 @@
 
     <%# --- Needs Attention Items --- %>
     <h2>Needs Attention:</h2>
-    <div class="belonging-needs-attention-container mb-5" data-controller="check-todo">
+    <div class="belonging-needs-attention-container mb-5" data-controller="check-todo" data-check-todo-all-items-outlet=".online-user">
       <%= render "flats/landlord_needs_attention", belongings_attention: @belongings_attention %>
     </div>
 
 
 
     <%# --- All Items --- %>
-    <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %>>
+    <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %> class="online-user">
       <form action="<%= all_flats_path { @flat } %>" data-action="submit->all-items#query">
         <div class="wrapper">
           <div class="searchBar search-flats-show">
