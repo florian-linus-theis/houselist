@@ -20,6 +20,10 @@
   text-decoration: none;
   text-align: center;
   padding:8px;
+  &:hover {
+    background-color: $light-blue;
+    color: $off-white;
+  }
 }
 
 .btn-text-white {
