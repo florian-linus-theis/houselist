@@ -1,3 +1,33 @@
+.back-arrow {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.btn-rounded-circle-back {
+  background-color: $off-white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+}
+
+.edit-share {
+  margin-top: 95px;
+}
+
+.fa-arrow-left {
+  padding: 9px 30px 10px 6px;
+}
+
+.fa-pen {
+  padding: 10px 30px 10px 7px;
+}
+
+.fa-share-nodes {
+  padding: 10px 30px 10px 7px;
+}
+
 .fileList{
   position: relative;
   max-width: 500px;
@@ -67,9 +97,6 @@
   max-width: 500px;
   margin: auto;
 }
-
-
-
 
 @keyframes hideItems{
   0%{
@@ -255,7 +282,6 @@ input.form-control {
   color: $off-white;
 }
 
-
 .wrapper {
   width: 100%;
   max-width: 31.25rem;
@@ -271,6 +297,10 @@ input.form-control {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.search-flats-show {
+  margin-top: 25px;
 }
 
 #searchQueryInput {
@@ -320,4 +350,8 @@ input.form-control {
 
 .modal-footer{
   align-items: center !important;
+}
+
+.checked-belonging {
+  margin-top: 33px;
 }

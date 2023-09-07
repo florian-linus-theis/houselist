@@ -37,7 +37,7 @@ landlord = User.new(
   role: 'landlord'
 )
 landlord.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/karl_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/karl_profile_picture.jpg')),
   filename: 'avatar',
   content_type: 'image/jpg'
 )
@@ -51,7 +51,7 @@ tenant_01 = User.new(
   role: 'tenant'
 )
 tenant_01.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/malin_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/malin_profile_picture.jpg')),
   filename: 'avatar',
   content_type: 'image/jpg'
 )
@@ -65,9 +65,9 @@ tenant_02 = User.new(
   role: 'tenant'
 )
 tenant_02.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/florian_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/florian_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_02.save!
 
@@ -79,9 +79,9 @@ tenant_03 = User.new(
   role: 'tenant'
 )
 tenant_03.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/isabel_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/isabel_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_03.save!
 
@@ -107,9 +107,9 @@ tenant_05 = User.new(
   role: 'tenant'
 )
 tenant_05.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/natalia_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/natalia_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_05.save!
 
@@ -121,9 +121,9 @@ tenant_06 = User.new(
   role: 'tenant'
 )
 tenant_06.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/andreas_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/andreas_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_06.save!
 
@@ -135,9 +135,9 @@ tenant_07 = User.new(
   role: 'tenant'
 )
 tenant_07.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/james_profile_picture.png')),
+  io: File.open(Rails.root.join('app/assets/images/james_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/png'
+  content_type: 'image/jpg'
 )
 tenant_07.save!
 
@@ -149,9 +149,9 @@ tenant_08 = User.new(
   role: 'tenant'
 )
 tenant_08.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/nicole_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/nicole_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_08.save!
 
@@ -163,9 +163,9 @@ tenant_09 = User.new(
   role: 'tenant'
 )
 tenant_09.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/froi_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/froi_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_09.save!
 
@@ -191,9 +191,9 @@ tenant_11 = User.new(
   role: 'tenant'
 )
 tenant_11.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/flor_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/flor_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_11.save!
 
@@ -205,9 +205,9 @@ tenant_12 = User.new(
   role: 'tenant'
 )
 tenant_12.photo.attach(
-  io: File.open(Rails.root.join('app/assets/images/filipa_profile_picture.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/filipa_profile_picture.jpg')),
   filename: 'avatar',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 tenant_12.save!
 
@@ -431,44 +431,6 @@ belonging_03.files.attach(
 )
 belonging_03.save!
 
-belonging_04 = Belonging.new(
-  name: 'Dining table chairs',
-  status: 'good',
-  description: '6 yellow chairs for dining table in living room. Brand: Vitra.'
-)
-belonging_04.flat = flat_01
-belonging_04.category = Category.find_by(name: 'living room')
-belonging_04.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_13.jpg')),
-  filename: 'belonging_13',
-  content_type: 'image/jpg'
-)
-belonging_04.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_04.save!
-
-belonging_05 = Belonging.new(
-  name: 'Toilet paper',
-  status: 'good',
-  description: '3 rolls of toilet paper for 2 days. Placed in bathroom cupboard on the right side.'
-)
-belonging_05.flat = flat_01
-belonging_05.category = Category.find_by(name: 'bathroom')
-belonging_05.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_14.jpg')),
-  filename: 'belonging_14',
-  content_type: 'image/jpg'
-)
-belonging_05.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_05.save!
-
 belonging_06= Belonging.new(
   name: 'Night table',
   status: 'good',
@@ -526,63 +488,6 @@ belonging_08.files.attach(
 )
 belonging_08.save!
 
-belonging_09= Belonging.new(
-  name: 'Bathtub',
-  status: 'good',
-  description: 'Needs to be cleaned with special cleaning power, because of the sensitive surface.'
-)
-belonging_09.flat = flat_01
-belonging_09.category = Category.find_by(name: 'bathroom')
-belonging_09.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_06.jpg')),
-  filename: 'belonging_06',
-  content_type: 'image/jpg'
-)
-belonging_09.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_09.save!
-
-belonging_10= Belonging.new(
-  name: 'Book shelf',
-  status: 'good',
-  description: '230 books in the shelf.'
-)
-belonging_10.flat = flat_01
-belonging_10.category = Category.find_by(name: 'living room')
-belonging_10.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_07.jpg')),
-  filename: 'belonging_07',
-  content_type: 'image/jpg'
-)
-belonging_10.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_10.save!
-
-belonging_11= Belonging.new(
-  name: 'Fairy lights',
-  status: 'good',
-  description: 'Solar fairy lights on the balcony.'
-)
-belonging_11.flat = flat_01
-belonging_11.category = Category.find_by(name: 'balcony')
-belonging_11.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_08.jpg')),
-  filename: 'belonging_08',
-  content_type: 'image/jpg'
-)
-belonging_11.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_11.save!
-
 belonging_12= Belonging.new(
   name: 'Hand soap',
   status: 'needs_replacement',
@@ -602,63 +507,6 @@ belonging_12.files.attach(
 )
 belonging_12.save!
 
-belonging_13= Belonging.new(
-  name: 'Cutting board',
-  status: 'good',
-  description: 'Wood cutting board was replaced two days ago.'
-)
-belonging_13.flat = flat_01
-belonging_13.category = Category.find_by(name: 'kitchen')
-belonging_13.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_10.jpg')),
-  filename: 'belonging_10',
-  content_type: 'image/jpg'
-)
-belonging_13.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_13.save!
-
-belonging_14= Belonging.new(
-  name: 'Shoe rack',
-  status: 'good',
-  description: 'Shoe rack for round about 20 pairs of shoes.'
-)
-belonging_14.flat = flat_01
-belonging_14.category = Category.find_by(name: 'corridor')
-belonging_14.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_11.jpg')),
-  filename: 'belonging_11',
-  content_type: 'image/jpg'
-)
-belonging_14.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_14.save!
-
-belonging_15 = Belonging.new(
-  name: 'Bottle opener',
-  status: 'good',
-  description: 'Bottle opener in the kitchen'
-)
-belonging_15.flat = flat_01
-belonging_15.category = Category.find_by(name: 'kitchen')
-belonging_15.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_12.jpg')),
-  filename: 'belonging_12',
-  content_type: 'image/jpg'
-)
-belonging_15.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_15.save!
-
 belonging_16 = Belonging.new(
   name: 'Vase with flowers',
   status: 'needs_replacement',
@@ -667,9 +515,9 @@ belonging_16 = Belonging.new(
 belonging_16.flat = flat_01
 belonging_16.category = Category.find_by(name: 'living room')
 belonging_16.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_17.png')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_17.jpg')),
   filename: 'belonging_17',
-  content_type: 'image/png'
+  content_type: 'image/jpg'
 )
 belonging_16.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -677,44 +525,6 @@ belonging_16.files.attach(
   filename: '230906_ikea_invoice'
 )
 belonging_16.save!
-
-belonging_17 = Belonging.new(
-  name: 'Seating corner with cushions',
-  status: 'good',
-  description: 'New seating corner with cushions for balcony.'
-)
-belonging_17.flat = flat_01
-belonging_17.category = Category.find_by(name: 'balcony')
-belonging_17.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_18.jpg')),
-  filename: 'belonging_18',
-  content_type: 'image/jpg'
-)
-belonging_17.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_17.save!
-
-belonging_18 = Belonging.new(
-  name: 'Mixed tableware',
-  status: 'good',
-  description: '24 plates, 12 bowls and 3 big salad bowls.'
-)
-belonging_18.flat = flat_01
-belonging_18.category = Category.find_by(name: 'kitchen')
-belonging_18.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_19.jpg')),
-  filename: 'belonging_19',
-  content_type: 'image/jpg'
-)
-belonging_18.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_18.save!
 
 belonging_19 = Belonging.new(
   name: 'Toilet brush',
@@ -762,9 +572,9 @@ belonging_21= Belonging.new(
 belonging_21.flat = flat_03
 belonging_21.category = Category.find_by(name: 'bedroom')
 belonging_21.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_22.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/belonging_22.jpg')),
   filename: 'belonging_22',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 belonging_21.files.attach(
   io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
@@ -772,101 +582,6 @@ belonging_21.files.attach(
   filename: '230906_ikea_invoice'
 )
 belonging_21.save!
-
-belonging_22= Belonging.new(
-  name: 'Outdoor carpet',
-  status: 'good',
-  description: 'Colorful vintage outdoor carpet for the balcony.'
-)
-belonging_22.flat = flat_03
-belonging_22.category = Category.find_by(name: 'balcony')
-belonging_22.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_23.jpeg')),
-  filename: 'belonging_23',
-  content_type: 'image/jpeg'
-)
-belonging_22.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_22.save!
-
-belonging_23 = Belonging.new(
-  name: 'Dyson vacuum cleaner',
-  status: 'good',
-  description: 'New Dyson vacuum cleaner stored in the corridor.'
-)
-belonging_23.flat = flat_03
-belonging_23.category = Category.find_by(name: 'corridor')
-belonging_23.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpeg')),
-  filename: 'belonging_24',
-  content_type: 'image/jpeg'
-)
-belonging_23.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_23.save!
-
-belonging_24 = Belonging.new(
-  name: 'Dyson vacuum cleaner',
-  status: 'good',
-  description: 'New Dyson vacuum cleaner stored in the corridor.'
-)
-belonging_24.flat = flat_03
-belonging_24.category = Category.find_by(name: 'corridor')
-belonging_24.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_24.jpeg')),
-  filename: 'belonging_24',
-  content_type: 'image/jpeg'
-)
-belonging_24.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_24.save!
-
-belonging_25 = Belonging.new(
-  name: 'Original Persian carpet',
-  status: 'good',
-  description: 'Persian carpet in the living room.'
-)
-belonging_25.flat = flat_03
-belonging_25.category = Category.find_by(name: 'living room')
-belonging_25.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_26.jpg')),
-  filename: 'belonging_26',
-  content_type: 'image/jpg'
-)
-belonging_25.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_25.save!
-
-belonging_26 = Belonging.new(
-  name: 'Closet',
-  status: 'good',
-  description: 'Big closet in the bedroom.'
-)
-belonging_26.flat = flat_03
-belonging_26.category = Category.find_by(name: 'bedroom')
-belonging_26.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_27.jpg')),
-  filename: 'belonging_27',
-  content_type: 'image/jpg'
-)
-belonging_26.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_26.save!
 
 belonging_27 = Belonging.new(
   name: 'Salt and pepper shaker',
@@ -924,120 +639,6 @@ belonging_29.files.attach(
   filename: '230906_ikea_invoice'
 )
 belonging_29.save!
-
-belonging_30 = Belonging.new(
-  name: 'TV',
-  status: 'good',
-  description: 'Samsung TV with Netflix account.'
-)
-belonging_30.flat = flat_03
-belonging_30.category = Category.find_by(name: 'living room')
-belonging_30.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_31.jpg')),
-  filename: 'belonging_31',
-  content_type: 'image/jpg'
-)
-belonging_30.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_30.save!
-
-belonging_31 = Belonging.new(
-  name: 'Washing machine',
-  status: 'good',
-  description: 'New washing machine in the bathroom'
-)
-belonging_31.flat = flat_03
-belonging_31.category = Category.find_by(name: 'bathroom')
-belonging_31.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_32.jpg')),
-  filename: 'belonging_32',
-  content_type: 'image/jpg'
-)
-belonging_31.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_31.save!
-
-belonging_32 = Belonging.new(
-  name: 'Lamp',
-  status: 'good',
-  description: 'Pendant Luminaire in the living room.'
-)
-belonging_32.flat = flat_03
-belonging_32.category = Category.find_by(name: 'living room')
-belonging_32.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_33.jpg')),
-  filename: 'belonging_33',
-  content_type: 'image/jpg'
-)
-belonging_32.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_32.save!
-
-belonging_33 = Belonging.new(
-  name: 'Bathmat',
-  status: 'good',
-  description: 'Needs to be washed every 3 days.'
-)
-belonging_33.flat = flat_03
-belonging_33.category = Category.find_by(name: 'bathroom')
-belonging_33.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_34.jpg')),
-  filename: 'belonging_34',
-  content_type: 'image/jpg'
-)
-belonging_33.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_33.save!
-
-belonging_34 = Belonging.new(
-  name: 'Smeg kettle',
-  status: 'good',
-  description: 'Smeg kettle in the kitchen.'
-)
-belonging_34.flat = flat_03
-belonging_34.category = Category.find_by(name: 'kitchen')
-belonging_34.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_35.jpg')),
-  filename: 'belonging_35',
-  content_type: 'image/jpg'
-)
-belonging_34.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_34.save!
-
-belonging_35 = Belonging.new(
-  name: 'Smeg fridge',
-  status: 'good',
-  description: 'Smeg fridge in the kitchen. There must be 2 bottles of water for every checkin.'
-)
-belonging_35.flat = flat_03
-belonging_35.category = Category.find_by(name: 'kitchen')
-belonging_35.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/belonging_36.jpg')),
-  filename: 'belonging_36',
-  content_type: 'image/jpg'
-)
-belonging_35.files.attach(
-  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
-  content_type: 'document/pdf',
-  filename: '230906_ikea_invoice'
-)
-belonging_35.save!
 
 belonging_36 = Belonging.new(
   name: 'Smeg toaster',
@@ -1144,9 +745,9 @@ todo_01 = Todo.new(
 )
 todo_01.belonging = belonging_03
 todo_01.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_01.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_01.jpg')),
   filename: 'todo_01',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_01.user = tenant_04
 todo_01.save!
@@ -1186,9 +787,9 @@ todo_04 = Todo.new(
 )
 todo_04.belonging = belonging_06
 todo_04.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_04.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_04.jpg')),
   filename: 'todo_04',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_04.user = tenant_04
 todo_04.save!
@@ -1202,9 +803,9 @@ todo_05 = Todo.new(
 )
 todo_05.belonging = belonging_07
 todo_05.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_05.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_05.jpg')),
   filename: 'todo_05',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_05.user = tenant_04
 todo_05.save!
@@ -1216,9 +817,9 @@ todo_06 = Todo.new(
 )
 todo_06.belonging = belonging_08
 todo_06.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_06.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_06.jpg')),
   filename: 'todo_06',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_06.user = tenant_07
 todo_06.save!
@@ -1302,9 +903,9 @@ todo_13 = Todo.new(
 )
 todo_13.belonging = belonging_28
 todo_13.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_11.jpeg')),
+  io: File.open(Rails.root.join('app/assets/images/report_damage_11.jpg')),
   filename: 'todo_13',
-  content_type: 'image/jpeg'
+  content_type: 'image/jpg'
 )
 todo_13.user = tenant_03
 todo_13.save!

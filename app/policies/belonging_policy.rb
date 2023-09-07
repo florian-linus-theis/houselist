@@ -11,7 +11,10 @@ class BelongingPolicy < ApplicationPolicy
       record.flat.user = user # landlords can only see their belongings
     elsif user.tenant?
       # Tenants can only see belongings of flats where they are added
-      record.flat.tenants.any? { |tenant| tenant.user == user }
+      # record.flat.tenants.any? { |tenant| tenant.user == user }
+
+      # tenants cannot go to belongings show page
+      false
     end
   end
 

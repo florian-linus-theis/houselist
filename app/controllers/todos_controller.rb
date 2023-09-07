@@ -2,6 +2,7 @@
 
 class TodosController < ApplicationController
   before_action :set_todo, only: %i[update destroy]
+
   def create
     @todo = Todo.new(todo_params)
     belonging = Belonging.find(params[:belonging_id])

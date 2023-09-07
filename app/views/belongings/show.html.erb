@@ -14,7 +14,7 @@
           <% end%>
         <% end %>
       </div>
-      <div class="back-edit-icons">
+      <div class="back-edit-icons"> 
         <%= link_to flat_path(@belonging.flat) do %>
           <i class="fa-solid fa-arrow-left back-button" style="color: #FDFDFD;"></i>
         <% end %>
@@ -63,7 +63,7 @@
     <p>No attachments uploaded ❌</p>
     <% else %>
       <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("development/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
           <i class="fa-solid fa-file" style="color: #888888;"></i>
           <%= file.blob.filename %>
         </div>
@@ -110,40 +110,12 @@
   <% if @active_todo.nil? %>
     <p>Yay no open to do! 🎉</p>
   <% else %>
-    <div class="belonging-todo-cards">
-      <div class="status-icon-overlap-bottom">
-        <% if @belonging.good? %>
-          <div class="col-2 background-blue-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-check fa-solid fa-check icon-good" style="color: #fdfdfd;"></i>
-          </div>
-        <% elsif @belonging.damaged? %>
-          <div class="col-2 background-beige-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-hammer fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
-          </div>
-        <% else %>
-          <div class="col-2 background-red-belonging-bottom">
-            <%= cl_image_tag @belonging.photos.first.key, class: "image-status-belonging-page image-flat-good" %>
-            <i class="icon-status-belonging-page-exclamation fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-          </div>
-        <% end %>
-        <div class="col-10 belonging-cards-info">
-          <h5 class="headline-belonging-cards-info">
-            <%= @active_todo.user.first_name %>
-            <%= @active_todo.user.last_name.first %>. reported:
-            <%= @active_todo.description.capitalize.first(35) %>
-            <% if @active_todo.description.length > 35 %>...<% end %>
-          </h5>
-          <p class="reported-text">Reorted on: <%= @active_todo.created_at.strftime('%m/%d/%Y') %></p>
-        </div>
-      </div>
-    </div>
+    <%= render "shared/todo_card" %>
   <% end %>
 
   <h3 class="belonging-headline">History</h3>
   <% if @belonging.todos.count(&:archived?).zero? %>
-    <p>Your item has always been fine ✨</p>
+    <p>No damages were reported in the past ✨</p>
   <% else %>
     <% @belonging.todos.select(&:archived?).each do |todo| %>
       <div class="status-icon-overlap-bottom">
