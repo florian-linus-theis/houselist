@@ -79,7 +79,7 @@ class FlatsController < ApplicationController
     @flat = Flat.find(params[:flat_id])
     authorize @flat
     if Tenant.create(user:, flat: @flat)
-      render json: { message: "Tenant added to flat", success: true }, status: :ok
+      render json: { message: "Tenant added to flat", success: true, flash: render_to_string('shared/_flashes', layout: false, locals: { notice: 'Tenant added to flat! 🎉' }) }, status: :ok
     else
       render json: { error: "Tenant could not be added to flat", success: false }, status: :not_found
     end

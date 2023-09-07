@@ -38,7 +38,7 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         if (data.success) {
-          alert(data.message)
+          document.getElementById('userModal').insertAdjacentHTML('beforeend', data.flash)
         }
       })
   }

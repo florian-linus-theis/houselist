@@ -1,4 +1,3 @@
-
 .edit-share {
   margin-top: 95px;
 }
@@ -63,13 +62,13 @@
 
 .fileList.closed .fileInput {
   &:first-of-type {
-    box-shadow: 0 3px 4px -2px rgba(0, 0, 0, 0.1), 0 10px 0 -4px #e3e3e3, 0 21px 0 -10px #cdcdcd, 0 21px 5px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 4px -2px rgba(0, 0, 0, 0.1), 0 10px 0 -4px #e3e3e3,
+      0 21px 0 -10px #cdcdcd, 0 21px 5px -8px rgba(0, 0, 0, 0.1);
     transition: box-shadow ease 300ms;
     transition-delay: 250ms;
   }
-
   &:not(:first-of-type) {
-    animation: hideItems 1s forwards;
+    animation: hideItems forwards;
     animation-timing-function: ease;
   }
 }
@@ -186,14 +185,14 @@
 }
 
 .background-beige {
-  background-color: #B7B7B7;
+  background-color: #b7b7b7;
   position: relative;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 
 .background-beige-icon {
-  background-color: #B7B7B7;
+  background-color: #b7b7b7;
   position: relative;
   border-radius: 4px;
   height: 100px;
@@ -323,7 +322,7 @@ input.form-control {
 
 .btn-sticky-pill {
   color: $off-white;
-  background-color: #FA7500;
+  background-color: #fa7500;
   border-radius: 150px;
   border: none;
   margin-top: 4px;

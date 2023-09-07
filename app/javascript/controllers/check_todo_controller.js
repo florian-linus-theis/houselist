@@ -24,8 +24,19 @@ export default class extends Controller {
       .then((data) => {
         if (data.success) {
           this.allItemsOutlets.forEach(status => status.load())
-          alert(data.message)
+          document.body.insertAdjacentHTML('beforeend', data.flash)
         }
       })
+    this.#checkIfEmpty()
+  }
+
+  #checkIfEmpty() {
+    const division = document.querySelector('.belonging-needs-attention-container')
+    console.log('division')
+    if (division.children.length <= 1) {
+      const p = document.createElement('p')
+      p.innerHTML = 'Yay no open to dos! 🎉'
+      division.appendChild(p)
+    }
   }
 }
