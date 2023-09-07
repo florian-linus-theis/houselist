@@ -21,7 +21,7 @@ class TodosController < ApplicationController
     authorize @todo
     if @todo.belonging.update(status: 'good') && @todo.update(status: 'archived')
       # redirect_to flat_path(@todo.belonging.flat), notice: 'Todo is done! 🎉'
-      render json: { message: "Todo is done! ", success: true }, status: :ok
+      render json: { message: "Todo is done! ", success: true, flash: render_to_string('shared/_flashes', layout: false, locals: { notice: 'Todo is done! 🎉' }) }, status: :ok
     else
       render json: { message: "Not able to mark as done...", success: false }, status: :ok
     end
