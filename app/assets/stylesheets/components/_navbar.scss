@@ -40,6 +40,8 @@ hr {
 
 .menu-icon {
   font-size: 35px;
+  margin: 0;
+  padding: 0;
 }
 
 .menu-item {
@@ -54,17 +56,10 @@ hr {
 
 .navbar {
   background: $blue;
-  height: 10%;
-}
-
-.navbar-brand {
-  padding-top: 20px;
-}
-
-.navbar-logo {
-  display: block;
-  margin-left: 45px;
-  width: 50%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-nav {
@@ -75,6 +70,8 @@ hr {
 .navbar-toggler {
   border: none;
   color: #5465ff;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar-toggler-icon {
@@ -102,8 +99,6 @@ hr {
 
 .profile-pic-nav {
   border-radius: 50%;
-  align-content: center;
-  margin-right: 16px;
 }
 
 .rounded-circle {
@@ -112,4 +107,17 @@ hr {
   border-radius: 50%;
   margin-left: 145px;
   margin-bottom: 20px;
+}
+
+.logo-container {
+  flex: 1;
+  margin: 0 25px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-logo {
+  display: block;
+  width: 60%;
 }
