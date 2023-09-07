@@ -27,11 +27,11 @@ export default class extends Controller {
 
   showAll(){
     this.containerTarget.classList.remove('d-none')
+    document.getElementById('all-items').classList.add('d-none')
   }
 
   query(event) {
     event.preventDefault()
-    document.getElementById('all-items').remove()
     this.load(event.target.query.value)
     this.showAll()
   }
