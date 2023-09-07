@@ -20,9 +20,10 @@ class TodosController < ApplicationController
   def update
     authorize @todo
     if @todo.belonging.update(status: 'good') && @todo.update(status: 'archived')
-      redirect_to flat_path(@todo.belonging.flat), notice: 'Todo is done! 🎉'
+      # redirect_to flat_path(@todo.belonging.flat), notice: 'Todo is done! 🎉'
+      render json: { message: "Not ", success: false }, status: :ok
     else
-      render 'flats/show', status: :unprocessable_entity
+      render json: { message: "Not ", success: false }, status: :ok
     end
   end
 

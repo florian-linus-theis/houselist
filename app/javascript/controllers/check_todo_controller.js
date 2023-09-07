@@ -13,7 +13,7 @@ export default class extends Controller {
     const url = event.currentTarget.href
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content
     fetch(url, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "X-CSRF-Token": csrfToken,
         "Content-Type": "application/json",
