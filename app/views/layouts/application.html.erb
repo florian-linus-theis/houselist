@@ -18,12 +18,12 @@
 
 <body>
 <%= render "shared/flashes" %>
-<div class="core-page-layout">
-  <%= render "devise/shared/navbar" %>
-  <div class="<%= @guest_page ? "landing-page" : 'container' %>">
+<div class="core-page-layout" data-controller="layout">
+  <%= render "devise/shared/navbar" if user_signed_in? %>
+  <div class="<%= @guest_page ? "landing-page" : 'container' %>" data-layout-target="body">
     <%= yield %>
   </div>
-  <%= render "devise/shared/footer" %>
+  <%= render "devise/shared/footer" if user_signed_in? %>
 </div>
 </body>
 </html>
