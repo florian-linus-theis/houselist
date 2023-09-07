@@ -1,23 +1,23 @@
 <% if current_user.landlord? %>
-    <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
-      <div class ="spacing-header">
-        <%= link_to flats_path do %>
-          <button class="btn-rounded-circle-back back-arrow" type="button">
-            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
-          </button>
-        <% end %>
-        <h1><%= @flat.name %></h1>
-        <h6><%= @flat.address %></h6>
-      </div>
-      <div class="justify-content-center edit-share">
-          <button class="btn-square-white" type="button">
-            <i class="fa-solid fa-pen"></i>
-          </button>
-          <button class="btn-square-white" type="button" data-bs-toggle="modal" data-bs-target="#userModal">
-            <i class="fa-solid fa-share-nodes"></i>
-          </button>
-      </div>
+  <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
+    <div class="spacing-header">
+      <%= link_to flats_path do %>
+        <button class="btn-rounded-circle-back back-arrow" type="button">
+          <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+        </button>
+      <% end %>
+      <h1><%= @flat.name %></h1>
+      <h6><%= @flat.address %></h6>
     </div>
+    <div class="justify-content-center edit-share">
+      <button class="btn-square-white" type="button">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+      <button class="btn-square-white" type="button" data-bs-toggle="modal" data-bs-target="#userModal">
+        <i class="fa-solid fa-share-nodes"></i>
+      </button>
+    </div>
+  </div>
 
 
   <div class="page-container mt-3">
@@ -40,7 +40,7 @@
                 <i class="fas fa-plus"></i> Invite
               </button>
             </div>
-            <div id="searchResults" data-user-search-target="searchResults" class="mt-3" >
+            <div id="searchResults" data-user-search-target="searchResults" class="mt-3">
 
             </div>
           </div>
@@ -63,102 +63,101 @@
 
     <%# --- All Items --- %>
     <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %>>
-        <form action="<%= all_flats_path{@flat} %>" data-action="submit->all-items#query">
-          <div class="wrapper">
-            <div class="searchBar search-flats-show">
-                <input id="searchQueryInput" type="text" name="query" placeholder="Search for items" value="" />
-                <button id="searchQuerySubmit" type="submit">
-                  <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
-                </button>
-            </div>
-          </div>
-        </form>
-        <button
-          class="btn-text"
-          data-action="click->all-items#showAll">
-          See all items
-        </button>
-        <h2>All items:</h2>
-        <div class="belonging-container d-none" data-all-items-flat-number-value="<%= @flat.id %>" data-all-items-target="container">
-
-        </div>
-    </div>
-
-  </div>
-
-<% elsif current_user.tenant? %>
-    <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
-      <div class ="spacing-header">
-        <%= link_to flats_path do %>
-          <button class="btn-rounded-circle-back back-arrow" type="button">
-            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
-          </button>
-        <% end %>
-        <h1><%= @flat.name %></h1>
-        <h6><%= @flat.address %></h6>
-      </div>
-    </div>
-
-    <div class="page-container">
-      <form action="<%= flat_path{@flat} %>">
+      <form action="<%= all_flats_path { @flat } %>" data-action="submit->all-items#query">
         <div class="wrapper">
           <div class="searchBar search-flats-show">
-            <input id="searchQueryInput" type="text" name="query" placeholder="Search for item" value="" />
+            <input id="searchQueryInput" type="text" name="query" placeholder="Search for items" value=""/>
             <button id="searchQuerySubmit" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
             </button>
           </div>
         </div>
       </form>
+      <button
+        class="btn-text"
+        data-action="click->all-items#showAll">
+        See all items
+      </button>
       <h2>All items:</h2>
-        <div class="belonging-container">
-          <%= render "flats/tenant_all_items", belongings: @belongings %>
-        </div>
-    </div>
-<% end %>
+      <div class="belonging-container d-none" data-all-items-flat-number-value="<%= @flat.id %>" data-all-items-target="container">
 
-</div>
-
-<!-- Button trigger modal -->
-    <button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#addBelonging">
-      New Belonging
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="addBelonging" tabindex="-1" aria-labelledby="addBelongingLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="addBelongingLabel">New Belonging <i class="fa-solid fa-tv" style="color: #5465ff;"></i></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <%= simple_form_for [@flat, @belonging], data: {controller: "dropdown"} do |f| %>
-              <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
-              <hr>
-              <%= f.label :category, :class => "mb-2"  %>
-                <div class="custom--form--dropdown--container mb-2">
-                  <input name="selected_room" type="hidden" data-dropdown-target="inputFieldHidden" placeholder="Choose category">
-                  <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
-                    <span id="room"></span>
-                    <span data-dropdown-target="dropdown" data-action="click->dropdown#open"><i class="fa-solid fa-chevron-left caret pointer"></i></span>
-                  </div>
-                  <div class="drop--down d-none" data-dropdown-target="dropdownList">
-                    <%# Generated from dropdown_controller.js %>
-                    <div class="ph--12 pointer" data-action="click->dropdown#selectRoom">
-                      <span>${room.name} <i class="fa-solid ${room.icon}"></i></span>
-                    </div>
-                  </div>
-                </div>
-              <%= f.input :description, placeholder: 'Describe your belonging', input_html: { class: "mb-2 custom-input" }%>
-              <hr>
-              <%= f.input :photos, as: :file, placeholder: 'No photos', input_html: { class: "mb-2 custom-input", multiple: true} %>
-              <hr>
-              <%= f.input :files, placeholder: 'No photos', as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
-          </div>
-          <div class="modal-footer">
-              <%= f.submit "Save", class: "btn-text" %>
-          </div>
-          <% end %>
-        </div>
       </div>
     </div>
+
+  </div>
+
+<% elsif current_user.tenant? %>
+  <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
+    <div class="spacing-header">
+      <%= link_to flats_path do %>
+        <button class="btn-rounded-circle-back back-arrow" type="button">
+          <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+        </button>
+      <% end %>
+      <h1><%= @flat.name %></h1>
+      <h6><%= @flat.address %></h6>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <form action="<%= flat_path { @flat } %>">
+      <div class="wrapper">
+        <div class="searchBar search-flats-show">
+          <input id="searchQueryInput" type="text" name="query" placeholder="Search for item" value=""/>
+          <button id="searchQuerySubmit" type="submit">
+            <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <h2>All items:</h2>
+    <div class="belonging-container">
+      <%= render "flats/tenant_all_items", belongings: @belongings %>
+    </div>
+  </div>
+<% end %>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#addBelonging">
+  New Belonging
+</button>
+<!-- Modal -->
+<div class="modal fade" id="addBelonging" tabindex="-1" aria-labelledby="addBelongingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addBelongingLabel">New Belonging
+          <i class="fa-solid fa-tv" style="color: #5465ff;"></i></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@flat, @belonging], data: { controller: "dropdown" } do |f| %>
+          <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
+          <hr>
+          <%= f.label :category, :class => "mb-2" %>
+          <div class="custom--form--dropdown--container mb-2">
+            <input name="selected_room" type="hidden" data-dropdown-target="inputFieldHidden" placeholder="Choose category">
+            <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
+              <span id="room"></span>
+              <span data-dropdown-target="dropdown" data-action="click->dropdown#open"><i class="fa-solid fa-chevron-left caret pointer"></i></span>
+            </div>
+            <div class="drop--down d-none" data-dropdown-target="dropdownList">
+              <%# Generated from dropdown_controller.js %>
+              <div class="ph--12 pointer" data-action="click->dropdown#selectRoom">
+                <span>${room.name} <i class="fa-solid ${room.icon}"></i></span>
+              </div>
+            </div>
+          </div>
+          <%= f.input :description, placeholder: 'Describe your belonging', input_html: { class: "mb-2 custom-input" } %>
+          <hr>
+          <%= f.input :photos, as: :file, placeholder: 'No photos', input_html: { class: "mb-2 custom-input", multiple: true } %>
+          <hr>
+          <%= f.input :files, placeholder: 'No photos', as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Save", class: "btn-text" %>
+          </div>
+        <% end %>
+        </div>
+  </div>
+</div>
