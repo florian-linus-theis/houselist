@@ -19,6 +19,8 @@
     </div>
   </div>
   <div class="page-container mt-3">
+
+
     <!-- User Invite Modal -->
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -43,14 +45,23 @@
         </div>
       </div>
     </div>
+
+
+
     <%# --- Notifications --- %>
     <h2>News:</h2>
     <%= render "flats/notifications", notifications: @notifications %>
+
+
+
     <%# --- Needs Attention Items --- %>
     <h2>Needs Attention:</h2>
-    <div class="belonging-needs-attention-container" data-controller="check-todo">
+    <div class="belonging-needs-attention-container mb-5" data-controller="check-todo">
       <%= render "flats/landlord_needs_attention", belongings_attention: @belongings_attention %>
     </div>
+
+
+
     <%# --- All Items --- %>
     <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %>>
       <form action="<%= all_flats_path { @flat } %>" data-action="submit->all-items#query">
@@ -63,20 +74,28 @@
           </div>
         </div>
       </form>
-      <button
-        class="btn-text"
-        data-action="click->all-items#showAll">
-        See all items
-      </button>
-      <!-- Button trigger modal -->
-      <button type="button" data-bs-toggle="modal" data-bs-target="#addBelonging">
-        + New Belonging
-      </button>
-      <h2>All items:</h2>
+
+      <div class="d-flex justify-content-between mb-4">
+        <button class="btn-text" data-action="click->all-items#showAll">
+          See all items
+        </button>
+
+        <!-- New Belonging Button trigger modal -->
+        <button type="button" data-bs-toggle="modal" data-bs-target="#addBelonging" class="btn-add-flat">
+          + New Belonging
+        </button>
+      </div>
+
+
+
       <div class="belonging-container d-none" data-all-items-flat-number-value="<%= @flat.id %>" data-all-items-target="container">
       </div>
     </div>
   </div>
+
+
+
+<%# --- Tenants Page --- %>
 <% elsif current_user.tenant? %>
   <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
     <div class ="spacing-header">
@@ -107,7 +126,7 @@
   </div>
 <% end %>
 
-<!-- Modal -->
+<!-- Add Belonging Modal -->
 <div class="modal fade" id="addBelonging" tabindex="-1" aria-labelledby="addBelongingLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
