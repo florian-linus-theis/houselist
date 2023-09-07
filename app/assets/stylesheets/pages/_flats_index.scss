@@ -11,28 +11,29 @@
 }
 
 
-.btn-sticky-big {
+.btn-sticky-pill {
   color: $off-white;
-  background-color: $blue;
-  border-radius: 150%;
+  background-color: #fa7500;
+  border-radius: 150px;
   border:none;
   margin-top: 4px;
   margin-bottom: 4px;
-  font-size: 50px;
+  font-size: 22px;
   text-decoration: none;
   position: fixed;
-  top: 550px;
-  right: 15px;
-  width: 80px;
-  height: 80px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  top: 765px;
+  right: 100px;
+  width: 200px;
+  height: 50px;
+  box-shadow: 2px 2px 4px #979797;
   text-align:center;
   display:block;
+  font-weight: 900;
 }
 
 .btn-pill {
   color: $off-white;
-  background-color: $blue;
+  background-color: $light-blue;
   border-radius: 16px;
   border:none;
   margin-top: 4px;
