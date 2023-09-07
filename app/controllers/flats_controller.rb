@@ -14,7 +14,10 @@ class FlatsController < ApplicationController
     @belongings_attention = Belonging.where(flat: @flat, status: ['damaged', 'needs_replacement'])
     @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
                                  .order(created_at: :desc)
-    # @todo = Todo.new
+    if current_user.tenant?
+      @todo = Todo.new
+      @belongings = @flat.belongings
+    end
     authorize @flat
   end
 
