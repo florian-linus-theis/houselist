@@ -47,4 +47,8 @@ class FlatPolicy < ApplicationPolicy
   def add_tenant?
     true
   end
+
+  def all_flats?
+    true
+  end
 end

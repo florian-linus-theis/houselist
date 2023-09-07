@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FlatsController < ApplicationController
-  before_action :set_flat, only: %i[show update destroy]
+  before_action :set_flat, only: %i[show all_flats update destroy]
 
   def index
     @flats = policy_scope(Flat)
@@ -10,20 +10,27 @@ class FlatsController < ApplicationController
   end
 
   def show
+    @belonging = Belonging.new
+    @belongings_attention = Belonging.where(flat: @flat, status: ['damaged', 'needs_replacement'])
+    @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
+                                 .order(created_at: :desc)
+    # @todo = Todo.new
+    authorize @flat
+  end
+
+  def all_flats
+    authorize @flat
     if params[:query].present?
       @belongings = Belonging.query_belonging(params[:query]).select { |b| b.flat_id == @flat.id }
     else
       @belongings = @flat.belongings
     end
-    @belonging = Belonging.new
-    @belongings_attention = @belongings.reject do |belonging|
-      (belonging.good? || belonging.todos.count.zero?)
-    end
-    @notifications = Notification.includes(:belonging).where(belonging: { flat: @flat }, read: false)
-                                 .order(created_at: :desc)
-
     @todo = Todo.new
-    authorize @flat
+    if @belongings.empty?
+      render json: { message: "No items match your search...", success: false }
+    else
+      render json: { attachmentPartial: render_to_string('flats/_landlord_all_items', layout: false, locals: { belongings: @belongings, todo: @todo }), success: true }, status: :ok
+    end
   end
 
   def create
