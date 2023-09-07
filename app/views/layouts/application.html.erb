@@ -20,7 +20,7 @@
 <%= render "shared/flashes" %>
 <div class="core-page-layout">
   <%= render "devise/shared/navbar" %>
-  <div class="<%= root_path ? "landing-page" : 'container' %>">
+  <div class="<%= @guest_page ? "landing-page" : 'container' %>">
     <%= yield %>
   </div>
   <%= render "devise/shared/footer" %>

@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :check_path
   include Pundit::Authorization
 
   # Pundit: allow-list approach
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name address photo])
+  end
+
+  def check_path
+    @guest_page = [new_user_registration_path, new_user_session_path].include?(request.path)
   end
 
   private
