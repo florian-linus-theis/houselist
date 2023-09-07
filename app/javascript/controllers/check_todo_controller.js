@@ -9,7 +9,7 @@ export default class extends Controller {
 
   check(event) {
     event.preventDefault()
-    event.currentTarget.parentNode.parentNode.remove()
+    event.currentTarget.parentNode.parentNode.parentNode.remove()
     const url = event.currentTarget.href
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content
     fetch(url, {
