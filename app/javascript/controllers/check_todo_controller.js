@@ -9,8 +9,21 @@ export default class extends Controller {
 
   check(event) {
     event.preventDefault()
-    const url = event.currentTarget.href
     event.currentTarget.parentNode.parentNode.remove()
-    console.log(event.currentTarget.href)
+    const url = event.currentTarget.href
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content
+    fetch(url, {
+      method: "PATCH",
+      headers: {
+        "X-CSRF-Token": csrfToken,
+        "Content-Type": "application/json",
+      }
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert(data.message)
+        }
+      })
   }
 }
