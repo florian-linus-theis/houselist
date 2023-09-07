@@ -8,9 +8,11 @@
       <%= link_to flat_path(flat), style:"text-decoration: none;" do %>
         <div class="card my-4 card-flat">
           <div class="row g-0">
-            <div class="col-4 container-img">
-              <%= cl_image_tag flat.photos.first.key, quality: "auto", class: "image-flat" %>
-            </div>
+            <% unless flat&.photos&.first&.key == nil %>
+              <div class="col-4 container-img">
+                <%= cl_image_tag flat&.photos&.first&.key, quality: "auto", class: "image-flat" %>
+              </div>
+            <% end %>
             <div class="col-8">
               <div class="card-body">
                 <h5 class="card-title text-no-link"><%= flat.name %></h5>
