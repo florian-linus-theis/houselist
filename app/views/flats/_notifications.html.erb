@@ -1,0 +1,45 @@
+<% if @notifications.empty?  %>
+  <p>No notifications to display</p>
+<% elsif @notifications.length == 1 %>
+  <div id="notifications" class="one-notification-container mb-4" data-controller="flat-notifications">
+    <div class="fileInput">
+      <div class="row">
+        <div class="col-10">
+          <p>
+            <%= @notifications.first.description.first(50) %>
+            <% if @notifications.first.description.length > 50 %>...<% end %>
+          </p>
+        </div>
+        <div class="col-2">
+          <div data-id="<%= @notifications.first.id %>" data-action="click->flat-notifications#read">
+            <i class="fa-solid fa-x" style="color: #5465FF;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="notifications-container mb-4" data-controller="flat-notifications">
+    <div class="fileList closed" id="notifications" data-flat-notifications-target="message">
+      <% @notifications.first(8).each do |notification| %>
+        <% unless notification.read? %>
+          <div class="fileInput">
+            <div class="row">
+              <div class="col-10"  data-action="click->flat-notifications#toggle">
+                <p style="color: $dark-black;">
+                  <%= notification.description.first(50) %>
+                  <% if notification.description.length > 50 %>...<% end %>
+                </p>
+              </div>
+              <div class="col-2">
+                <div data-id="<%= notification.id %>" data-action="click->flat-notifications#read">
+                  <i class="fa-solid fa-x" style="color: #5465FF;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[update]
 
   get '/profile', to: 'pages#profile', as: :profile
+  get '/all_flats/:id&(:query)', to: 'flats#all_flats', as: :all_flats
 end
