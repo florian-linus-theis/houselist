@@ -77,7 +77,7 @@
     transition-delay: 250ms;
   }
   &:not(:first-of-type){
-    animation: hideItems 1s forwards;
+    animation: hideItems forwards;
     animation-timing-function: ease;
   }
 }
