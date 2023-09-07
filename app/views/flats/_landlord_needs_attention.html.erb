@@ -2,41 +2,43 @@
   <p>Yay no open to dos! 🎉</p>
 <% else %>
   <% @belongings_attention.each do |belonging| %>
-    <div class="d-flex card-belonging justify-content-between mb-3">
-        <% if belonging.damaged? %>
-            <div class="col-4 background-beige">
-              <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
-              <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+    <div>
+      <div class="d-flex card-belonging justify-content-between mb-3">
+          <% if belonging.damaged? %>
+              <div class="col-4 background-beige">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
+              </div>
+          <% elsif belonging.needs_replacement? %>
+              <div class="col-4 background-red">
+                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+              </div>
+          <% end %>
+            <h3 class="my-auto flex-grow-1 text-belonging">
+              <%= belonging.name.first(12) %>
+              <% if belonging.name.length > 12 %>...<% end %>
+            </h3>
+            <div class="checked-belonging">
+              <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch, action: "click->check-todo#check" } do %>
+                <button class="my-auto me-3 btn-square">
+                    <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
+                </button>
+              <% end %>
             </div>
-        <% elsif belonging.needs_replacement? %>
-            <div class="col-4 background-red">
-              <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good" %>
-              <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-            </div>
-        <% end %>
-          <h3 class="my-auto flex-grow-1 text-belonging">
-            <%= belonging.name.first(12) %>
-            <% if belonging.name.length > 12 %>...<% end %>
-          </h3>
-          <div class="checked-belonging">
-            <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
-              <button class="my-auto me-3 btn-square">
-                  <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
-              </button>
-            <% end %>
+            <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.todos.first.id %>" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
+            </button>
+      </div>
+      <div class="collapse mb-3 belonging-preview" id="<%= belonging.todos.first.id %>">
+          <div class="card card-body no-border">
+            <h3><% if belonging.name.length > 12 %> <%= belonging.name%> <% end %> </h3>
+            <h3>Active Todo:</h3>
+            <p><b>Uploaded by:</b> <%= belonging.todos.select(&:active?).first.user.first_name %> <%= belonging.todos.select(&:active?).first.user.last_name.first %>. on <%= belonging.todos.select(&:active?).first.created_at.strftime('%m/%d/%Y') %></p>
+            <p><%= belonging.todos.select(&:active?).first.description %></p>
+            <%= link_to "See more", flat_belonging_path(@flat, belonging), class:"btn-text" %>
           </div>
-          <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.todos.first.id %>" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
-          </button>
-    </div>
-    <div class="collapse mb-3 belonging-preview" id="<%= belonging.todos.first.id %>">
-        <div class="card card-body no-border">
-          <h3><% if belonging.name.length > 12 %> <%= belonging.name%> <% end %> </h3>
-          <h3>Active Todo:</h3>
-          <p><b>Uploaded by:</b> <%= belonging.todos.select(&:active?).first.user.first_name %> <%= belonging.todos.select(&:active?).first.user.last_name.first %>. on <%= belonging.todos.select(&:active?).first.created_at.strftime('%m/%d/%Y') %></p>
-          <p><%= belonging.todos.select(&:active?).first.description %></p>
-          <%= link_to "See more", flat_belonging_path(@flat, belonging), class:"btn-text" %>
-        </div>
+      </div>
     </div>
   <% end %>
 <% end %>

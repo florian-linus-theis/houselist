@@ -19,6 +19,8 @@
     </div>
   </div>
   <div class="page-container mt-3">
+
+
     <!-- User Invite Modal -->
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -30,7 +32,7 @@
           <div class="modal-body">
             <div class="input-group d-flex justify-content-between">
               <div class="form-outline flex-grow-1">
-                <input type="search" name="searchquery" data-user-search-target="searchInput" class="form-control" data-action="keyup->user-search#search_tenant">
+                <input type="search" name="searchquery" placeholder="Name or email..." data-user-search-target="searchInput" class="form-control" data-action="keyup->user-search#search_tenant">
                 <%= hidden_field(:flat, :id) %>
               </div>
               <button type="button" class="btn btn-text" data-action="click->user-search#add_tenant">
@@ -43,16 +45,25 @@
         </div>
       </div>
     </div>
+
+
+
     <%# --- Notifications --- %>
     <h2>News:</h2>
     <%= render "flats/notifications", notifications: @notifications %>
+
+
+
     <%# --- Needs Attention Items --- %>
     <h2>Needs Attention:</h2>
-    <div class="belonging-needs-attention-container">
+    <div class="belonging-needs-attention-container mb-5" data-controller="check-todo" data-check-todo-all-items-outlet=".online-user">
       <%= render "flats/landlord_needs_attention", belongings_attention: @belongings_attention %>
     </div>
+
+
+
     <%# --- All Items --- %>
-    <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %>>
+    <div data-controller="all-items" data-all-items-flat-number-value=<%= @flat.id %> class="online-user">
       <form action="<%= all_flats_path { @flat } %>" data-action="submit->all-items#query">
         <div class="wrapper">
           <div class="searchBar search-flats-show">
@@ -63,16 +74,30 @@
           </div>
         </div>
       </form>
-      <button
-        class="btn-text"
-        data-action="click->all-items#showAll">
-        See all items
-      </button>
-      <h2>All items:</h2>
+
+      <div class="d-flex justify-content-between mb-4">
+        <div>
+          <button class="btn-text" data-action="click->all-items#showAll" id="all-items">
+            See all items
+          </button>
+        </div>
+
+        <!-- New Belonging Button trigger modal -->
+        <button type="button" data-bs-toggle="modal" data-bs-target="#addBelonging" class="btn-add-flat">
+          + New Belonging
+        </button>
+      </div>
+
+
+
       <div class="belonging-container d-none" data-all-items-flat-number-value="<%= @flat.id %>" data-all-items-target="container">
       </div>
     </div>
   </div>
+
+
+
+<%# --- Tenants Page --- %>
 <% elsif current_user.tenant? %>
   <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
     <div class ="spacing-header">
@@ -85,6 +110,7 @@
       <h6><%= @flat.address %></h6>
     </div>
   </div>
+
   <div class="page-container">
     <form action="<%= flat_path { @flat } %>">
       <div class="wrapper">
@@ -102,11 +128,8 @@
     </div>
   </div>
 <% end %>
-<!-- Button trigger modal -->
-<button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#addBelonging">
-  New Belonging
-</button>
-<!-- Modal -->
+
+<!-- Add Belonging Modal -->
 <div class="modal fade" id="addBelonging" tabindex="-1" aria-labelledby="addBelongingLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

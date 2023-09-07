@@ -14,7 +14,6 @@ export default class extends Controller {
   load(query = null) {
     this.containerTarget.innerHTML = ""
     const query_string = ((query===null) ? '' : query)
-    console.log(query_string)
     fetch(`/all_flats/${this.flatNumberValue}&${query_string}`)
       .then(response => response.json())
       .then((data) => {
@@ -32,6 +31,7 @@ export default class extends Controller {
 
   query(event) {
     event.preventDefault()
+    document.getElementById('all-items').remove()
     this.load(event.target.query.value)
     this.showAll()
   }

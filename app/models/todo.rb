@@ -11,7 +11,7 @@ class Todo < ApplicationRecord
   # validations
   validates :description, presence: true
   validates :status, presence: true
-  validates :photos, presence: true
+  # validates :photos, presence: true
   # validates belonging_status:, presence: true
 
   # Modifications

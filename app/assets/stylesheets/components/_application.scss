@@ -1,14 +1,15 @@
-.page-container { 
-    padding: 0px 30px 80px 30px;
+.page-container {
+  padding: 0 30px 80px 30px;
+  background-color: white;
 }
 
-body { 
-    padding: 50px 0px 0px 0px;
-    height: 100vh;
-    margin-bottom: 0;
+body {
+  padding: 50px 0px 0px 0px;
+  height: 100vh;
+  margin-bottom: 0;
 }
 
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
