@@ -2,8 +2,8 @@
   <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
     <div class="spacing-header">
       <%= link_to flats_path do %>
-        <button class="btn-rounded-circle-back back-arrow" type="button">
-          <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+        <button class="btn-rounded-circle-back-show" type="button">
+          <i class="fa-solid fa-arrow-left back-arrow1" style="color: #5465ff;"></i>
         </button>
       <% end %>
       <h1><%= @flat.name %></h1>
