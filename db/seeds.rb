@@ -886,8 +886,8 @@ puts 'creating notifications'
 
 # Notifications for open todos for flat 1
 notification_08 = Notification.new
-notification_08.belonging = belonging_16
-notification_08.todo = todo_08
+notification_08.belonging = belonging_12
+notification_08.todo = todo_07
 notification_08.user = tenant_07
 notification_08.description = "#{notification_08.user.first_name} #{notification_08.user.last_name} reported: #{notification_08.todo.description}"
 notification_08.save!
