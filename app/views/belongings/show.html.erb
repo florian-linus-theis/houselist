@@ -5,22 +5,21 @@
         <% @belonging.photos.each_with_index do |photo, index| %>
           <% if index == 0 %>
             <div class="carousel-item active ">
-              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block mx-auto" %>
+              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block " %>
             </div>
           <% else %>
             <div class="carousel-item">
-              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block mx-auto" %>
+              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block" %>
             </div>
           <% end%>
         <% end %>
-      </div>
-      <div class="back-edit-icons"> 
-        <%= link_to flat_path(@belonging.flat) do %>
-          <i class="fa-solid fa-arrow-left back-button" style="color: #FDFDFD;"></i>
-        <% end %>
-        <%= link_to edit_flat_belonging_path do %>
-          <i class="fa-solid fa-pen-to-square" style="color: #FDFDFD;"></i>
-        <% end %>
+          <div class="d-flex">
+            <%= link_to flat_path(@belonging.flat) do %>
+              <button class="btn-rounded-circle-back back-arrow" type="button">
+                <i class="fa-solid fa-arrow-left arrow" style="color: #5465ff;"></i>
+              </button>
+            <% end %>
+          </div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -32,10 +31,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="headline-description-belonging">
-    <h3 class="headline-belonging"><%= @belonging.name.capitalize %></h3>
-    <%= @belonging.category.name.capitalize %>
-  </div>
+      <div class="headline-description-belonging">
+          <h3 class="headline-belonging"><%= @belonging.name.capitalize %></h3>
+          <%= @belonging.category.name.capitalize %>
+      </div>
   <div class="status-icon-overlap">
     <% if @belonging.good? %>
       <div class="col-3 background-blue-belonging">
