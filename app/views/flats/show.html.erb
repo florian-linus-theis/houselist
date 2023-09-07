@@ -2,12 +2,14 @@
     <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
       <div class ="spacing-header">
         <%= link_to flats_path do %>
-          <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
+          <button class="btn-rounded-circle-back back-arrow" type="button">
+            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          </button>
         <% end %>
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
       </div>
-      <div class="justify-content-center mt-5">
+      <div class="justify-content-center edit-share">
           <button class="btn-square-white" type="button">
             <i class="fa-solid fa-pen"></i>
           </button>
@@ -48,9 +50,8 @@
 
     <form action="<%= flat_path{@flat} %>">
       <div class="wrapper">
-        <div class="label">Search for Items:</div>
-        <div class="searchBar">
-            <input id="searchQueryInput" type="text" name="query" placeholder="Search" value="" />
+        <div class="searchBar search-flats-show">
+            <input id="searchQueryInput" type="text" name="query" placeholder="Search for items" value="" />
             <button id="searchQuerySubmit" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
             </button>
@@ -128,11 +129,13 @@
                 <%= belonging.name.first(12) %>
                 <% if belonging.name.length > 12 %>...<% end %>
               </h3>
-              <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
-                <button class="my-auto me-3 btn-square">
-                    <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
-                </button>
-              <% end %>
+              <div class="checked-belonging">
+                <%= link_to "/flats/#{@flat.id}/belongings/#{belonging.id}/todos/#{belonging.todos.first.id}", data: { 'turbo-method': :patch } do %>
+                  <button class="my-auto me-3 btn-square">
+                      <i class="fa-solid fa-check" style="color: #fdfdfd;"></i>
+                  </button>
+                <% end %>
+              </div>
               <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.todos.first.id %>" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
               </button>
@@ -185,8 +188,8 @@
                     </div>
                       <div>
                           <%= f.input :description %>
-                          <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
-                          <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                          <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+                          <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
                       </div>
                     </div>
                   <div class="modal-footer justify-content-center">
@@ -196,6 +199,8 @@
                 </div>
               </div>
             </div>
+
+
         <% elsif belonging.damaged? %>
               <div class="col-4 background-beige">
                 <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
@@ -273,7 +278,9 @@
     <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
       <div class ="spacing-header">
         <%= link_to flats_path do %>
-          <i class="fa-solid fa-arrow-left mb-5 " style="color: #FDFDFD;"></i>
+          <button class="btn-rounded-circle-back back-arrow" type="button">
+            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          </button>
         <% end %>
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
@@ -283,7 +290,7 @@
     <div class="page-container">
       <form action="<%= flat_path{@flat} %>">
         <div class="wrapper">
-          <div class="searchBar search-tenant">
+          <div class="searchBar search-flats-show">
             <input id="searchQueryInput" type="text" name="query" placeholder="Search for item" value="" />
             <button id="searchQuerySubmit" type="submit">
               <i class="fa-solid fa-magnifying-glass" style="color: #5465ff;"></i>
@@ -325,12 +332,12 @@
                           </div>
                           <div>
                             <%= f.input :description %>
-                            <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
-                            <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                            <%= f.input :photos, as: :file, input_html: { multiple: true, class: "mb-2 custom-input" } %>
+                            <%= f.input :files, as: :file, input_html: { multiple: true,  class: "mb-2 custom-input" } %>
                           </div>
                       </div>
                       <div class="modal-footer justify-content-center">
-                        <%= f.button :submit, "Save", class:"btn-text" %>
+                          <%= f.button :submit, "Save", class:"btn-text" %>
                         <% end %>
                       </div>
                     </div>
@@ -354,3 +361,47 @@
     </div>
 <% end %>
 </div>
+
+<!-- Button trigger modal -->
+    <button type="button" class="btn-sticky-pill" data-bs-toggle="modal" data-bs-target="#addBelonging">
+      New Belonging
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="addBelonging" tabindex="-1" aria-labelledby="addBelongingLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addBelongingLabel">New Belonging <i class="fa-solid fa-tv" style="color: #5465ff;"></i></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for [@flat, @belonging], data: {controller: "dropdown"} do |f| %>
+              <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
+              <hr>
+              <%= f.label :category, :class => "mb-2"  %>
+                <div class="custom--form--dropdown--container mb-2">
+                  <input name="selected_room" type="hidden" data-dropdown-target="inputFieldHidden" placeholder="Choose category">
+                  <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
+                    <span id="room"></span>
+                    <span data-dropdown-target="dropdown" data-action="click->dropdown#open"><i class="fa-solid fa-chevron-left caret pointer"></i></span>
+                  </div>
+                  <div class="drop--down d-none" data-dropdown-target="dropdownList">
+                    <%# Generated from dropdown_controller.js %>
+                    <div class="ph--12 pointer" data-action="click->dropdown#selectRoom">
+                      <span>${room.name} <i class="fa-solid ${room.icon}"></i></span>
+                    </div>
+                  </div>
+                </div>
+              <%= f.input :description, placeholder: 'Describe your belonging', input_html: { class: "mb-2 custom-input" }%>
+              <hr>
+              <%= f.input :photos, as: :file, placeholder: 'No photos', input_html: { class: "mb-2 custom-input", multiple: true} %>
+              <hr>
+              <%= f.input :files, placeholder: 'No photos', as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+          </div>
+          <div class="modal-footer">
+              <%= f.submit "Save", class: "btn-text" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
