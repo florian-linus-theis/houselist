@@ -471,7 +471,7 @@ belonging_07.save!
 
 belonging_08= Belonging.new(
   name: 'Dyson hair dryer',
-  status: 'needs_replacement',
+  status: 'good',
   description: 'Fell down and is not working anymore. See invoice in attachments for warranty.'
 )
 belonging_08.flat = flat_01
@@ -509,7 +509,7 @@ belonging_12.save!
 
 belonging_16 = Belonging.new(
   name: 'Vase with flowers',
-  status: 'needs_replacement',
+  status: 'good',
   description: 'Hydrangeas from garden need replacement after 1 week.'
 )
 belonging_16.flat = flat_01
@@ -604,7 +604,7 @@ belonging_27.save!
 
 belonging_28 = Belonging.new(
   name: 'Chimney',
-  status: 'needs_replacement',
+  status: 'good',
   description: 'Wood needs to be refill.'
 )
 belonging_28.flat = flat_03
@@ -810,20 +810,6 @@ todo_05.photos.attach(
 todo_05.user = tenant_04
 todo_05.save!
 
-todo_06 = Todo.new(
-  description: 'Hair dryer fell down and is not working anymore.',
-  status: 'active',
-  belonging_status: 'needs_replacement'
-)
-todo_06.belonging = belonging_08
-todo_06.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_06.jpg')),
-  filename: 'todo_06',
-  content_type: 'image/jpg'
-)
-todo_06.user = tenant_07
-todo_06.save!
-
 todo_07 = Todo.new(
   description: 'Hand soap needs to be refilled.',
   status: 'active',
@@ -837,20 +823,6 @@ todo_07.photos.attach(
 )
 todo_07.user = tenant_07
 todo_07.save!
-
-todo_08 = Todo.new(
-  description: 'Flowers are dead.',
-  status: 'active',
-  belonging_status: 'needs_replacement'
-)
-todo_08.belonging = belonging_16
-todo_08.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_07.jpg')),
-  filename: 'todo_08',
-  content_type: 'image/jpg'
-)
-todo_08.user = tenant_07
-todo_08.save!
 
 todo_09 = Todo.new(
   description: 'Very dirty and needs to be replaced.',
@@ -869,9 +841,9 @@ todo_09.save!
 
 # Active Todos for Flat 3 (reported by Isa, tenant 03)
 todo_10 = Todo.new(
-  description: 'Batteries need to be replaced.',
+  description: 'Batteries low.',
   status: 'active',
-  belonging_status: 'needs_replacement'
+  belonging_status: 'damaged'
 )
 todo_10.belonging = belonging_21
 todo_10.photos.attach(
@@ -896,20 +868,6 @@ todo_12.photos.attach(
 todo_12.user = tenant_03
 todo_12.save!
 
-todo_13 = Todo.new(
-  description: 'Refill wood.',
-  status: 'active',
-  belonging_status: 'needs_replacement'
-)
-todo_13.belonging = belonging_28
-todo_13.photos.attach(
-  io: File.open(Rails.root.join('app/assets/images/report_damage_11.jpg')),
-  filename: 'todo_13',
-  content_type: 'image/jpg'
-)
-todo_13.user = tenant_03
-todo_13.save!
-
 todo_14 = Todo.new(
   description: '5 pieces need to be replaced, because of holes.',
   status: 'active',
@@ -927,28 +885,6 @@ todo_14.save!
 puts 'creating notifications'
 
 # Notifications for open todos for flat 1
-
-notification_05 = Notification.new
-notification_05.belonging = belonging_07
-notification_05.todo = todo_05
-notification_05.user = tenant_07
-notification_05.description = "#{notification_05.user.first_name} #{notification_05.user.last_name} reported: #{notification_05.todo.description}"
-notification_05.save!
-
-notification_06 = Notification.new
-notification_06.belonging = belonging_08
-notification_06.todo = todo_06
-notification_06.user = tenant_07
-notification_06.description = "#{notification_06.user.first_name} #{notification_06.user.last_name} reported: #{notification_06.todo.description}"
-notification_06.save!
-
-notification_07 = Notification.new
-notification_07.belonging = belonging_12
-notification_07.todo = todo_07
-notification_07.user = tenant_07
-notification_07.description = "#{notification_07.user.first_name} #{notification_07.user.last_name} reported: #{notification_07.todo.description}"
-notification_07.save!
-
 notification_08 = Notification.new
 notification_08.belonging = belonging_16
 notification_08.todo = todo_08
@@ -964,32 +900,18 @@ notification_09.description = "#{notification_09.user.first_name} #{notification
 notification_09.save!
 
 # Notifications for open to dos flat 3 (reported by Isa, tenant 03)
-notification_10 = Notification.new
-notification_10.belonging = belonging_21
-notification_10.todo = todo_10
-notification_10.user = tenant_03
-notification_10.description = "#{notification_10.user.first_name} #{notification_10.user.last_name} reported: #{notification_10.todo.description}"
-notification_10.save!
-
-notification_11 = Notification.new
-notification_11.belonging = belonging_27
-notification_11.todo = todo_12
-notification_11.user = tenant_03
-notification_11.description = "#{notification_11.user.first_name} #{notification_11.user.last_name} reported: #{notification_11.todo.description}"
-notification_11.save!
-
-notification_12 = Notification.new
-notification_12.belonging = belonging_28
-notification_12.todo = todo_13
-notification_12.user = tenant_03
-notification_12.description = "#{notification_12.user.first_name} #{notification_12.user.last_name} reported: #{notification_12.todo.description}"
-notification_12.save!
-
 notification_13 = Notification.new
 notification_13.belonging = belonging_29
 notification_13.todo = todo_14
 notification_13.user = tenant_03
 notification_13.description = "#{notification_13.user.first_name} #{notification_13.user.last_name} reported: #{notification_13.todo.description}"
 notification_13.save!
+
+notification_12 = Notification.new
+notification_12.belonging = belonging_27
+notification_12.todo = todo_12
+notification_12.user = tenant_03
+notification_12.description = "#{notification_12.user.first_name} #{notification_12.user.last_name} reported: #{notification_12.todo.description}"
+notification_12.save!
 
 puts 'finished'
