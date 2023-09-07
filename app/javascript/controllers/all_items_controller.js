@@ -14,7 +14,6 @@ export default class extends Controller {
   load(query = null) {
     this.containerTarget.innerHTML = ""
     const query_string = ((query===null) ? '' : query)
-    console.log(query_string)
     fetch(`/all_flats/${this.flatNumberValue}&${query_string}`)
       .then(response => response.json())
       .then((data) => {

@@ -48,7 +48,7 @@
     <%= render "flats/notifications", notifications: @notifications %>
     <%# --- Needs Attention Items --- %>
     <h2>Needs Attention:</h2>
-    <div class="belonging-needs-attention-container">
+    <div class="belonging-needs-attention-container" data-controller="check-todo">
       <%= render "flats/landlord_needs_attention", belongings_attention: @belongings_attention %>
     </div>
     <%# --- All Items --- %>
