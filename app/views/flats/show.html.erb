@@ -1,21 +1,23 @@
 <% if current_user.landlord? %>
-  <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
-    <div class="spacing-header">
-      <%= link_to flats_path do %>
-        <button class="btn-rounded-circle-back-show" type="button">
-          <i class="fa-solid fa-arrow-left back-arrow1" style="color: #5465ff;"></i>
-        </button>
+  <div class="d-flex flex-column" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
+    <div class="navigation-container">
+      <%= link_to flats_path, class: "btn-rounded-circle-back-show button-custom" do %>
+        <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
       <% end %>
-      <h1><%= @flat.name %></h1>
-      <h6><%= @flat.address %></h6>
     </div>
-    <div class="justify-content-center edit-share">
-      <button class="btn-square-white" type="button">
-        <i class="fa-solid fa-pen"></i>
-      </button>
-      <button class="btn-square-white" type="button" data-bs-toggle="modal" data-bs-target="#userModal">
-        <i class="fa-solid fa-share-nodes"></i>
-      </button>
+    <div class="d-flex flex-row justify-content-around">
+      <div class="spacing-header">
+        <h1><%= @flat.name %></h1>
+        <h6><%= @flat.address %></h6>
+      </div>
+      <div class="justify-content-center">
+        <button class="btn-square btn-white button-custom" type="button">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn-square btn-white button-custom" type="button" data-bs-toggle="modal" data-bs-target="#userModal">
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+      </div>
     </div>
   </div>
   <div class="page-container mt-3">
@@ -89,7 +91,6 @@
       </div>
 
 
-
       <div class="belonging-container d-none" data-all-items-flat-number-value="<%= @flat.id %>" data-all-items-target="container">
       </div>
     </div>
@@ -100,7 +101,7 @@
 <%# --- Tenants Page --- %>
 <% elsif current_user.tenant? %>
   <div class="d-flex" style="background-image: linear-gradient(rgba(84,101,255,0.7), rgba(84,101,255,0.7)), url('<%= cl_image_path @flat.photos.first.key, height: 300, crop: :fill %>')">
-    <div class ="spacing-header">
+    <div class="spacing-header">
       <%= link_to flats_path do %>
         <button class="btn-rounded-circle-back back-arrow" type="button">
           <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
@@ -134,14 +135,15 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addBelongingLabel">New Belonging <i class="fa-solid fa-tv" style="color: #5465ff;"></i></h1>
+        <h1 class="modal-title fs-5" id="addBelongingLabel">New Belonging
+          <i class="fa-solid fa-tv" style="color: #5465ff;"></i></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@flat, @belonging], data: {controller: "dropdown"} do |f| %>
+        <%= simple_form_for [@flat, @belonging], data: { controller: "dropdown" } do |f| %>
           <%= f.input :name, placeholder: 'Belonging name', input_html: { class: "mb-2 custom-input" } %>
           <hr>
-          <%= f.label :category, :class => "mb-2"  %>
+          <%= f.label :category, :class => "mb-2" %>
           <div class="custom--form--dropdown--container mb-2">
             <input name="selected_room" type="hidden" data-dropdown-target="inputFieldHidden" placeholder="Choose category">
             <div class="custom--form--field ph--12" data-dropdown-target="selectedRoom">
@@ -155,16 +157,16 @@
               </div>
             </div>
           </div>
-          <%= f.input :description, placeholder: 'Describe your belonging', input_html: { class: "mb-2 custom-input" }%>
+          <%= f.input :description, placeholder: 'Describe your belonging', input_html: { class: "mb-2 custom-input" } %>
           <hr>
-          <%= f.input :photos, as: :file, placeholder: 'No photos', input_html: { class: "mb-2 custom-input", multiple: true} %>
+          <%= f.input :photos, as: :file, placeholder: 'No photos', input_html: { class: "mb-2 custom-input", multiple: true } %>
           <hr>
           <%= f.input :files, placeholder: 'No photos', as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Save", class: "btn-text" %>
+          </div>
+        <% end %>
         </div>
-        <div class="modal-footer">
-          <%= f.submit "Save", class: "btn-text" %>
-        </div>
-      <% end %>
-    </div>
   </div>
 </div>

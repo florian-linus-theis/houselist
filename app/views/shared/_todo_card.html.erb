@@ -5,8 +5,9 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
-      <p class="my-auto flex-grow-1 text-todo"><%= @active_todo.user.first_name %> <%= @active_todo.user.last_name.first %>. reported: <%= @active_todo.description %></p>
-      <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= @active_todo.id %>" aria-expanded="false" aria-controls="collapseExample">
+      <p class="my-auto flex-grow-1 text-todo"><%= @active_todo.user.first_name %> <%= @active_todo.user.last_name.first %>
+        . reported: <%= @active_todo.description %></p>
+      <button class="my-auto me-3 btn-square btn-blue button-custom" type="button" data-bs-toggle="collapse" data-bs-target="#<%= @active_todo.id %>" aria-expanded="false" aria-controls="collapseExample">
         <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
       </button>
     </div>
@@ -17,7 +18,7 @@
       <% unless @active_todo.files.first.nil? %>
         <p>
           Attached files:
-          <% @active_todo.files.each do |file|%>
+          <% @active_todo.files.each do |file| %>
           <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
             <i class="fa-solid fa-file" style="color: #888888;"></i>
             <%= file.blob.filename %>
@@ -28,7 +29,7 @@
       <% unless @active_todo.photos.first.nil? %>
         <p>
           Attached photos:
-          <% @active_todo.photos.each do |photo|%>
+          <% @active_todo.photos.each do |photo| %>
           <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{photo.key}")['secure_url'][..-4] + 'jpg' %>">
             <i class="fa-solid fa-image" style="color: #888888;"></i>
             <%= photo.blob.filename %>

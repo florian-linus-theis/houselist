@@ -5,21 +5,19 @@
         <% @belonging.photos.each_with_index do |photo, index| %>
           <% if index == 0 %>
             <div class="carousel-item active ">
-              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block " %>
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block " %>
             </div>
           <% else %>
             <div class="carousel-item">
-              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block" %>
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block" %>
             </div>
-          <% end%>
+          <% end %>
         <% end %>
-          <div class="d-flex">
-            <%= link_to flat_path(@belonging.flat) do %>
-              <button class="btn-rounded-circle-back back-arrow" type="button">
-                <i class="fa-solid fa-arrow-left arrow" style="color: #5465ff;"></i>
-              </button>
-            <% end %>
-          </div>
+        <div class="navigation-container navigation-container-relative">
+          <%= link_to flat_path(@belonging.flat), class: "btn-rounded-circle-back-show button-custom" do %>
+            <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          <% end %>
+        </div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -31,10 +29,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-      <div class="headline-description-belonging">
-          <h3 class="headline-belonging"><%= @belonging.name.capitalize %></h3>
-          <%= @belonging.category.name.capitalize %>
-      </div>
+  <div class="headline-description-belonging">
+    <h3 class="headline-belonging"><%= @belonging.name.capitalize %></h3>
+    <%= @belonging.category.name.capitalize %>
+  </div>
   <div class="status-icon-overlap">
     <% if @belonging.good? %>
       <div class="col-3 background-blue-belonging">
@@ -60,12 +58,12 @@
   <h3 class="belonging-headline">Attachments</h3>
   <% if @belonging.files.count.zero? %>
     <p>No attachments uploaded ❌</p>
-    <% else %>
-      <% @belonging.files.each do |file|%>
-        <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
-          <i class="fa-solid fa-file" style="color: #888888;"></i>
-          <%= file.blob.filename %>
-        </div>
+  <% else %>
+    <% @belonging.files.each do |file| %>
+      <div class="attachment-belonging mb-2" data-bs-toggle="modal" data-bs-target="#pdfmodal" data-bs-whatever="<%= Cloudinary::Api.resource("#{Rails.env}/#{file.key}")['secure_url'][..-4] + 'jpg' %>">
+        <i class="fa-solid fa-file" style="color: #888888;"></i>
+        <%= file.blob.filename %>
+      </div>
     <% end %>
   <% end %>
 
@@ -86,22 +84,22 @@
   </div>
 
   <script>
-    const pdfModal = document.getElementById('pdfmodal')
-    pdfModal.addEventListener('show.bs.modal', function (event) {
-      // Button that triggered the modal
-      const button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      const url = button.getAttribute('data-bs-whatever')
-      // If necessary, you could initiate an AJAX request here
-      // and then do the updating in a callback.
-      //
-      // Update the modal's content.
-      const object = document.getElementById("pdf-iframe")
-      const link = object.querySelector('a')
+      const pdfModal = document.getElementById('pdfmodal')
+      pdfModal.addEventListener('show.bs.modal', function (event) {
+          // Button that triggered the modal
+          const button = event.relatedTarget
+          // Extract info from data-bs-* attributes
+          const url = button.getAttribute('data-bs-whatever')
+          // If necessary, you could initiate an AJAX request here
+          // and then do the updating in a callback.
+          //
+          // Update the modal's content.
+          const object = document.getElementById("pdf-iframe")
+          const link = object.querySelector('a')
 
-      object.setAttribute("data", url)
-      link.href = url
-    })
+          object.setAttribute("data", url)
+          link.href = url
+      })
   </script>
 
 
@@ -127,7 +125,8 @@
             <%= todo.user.first_name %>
             <%= todo.user.last_name.first %>. reported:
             <%= todo.description.capitalize.first(35) %>
-            <% if todo.description.length > 35 %>...<% end %>
+            <% if todo.description.length > 35 %>...
+            <% end %>
           </h5>
           <p class="reported-text-history">Reported on: <%= todo.created_at.strftime('%m/%d/%Y') %></p>
           <p class="reported-text-history">Back to fine: <%= todo.updated_at.strftime('%m/%d/%Y') %></p>
@@ -138,11 +137,11 @@
 
   <div class="mt-5">
     <%= link_to "» Delete belonging",
-      flat_belonging_path(@belonging.flat, @belonging),
-      data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %>
+                flat_belonging_path(@belonging.flat, @belonging),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
   </div>
 
 </div>

@@ -1,74 +1,80 @@
 <% @belongings.each do |belonging| %>
-        <div class="d-flex card-belonging justify-content-between mb-3">
-          <% if belonging.good? %>
-              <div class="col-4 background-blue">
-                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
-                <button class="modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
-                </button>
-              </div>
+  <div class="d-flex card-belonging justify-content-between mb-3">
+    <% if belonging.good? %>
+      <div class="col-4 background-blue">
+        <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
+        <button class="modal-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="fa-solid fa-check icon-good " style="color: #fdfdfd;"></i>
+        </button>
+      </div>
 
-            <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="text-center flex-grow-1" id="exampleModalLabel">Report Issue 🛠</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <%= simple_form_for [@flat, belonging, @todo] do |f|%>
-                      <div class="modal-body">
-                        <div>
-                          <div class="d-flex justify-content-center mb-3">
-                            <label>
-                              <input type="radio" name="todo[belonging_status]" value="damaged" checked>
-                              <div class="col-4 background-beige-icon">
-                                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
-                                <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
-                              </div>
-                            </label>
-                            <label>
-                              <input type="radio" name="todo[belonging_status]" value="needs_replacement">
-                              <div class="col-4 background-red-icon">
-                                <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
-                                <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-                              </div>
-                            </label>
-                          </div>
-                        </div>
-                        <div>
-                            <%= f.input :description %>
-                            <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
-                            <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
-                        </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="text-center flex-grow-1" id="exampleModalLabel">Report Issue 🛠</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= simple_form_for [@flat, belonging, @todo] do |f| %>
+              <div class="modal-body">
+                <div>
+                  <div class="d-flex justify-content-center mb-3">
+                    <label>
+                      <input type="radio" name="todo[belonging_status]" value="damaged" checked>
+                      <div class="col-4 background-beige-icon">
+                        <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
+                        <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
                       </div>
-                      <div class="modal-footer justify-content-center">
-                          <%= f.button :submit, "Save Report", class:"btn-text" %>
+                    </label>
+                    <label>
+                      <input type="radio" name="todo[belonging_status]" value="needs_replacement">
+                      <div class="col-4 background-red-icon">
+                        <%= cl_image_tag belonging.photos.first.key, class: "flex-shrink-1 image-flat-good-icon" %>
+                        <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
                       </div>
-                    <% end %>
+                    </label>
                   </div>
                 </div>
+                <div>
+                  <%= f.input :description %>
+                  <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+                  <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input", multiple: true } %>
+                </div>
               </div>
-          <% elsif belonging.damaged? %>
+              <div class="modal-footer justify-content-center">
+                <%= f.button :submit, "Save Report",
+
+                             class
+                               :"btn-text" %>
+                  </div>
+                <% end %>
+                </div>
+                </div>
+                </div>
+                <% elsif belonging.damaged? %>
                 <div class="col-4 background-beige">
                   <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
                   <i class="fa-solid fa-hammer icon-repair" style="color: #fdfdfd;"></i>
                 </div>
-          <% else %>
-                <div class="col-4 background-red">
-                  <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
-                  <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
-                </div>
-          <% end %>
-              <h3 class="my-auto flex-grow-1 text-belonging"> <%= belonging.name %></h3>
-              <button class="my-auto me-3 btn-square" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.id %>" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
-              </button>
-        </div>
-        <div class="collapse mb-3 belonging-preview" id="<%= belonging.id %>">
-            <div class="card card-body no-border">
-              <p><%= belonging.description %></p>
-              <%= link_to "See more", flat_belonging_path(@flat, belonging), class:"btn-text" %>
+            <% else %>
+              <div class="col-4 background-red">
+                <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
+                <i class="fa-solid fa-exclamation icon-replacement" style="color: #fdfdfd;"></i>
+              </div>
+            <% end %>
+            <h3 class="my-auto flex-grow-1 text-belonging"> <%= belonging.name %></h3>
+            <button class="my-auto me-3 btn-square btn-blue button-custom" type="button" data-bs-toggle="collapse" data-bs-target="#<%= belonging.id %>" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa-solid fa-caret-down" style="color: #fdfdfd;"></i>
+            </button>
             </div>
-        </div>
-      <% end %>
+            <div class="collapse mb-3 belonging-preview" id="<%= belonging.id %>">
+              <div class="card card-body no-border">
+                <p><%= belonging.description %></p>
+                <%= link_to "See more", flat_belonging_path(@flat, belonging),
+
+                            class
+                              :"btn-text" %>
+                  </div>
+                  </div>
+                <% end %>
