@@ -328,6 +328,30 @@ input.form-control {
   color: $blue;
 }
 
+.btn-sticky-pill{
+  color: $off-white;
+  background-color: #FA7500;
+  border-radius: 150px;
+  border:none;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 22px;
+  text-decoration: none;
+  position: fixed;
+  top: 765px;
+  right: 100px;
+  width: 200px;
+  height: 50px;
+  box-shadow: 2px 2px 4px #979797;
+  text-align:center;
+  display:block;
+  font-weight: 900;
+}
+
+.modal-footer{
+  align-items: center !important;
+}
+
 .checked-belonging {
   margin-top: 33px;
 }
