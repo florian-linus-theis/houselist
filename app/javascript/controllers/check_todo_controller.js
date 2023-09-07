@@ -3,6 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="check-todo"
 export default class extends Controller {
   static targets = ['container']
+  static outlets = [ "all-items" ]
+
   connect() {
     console.log('hello')
   }
@@ -22,6 +24,7 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         if (data.success) {
+          this.allItemsOutlets.forEach(status => status.load())
           alert(data.message)
         }
       })
