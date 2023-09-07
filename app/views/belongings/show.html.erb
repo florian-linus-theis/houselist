@@ -5,16 +5,16 @@
         <% @belonging.photos.each_with_index do |photo, index| %>
           <% if index == 0 %>
             <div class="carousel-item active ">
-              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block " %>
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block " %>
             </div>
           <% else %>
             <div class="carousel-item">
-              <%= cl_image_tag photo.key, height: 200, width: 425, crop: :fill, class: "image-big d-block" %>
+              <%= cl_image_tag photo.key, height: 200, width: 400, crop: :fill, class: "image-big d-block" %>
             </div>
           <% end %>
         <% end %>
-        <div class="d-flex">
-          <%= button_to flat_path(@belonging.flat), class: "btn-rounded-circle-back-show button-custom" do %>
+        <div class="navigation-container navigation-container-relative">
+          <%= link_to flat_path(@belonging.flat), class: "btn-rounded-circle-back-show button-custom" do %>
             <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
           <% end %>
         </div>

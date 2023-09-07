@@ -1,35 +1,33 @@
 <div class="background-curve w-150">
   <% if current_user %>
     <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: " profile-pic rounded-circle mr-3", :gravity=>"face", :height=>150, :width=>150, :crop=>"thumb" %>
-      <% else %>
-        <%= image_tag "houselist_default_profile_pic.jpg", alt: "default image", width: 40, height: 40, class: " profile-pic rounded-circle mr-3" %>
-      <% end %>
+      <%= cl_image_tag current_user.photo.key, class: " profile-pic rounded-circle mr-3", :gravity => "face", :height => 150, :width => 150, :crop => "thumb" %>
+    <% else %>
+      <%= image_tag "houselist_default_profile_pic.jpg", alt: "default image", width: 40, height: 40, class: " profile-pic rounded-circle mr-3" %>
+    <% end %>
   <% end %>
   <div>
   </div>
-    <div class="position-button">
-      <%= link_to edit_user_registration_path(@user) do %>
-        <button class="btn-edit">
-          <i class="fa-solid fa-pen " style=" padding-left: 7px;"></i>
-        </button>
-      <% end %>
-      </div>
-        </div>
-          <div class="page-container page-margin-top">
-            <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
-              <h2><i class="fa-regular fa-envelope align-items-center me-3 icon-profile"></i> <%=current_user.email%></p>
-            </div>
-            <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
-              <h2><i class="fa-regular fa-address-card me-3 icon-profile"></i> <%=current_user.first_name%></p>
-            </div>
-            <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
-              <h2><i class="fa-regular fa-address-card me-3 icon-profile"></i> <%=current_user.last_name%></p>
-            </div>
-            <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
-              <h2><i class="fa-regular fa-user me-3 icon-profile"></i> <%=current_user.role%></p>
-            </div>
-            <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
-              <%= link_to 'logout', destroy_user_session_path, data: {turbo_method: :delete} %>
-            </div>
-        </div>
+  <div class="position-button">
+    <%= link_to edit_user_registration_path(@user), class: "btn-edit button-custom" do %>
+      <i class="fa-solid fa-pen " style=" padding-left: 7px;"></i>
+    <% end %>
+  </div>
+</div>
+<div class="page-container page-margin-top">
+  <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
+    <h2><i class="fa-regular fa-envelope align-items-center me-3 icon-profile"></i> <%= current_user.email %></h2>
+  </div>
+  <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
+    <h2><i class="fa-regular fa-address-card me-3 icon-profile"></i> <%= current_user.first_name %></h2>
+  </div>
+  <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
+    <h2><i class="fa-regular fa-address-card me-3 icon-profile"></i> <%= current_user.last_name %></h2>
+  </div>
+  <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
+    <h2><i class="fa-regular fa-user me-3 icon-profile"></i> <%= current_user.role %></h2>
+  </div>
+  <div class="my-3 d-flex align-items-center profile-content m-3 ms-5">
+    <%= link_to 'logout', destroy_user_session_path, data: { turbo_method: :delete } %>
+  </div>
+</div>
