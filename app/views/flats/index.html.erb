@@ -4,11 +4,13 @@
       <i class="fa-solid fa-hand-peace" style="color: #778bfc;"></i></h1>
   </div>
   <!-- Button trigger modal -->
-   <div class="btn-font-flat">
-    <button class="btn-add-flat" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      + Add flat
-    </button>
-  </div>
+  <% if current_user.landlord? %>
+    <div class="btn-font-flat">
+      <button class="btn-add-flat" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        + Add flat
+      </button>
+    </div>
+  <% end %>
 
   <div class="flat-cards-container">
     <% @flats.each do |flat| %>

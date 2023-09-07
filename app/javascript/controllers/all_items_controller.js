@@ -31,6 +31,7 @@ export default class extends Controller {
 
   query(event) {
     event.preventDefault()
+    document.getElementById('all-items').remove()
     this.load(event.target.query.value)
     this.showAll()
   }
