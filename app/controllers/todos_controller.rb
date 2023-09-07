@@ -9,7 +9,6 @@ class TodosController < ApplicationController
     @todo.user = current_user
     @todo.belonging = belonging
     authorize @todo
-    raise
     if @todo.save && belonging.update(status: @todo.belonging_status)
       create_notification(belonging, @todo) if current_user.tenant?
       redirect_to flat_path(belonging.flat), notice: 'Created report!'

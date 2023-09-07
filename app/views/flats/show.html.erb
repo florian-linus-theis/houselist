@@ -199,6 +199,8 @@
                 </div>
               </div>
             </div>
+
+
         <% elsif belonging.damaged? %>
               <div class="col-4 background-beige">
                 <%= cl_image_tag belonging.photos.first.key, quality: 10, class: "flex-shrink-1 image-flat-good" %>
@@ -330,12 +332,12 @@
                           </div>
                           <div>
                             <%= f.input :description %>
-                            <%= f.input :photos, as: :file, input_html: { class: "mb-2 custom-input" } %>
-                            <%= f.input :files, as: :file, input_html: { class: "mb-2 custom-input" } %>
+                            <%= f.input :photos, as: :file, input_html: { multiple: true, class: "mb-2 custom-input" } %>
+                            <%= f.input :files, as: :file, input_html: { multiple: true,  class: "mb-2 custom-input" } %>
                           </div>
                       </div>
                       <div class="modal-footer justify-content-center">
-                        <%= f.button :submit, "Save", class:"btn-text" %>
+                          <%= f.button :submit, "Save", class:"btn-text" %>
                         <% end %>
                       </div>
                     </div>
