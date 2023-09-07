@@ -7,7 +7,8 @@ export default class extends Controller {
     connect() {
         if (this.navbarTarget && this.bodyTarget) {
             const height = this.navbarTarget.offsetHeight;
-            this.bodyTarget.style.marginTop = `${height + 10}px`;
+            this.bodyTarget.style.height = `calc(100vh - ${height}px)`;
+
         }
     }
 }

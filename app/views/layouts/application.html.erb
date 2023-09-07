@@ -21,10 +21,10 @@
 <%= render "shared/flashes" %>
 <div class="core-page-layout" data-controller="layout">
   <%= render "devise/shared/navbar" if user_signed_in? %>
-  <div class="<%= @guest_page ? "landing-page" : nil %>" data-layout-target="body">
+  <div class="<%= @guest_page ? "landing-page" : "user-content-page" %>" data-layout-target="body">
     <%= yield %>
+    <%= render "devise/shared/footer" if user_signed_in? %>
   </div>
-  <%= render "devise/shared/footer" if user_signed_in? %>
 </div>
 </body>
 </html>
