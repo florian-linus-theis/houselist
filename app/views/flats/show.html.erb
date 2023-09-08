@@ -5,7 +5,7 @@
         <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
       <% end %>
     </div>
-    <div class="d-flex flex-row justify-content-around">
+    <div class="d-flex flex-row justify-content-around px-2">
       <div class="spacing-header">
         <h1><%= @flat.name %></h1>
         <h6><%= @flat.address %></h6>
@@ -104,11 +104,13 @@
     <div class="spacing-header">
       <%= link_to flats_path do %>
         <button class="btn-rounded-circle-back back-arrow" type="button">
-          <i class="fa-solid fa-arrow-left" style="color: #5465ff;"></i>
+          <i class="fa-solid fa-arrow-left" style="color: #5465ff; padding: 0"></i>
         </button>
       <% end %>
-      <h1><%= @flat.name %></h1>
-      <h6><%= @flat.address %></h6>
+      <div class="px-4">
+        <h1><%= @flat.name %></h1>
+        <h6><%= @flat.address %></h6>
+      </div>
     </div>
   </div>
 
