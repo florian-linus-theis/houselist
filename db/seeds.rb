@@ -564,6 +564,25 @@ belonging_20.files.attach(
 )
 belonging_20.save!
 
+belonging_toaster = Belonging.new(
+  name: 'Smeg toaster',
+  status: 'good',
+  description: 'White Smeg toaster in the kitchen.'
+)
+belonging_toaster.flat = flat_01
+belonging_toaster.category = Category.find_by(name: 'kitchen')
+belonging_toaster.photos.attach(
+  io: File.open(Rails.root.join('app/assets/images/belonging_37.jpg')),
+  filename: 'belonging_37',
+  content_type: 'image/jpg'
+)
+belonging_toaster.files.attach(
+  io: File.open(Rails.root.join('app/assets/pdfs/230906_ikea_invoice.pdf')),
+  content_type: 'document/pdf',
+  filename: '230906_ikea_invoice'
+)
+belonging_toaster.save!
+
 belonging_21= Belonging.new(
   name: 'Alarm clock',
   status: 'needs_replacement',
