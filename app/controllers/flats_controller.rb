@@ -16,7 +16,11 @@ class FlatsController < ApplicationController
                                  .order(created_at: :desc)
     if current_user.tenant?
       @todo = Todo.new
-      @belongings = @flat.belongings
+      if params[:query].present?
+        @belongings = Belonging.query_belonging(params[:query]).select { |b| b.flat_id == @flat.id }
+      else
+        @belongings = @flat.belongings
+      end
     end
     authorize @flat
   end
